@@ -3,7 +3,7 @@ import React from 'react';
 type Props = {};
 
 const MenuBar = (props: Props) => {
-  return <div>MenuBar</div>;
+  return <div></div>;
 };
 
 export default MenuBar;
