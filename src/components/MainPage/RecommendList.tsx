@@ -1,13 +1,45 @@
 import React from 'react';
+import Slick from '../../slider/slick';
+
+interface itemsProps {
+  item: string;
+  name: string;
+}
 
 const RecommendList = () => {
+  const items: itemsProps[] = [
+    {
+      item: 'http://placehold.it/1200x400',
+      name: '이미지01',
+    },
+    {
+      item: 'http://placehold.it/1200x400/ff0000',
+      name: '이미지02',
+    },
+    {
+      item: 'http://placehold.it/1200x400/00ffff',
+      name: '이미지03',
+    },
+  ];
   return (
-    <div className='relative top-10'>
-      <p className='font-semibold text-sm p-1.5'>
+    <div className='relative top-10 max-w-ms'>
+      <p className='font-semibold text-sm p-10'>
         <span className='text-mw'>미왕이</span> 님을 위한 추천상품이에요.
       </p>
       {/* 추천 상품 리스트 보여주기 */}
-      <div className='SlickContainer'></div>
+      <div className='SlickContainer w-80 ml-15 m-auto box-border'>
+        <Slick>
+          {items.map((item, index) => (
+            <div key={index}>
+              <img
+                className='m-auto shadow-default'
+                src={item.item}
+                alt={item.name}
+              />
+            </div>
+          ))}
+        </Slick>
+      </div>
     </div>
   );
 };

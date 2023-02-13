@@ -1,4 +1,5 @@
 import React from 'react';
+import GoodsList from '../../components/MainPage/GoodsList';
 import MainHeader from '../../components/MainPage/MainHeader';
 import RecommendList from '../../components/MainPage/RecommendList';
 
@@ -9,6 +10,7 @@ const MainPage = (props: Props) => {
     <div>
       <MainHeader />
       <RecommendList />
+      <GoodsList />
     </div>
   );
 };

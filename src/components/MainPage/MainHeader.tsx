@@ -11,7 +11,7 @@ const MainHeader = (props: Props) => {
         <span className='--black-100 font-light'>Bank</span>
       </div>
       <button className='absolute right-2 top-1'>
-        <Link to='/menu'>
+        <Link to='/'>
           {' '}
           <AiOutlineMenu />
         </Link>
