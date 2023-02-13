@@ -8,7 +8,7 @@ import Mypage from './pages/MyPage';
 import SignInPage from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
 import UserInfoPage from './pages/UserInfoPage';
-import UserLonaPage from './pages/UserLoanPage';
+import UserLoanPage from './pages/UserLoanPage';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/userloan',
-        element: <UserLonaPage />,
+        element: <UserLoanPage />,
       },
       {
         path: '/detail/:loanId',
