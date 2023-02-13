@@ -1,4 +1,4 @@
-# 🤑 MIWANGLOAN
+# 🤑 MEEWANGLOAN
 
 ## 팀 소개
 
@@ -37,7 +37,7 @@
   </tbody>
 </table>
 
-## [MIWANGLOAN DEMO]()
+## [MEEWANGLOAN DEMO]()
 
 ## 📅 과제 기간 및 담당 업무
 
