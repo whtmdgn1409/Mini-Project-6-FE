@@ -3,7 +3,8 @@ module.exports = {
   content: [
     './index.html',
     './src/*.tsx',
-    './src/**/*.{js, ts, jsx, tsx}',
+    './src/**/*.{js,ts,jsx,tsx}',
+    './src/**/**/*.{js,ts,jsx,tsx}',
     './node_modules/tailwind-datepicker-react/dist/**/*.js',
   ],
   theme: {
