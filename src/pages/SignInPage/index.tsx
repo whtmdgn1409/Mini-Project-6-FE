@@ -1,8 +1,9 @@
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {};
 
 const SignInPage = (props: Props) => {
+  const navigate = useNavigate();
   return (
     <section>
       <h1 className='text-4xl font-bold text-center'>회원가입</h1>
@@ -12,25 +13,42 @@ const SignInPage = (props: Props) => {
       <form className='flex-col mt-16 text-center'>
         <div>
           <label htmlFor='name'></label>
-          <input type='text' className='mwInput pl-6' placeholder='이름' />
+          <input
+            type='text'
+            className='mwInput pl-6 w-full'
+            placeholder='이름'
+          />
         </div>
         <div className='mt-12'>
           <label htmlFor='password'></label>
           <input
             type='password'
-            className='mwInput pl-6'
+            className='mwInput pl-6 w-full'
             placeholder='비밀번호'
           />
         </div>
         <div className='mt-12'>
           <label htmlFor='text'></label>
-          <input type='email' className='mwInput pl-6' placeholder='이메일' />
+          <input
+            type='email'
+            className='mwInput pl-6 w-full'
+            placeholder='이메일'
+          />
         </div>
         <div className='mt-12'>
           <label htmlFor='mobile'></label>
-          <input type='text' className='mwInput pl-6' placeholder='모바일' />
+          <input
+            type='text'
+            className='mwInput pl-6 w-full'
+            placeholder='모바일'
+          />
         </div>
-        <button className='mwBtn !w-[300px] font-semibold mt-12'>
+        <button
+          onClick={() => {
+            navigate('/signin/optinfo');
+          }}
+          className='mwBtn !w-[300px] font-semibold mt-12'
+        >
           회원가입 하기
         </button>
       </form>
