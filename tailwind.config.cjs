@@ -31,7 +31,7 @@ module.exports = {
       main: ['Pretendard Variable', 'Apple SD Gothic Neo', 'sans-serif'],
     },
     screens: {
-      max: '480px',
+      main: '480px',
     },
     boxShadow: {
       default: '0px 8px 20px rgba(0, 0, 0, 0.1)',
