@@ -5,10 +5,12 @@ type Props = {};
 const SignInPage = (props: Props) => {
   const navigate = useNavigate();
   return (
-    <section>
-      <h1 className='text-4xl font-bold text-center'>회원가입</h1>
+    <section className='w-[300px] m-auto'>
+      <h1 className='text-4xl font-bold text-center'>반가워요</h1>
       <p className='text-center mt-4 mw-lGray'>
-        가입을 위한 정보를 입력해 주세요
+        가입에 꼭 필요한 정보를 알려주세요
+        <br />
+        금방 끝나요!😉
       </p>
       <form className='flex-col mt-16 text-center'>
         <div>
@@ -19,7 +21,7 @@ const SignInPage = (props: Props) => {
             placeholder='이름'
           />
         </div>
-        <div className='mt-12'>
+        <div className='mt-8'>
           <label htmlFor='password'></label>
           <input
             type='password'
@@ -27,7 +29,7 @@ const SignInPage = (props: Props) => {
             placeholder='비밀번호'
           />
         </div>
-        <div className='mt-12'>
+        <div className='mt-8'>
           <label htmlFor='text'></label>
           <input
             type='email'
@@ -35,7 +37,7 @@ const SignInPage = (props: Props) => {
             placeholder='이메일'
           />
         </div>
-        <div className='mt-12'>
+        <div className='mt-8'>
           <label htmlFor='mobile'></label>
           <input
             type='text'
