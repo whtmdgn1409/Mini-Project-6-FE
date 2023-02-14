@@ -42,7 +42,7 @@ const router = createBrowserRouter([
         element: <UserInfoPage />,
       },
       {
-        path: '/userloan',
+        path: '/userloan/:loanId',
         element: <UserLoanPage />,
       },
       {

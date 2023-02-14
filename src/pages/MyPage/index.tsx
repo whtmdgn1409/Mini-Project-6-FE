@@ -12,9 +12,9 @@ const Mypage = (props: Props) => {
   const navigate = useNavigate();
   const settings = {
     dots: true,
-    className: 'center',
-    centerMode: true,
     slidesToShow: 3,
+    className: 'center',
+    centerPadding: '20px',
   };
   return (
     <div className='mx-[60px]'>
@@ -31,6 +31,8 @@ const Mypage = (props: Props) => {
       </div>
       <h2 className='text-[20px] font-bold my-[20px]'>관심 상품</h2>
       <Slider {...settings}>
+        <LikeBox />
+        <LikeBox />
         <LikeBox />
         <LikeBox />
         <LikeBox />

@@ -8,7 +8,7 @@ const Header = (props: Props) => {
     <div className='flex relative m-auto h-[100px] w-96 items-center justify-center'>
       <div className='inset-x-0 top-0 text-center'>
         <span className='text-mw font-semibold'>MW </span>
-        <span className='--black-100 font-light'>Bank</span>
+        <span className='--black-100 font-light'>Loan</span>
         <button className='absolute right-2 top-[50%] translate-y-[-50%]'>
           <Link to='/'>
             {' '}
