@@ -15,7 +15,7 @@ const Header = (props: Props) => {
       <div className='flex relative m-auto top-8 h-12 w-96 '>
         <div className='absolute inset-x-0 top-0 text-center text-lg'>
           <span className='text-mw font-semibold'>MW </span>
-          <span className='--black-100 font-light'>Bank</span>
+          <span className='--black-100 font-light'>Loan</span>
         </div>
         <button className='absolute right-2 top-1' onClick={() => toggleMenu()}>
           <AiOutlineMenu size='28' />
