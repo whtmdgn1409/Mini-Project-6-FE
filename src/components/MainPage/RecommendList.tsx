@@ -30,12 +30,8 @@ const RecommendList = () => {
       <div className='SlickContainer w-80 ml-15 m-auto box-border'>
         <Slick>
           {items.map((item, index) => (
-            <div key={index}>
-              <img
-                className='m-auto shadow-default'
-                src={item.item}
-                alt={item.name}
-              />
+            <div key={index} className='shadow-default'>
+              <img className='w-80 h-28' src={item.item} alt={item.name} />
             </div>
           ))}
         </Slick>
