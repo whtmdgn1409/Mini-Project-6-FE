@@ -6,6 +6,7 @@ import LoanDetailPage from './pages/LoanDetailPage';
 import MainPage from './pages/MainPage';
 import Mypage from './pages/MyPage';
 import SignInPage from './pages/SignInPage';
+import OptionalInfo from './pages/SignInPage/OptionalInfo';
 import SignUpPage from './pages/SignUpPage';
 import UserInfoPage from './pages/UserInfoPage';
 import UserLoanPage from './pages/UserLoanPage';
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: '/signin',
         element: <SignInPage />,
+      },
+      {
+        path: '/signin/optinfo',
+        element: <OptionalInfo />,
       },
       {
         path: '/userinfo',
