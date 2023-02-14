@@ -4,7 +4,7 @@ const SignUpPage = (props: Props) => {
   return (
     <section>
       <h1 className='text-6xl font-bold text-center'>안녕하세요</h1>
-      <form className='flex-col mt-32 text-center'>
+      <form className='flex-col mt-24 text-center'>
         <div>
           <label htmlFor='email'></label>
           <input
