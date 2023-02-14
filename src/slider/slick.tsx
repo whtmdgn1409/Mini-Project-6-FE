@@ -1,9 +1,8 @@
 import { useMemo } from 'react';
 import Slider, { Settings } from 'react-slick';
-
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
+import '../assets/index.css';
 interface sliderProps {
   /** 슬라이더 아이템 요소 */
   children: React.ReactNode;
@@ -25,8 +24,10 @@ function Slick({
     () => ({
       dots: true,
       fade: true,
+      arrows: false,
       infinite: loop,
       speed: speed,
+      draggable: true,
       slidesToShow: 1,
       autoplay: Boolean(autoplay),
       autoplaySpeed: typeof autoplay === 'boolean' ? 3000 : autoplay,
@@ -35,7 +36,9 @@ function Slick({
   );
   return (
     <div>
-      <Slider {...settings}>{children}</Slider>
+      <Slider {...settings} dotsClass='test-css'>
+        {children}
+      </Slider>
     </div>
   );
 }
