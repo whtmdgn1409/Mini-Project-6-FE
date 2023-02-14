@@ -56,7 +56,14 @@ const SignInPage = (props: Props) => {
       </form>
       <p className='mt-12 text-center'>
         이미 회원이신가요?
-        <button className='font-bold text-mw'>&nbsp;로그인 하기</button>
+        <button
+          onClick={() => {
+            navigate('/signup');
+          }}
+          className='font-bold text-mw'
+        >
+          &nbsp;로그인 하기
+        </button>
       </p>
     </section>
   );
