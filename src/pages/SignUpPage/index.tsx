@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
+
 type Props = {};
 
 const SignUpPage = (props: Props) => {
+  const navigate = useNavigate();
   return (
     <section>
       <h1 className='text-6xl font-bold text-center'>안녕하세요</h1>
@@ -24,8 +27,15 @@ const SignUpPage = (props: Props) => {
         <button className='mwBtn !w-[300px] font-semibold mt-12'>로그인</button>
       </form>
       <p className='mt-12 text-center'>
-        회원이 아니세요?
-        <button className='font-bold text-mw'> 회원가입 하기</button>
+        회원이 아니세요?&nbsp;
+        <button
+          onClick={() => {
+            navigate('/signin');
+          }}
+          className='font-bold text-mw'
+        >
+          회원가입 하기
+        </button>
       </p>
     </section>
   );
