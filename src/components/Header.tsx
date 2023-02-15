@@ -14,7 +14,7 @@ const Header = (props: Props) => {
   return !isOpen ? (
     <div className='flex relative m-auto h-[100px] w-96 items-center justify-center'>
       <div
-        className='inset-x-0 top-0 text-cente cursor-pointer'
+        className='inset-x-0 top-0 text-center cursor-pointer'
         onClick={() => navigate('/')}
       >
         <span className='text-mw font-semibold'>MW </span>
