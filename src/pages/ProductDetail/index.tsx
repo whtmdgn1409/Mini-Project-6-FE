@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IoBookmarksOutline } from 'react-icons/io5';
 type Props = {};
 
+const lists = ['상품요건', '지원 대상 요건', '기타 상품 정보'];
+
 const ProductDetail = (props: Props) => {
+  const [activeMenu, setActiveMenu] = useState(0);
   return (
     <section className='w-[480px] m-auto'>
       <div className='bg-mw w-[480px] h-[230px] top-40 absolute'></div>
@@ -25,20 +28,26 @@ const ProductDetail = (props: Props) => {
             </div>
           </div>
         </div>
+
         <button className='absolute bottom-40 right-5'>
           <IoBookmarksOutline className='text-3xl' />
         </button>
       </div>
-      <ul className='z-20 mt-24 flex justify-center gap-8 font-semibold '>
-        <li className=' hover:text-mw hover:border-b-2 cursor-pointer'>
-          상품요건
-        </li>
-        <li className=' hover:text-mw hover:border-b-2 cursor-pointer'>
-          지원대상요건
-        </li>
-        <li className=' hover:text-mw hover:border-b-2 cursor-pointer'>
-          기타 상품 정보
-        </li>
+      <ul className='z-20 mt-24 flex justify-center gap-8'>
+        {lists.map((list, i) => {
+          return (
+            <li
+              className={
+                i === activeMenu
+                  ? 'cursor-pointer text-mw font-bold border-solid border-mw border-b-4'
+                  : 'cursor-pointer text-mw-gray font-semibold hover:text-mw hover:border-b-4 hover:border-mw'
+              }
+              onClick={() => setActiveMenu(i)}
+            >
+              {list}
+            </li>
+          );
+        })}
       </ul>
     </section>
   );
