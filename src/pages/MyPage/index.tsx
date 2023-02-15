@@ -13,11 +13,12 @@ const Mypage = (props: Props) => {
   const settings = {
     dots: true,
     slidesToShow: 3,
-    className: 'center',
-    centerPadding: '20px',
+    centerMode: true,
+    centerPadding: '60px',
+    arrows: false,
   };
   return (
-    <div className='mx-[60px]'>
+    <div className='mx-[60px] mb-[500px]'>
       <h1 className='text-[20px]'>
         <span className='text-mw font-bold'>미왕이</span> 님 안녕하세요!
       </h1>
@@ -30,7 +31,7 @@ const Mypage = (props: Props) => {
         </div>
       </div>
       <h2 className='text-[20px] font-bold my-[20px]'>관심 상품</h2>
-      <Slider {...settings}>
+      <Slider {...settings} dotsClass='mypage-dots' className='likeItem'>
         <LikeBox />
         <LikeBox />
         <LikeBox />

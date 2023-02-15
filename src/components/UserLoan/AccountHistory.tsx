@@ -2,7 +2,7 @@ import React from 'react';
 
 type Props = {};
 
-const AccoutHistory = (props: Props) => {
+const AccountHistory = (props: Props) => {
   return (
     <div className='px-[20px] my-5'>
       <span>2023년 2월 14일</span>
@@ -31,4 +31,4 @@ const AccoutHistory = (props: Props) => {
   );
 };
 
-export default AccoutHistory;
+export default AccountHistory;
