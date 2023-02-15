@@ -12,12 +12,15 @@ const Header = (props: Props) => {
   };
   if (!isOpen) {
     return (
-      <div className='flex relative m-auto top-8 h-12 w-96 '>
-        <div className='absolute inset-x-0 top-0 text-center text-lg'>
+      <div className='flex relative m-auto h-[100px] w-96 items-center justify-center'>
+        <div className='inset-x-0 top-0 text-cente'>
           <span className='text-mw font-semibold'>MW </span>
           <span className='--black-100 font-light'>Loan</span>
         </div>
-        <button className='absolute right-2 top-1' onClick={() => toggleMenu()}>
+        <button
+          className='absolute right-2 top-[50%] translate-y-[-50%]'
+          onClick={() => toggleMenu()}
+        >
           <AiOutlineMenu size='28' />
         </button>
       </div>
