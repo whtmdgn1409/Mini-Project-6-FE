@@ -13,7 +13,12 @@ const UserLonaPage = (props: Props) => {
     return 'cursor-pointer text-mw-gray font-bold text-[18px]';
   };
 
-  const accountHistory = () => <AccoutHistory />;
+  const accountHistory = () => (
+    <>
+      <AccoutHistory />
+      <AccoutHistory />
+    </>
+  );
 
   const accountDetail = () => <AccountDetail />;
   return (
