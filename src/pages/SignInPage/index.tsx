@@ -30,18 +30,12 @@ const SignInPage = (props: Props) => {
   } = useForm<IvalidationForm>({
     resolver: yupResolver(schema),
   });
-  const check = (data: string) => {
-    console.log(data);
-  };
 
   const navigate = useNavigate();
   return (
     <section>
       <h1 className='text-6xl font-bold text-center'>안녕하세요</h1>
-      <form
-        onSubmit={handleSubmit((data) => console.log(data))}
-        className='flex-col mt-24 text-center'
-      >
+      <form className='flex-col mt-24 text-center'>
         <div>
           <label htmlFor='email'></label>
           <input
