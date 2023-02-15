@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { signUp } from '../../api/axios';
 
 type Props = {};
 
@@ -9,8 +10,13 @@ interface IvalidationForm {
   name: string;
   password: string;
   email: string;
-  mobile: string;
+  phone: string;
 }
+const onSubmit = async (data: FieldValues) => {
+  const { name, email, password, phone } = data;
+  const test = await signUp(name, email, password, phone);
+  console.log('test', test);
+};
 
 const SignUpPage = (props: Props) => {
   const navigate = useNavigate();
@@ -28,7 +34,7 @@ const SignUpPage = (props: Props) => {
       .string()
       .email('이메일 형식에 맞추어 입력해주세요')
       .required('이메일 형식에 맞추어 입력해주세요'),
-    mobile: yup
+    phone: yup
       .string()
       .matches(/^[0-9]{11}$/i, '번호는 01012345678형태로 입력해주세요')
       .required('휴대폰 번호를 입력해주세요'),
@@ -52,7 +58,7 @@ const SignUpPage = (props: Props) => {
         금방 끝나요!😉
       </p>
       <form
-        onSubmit={handleSubmit((data) => console.log(data))}
+        onSubmit={handleSubmit(onSubmit)}
         className='flex-col mt-16 text-center'
       >
         <div>
@@ -98,16 +104,16 @@ const SignUpPage = (props: Props) => {
           )}
         </div>
         <div className='mt-8'>
-          <label htmlFor='mobile'></label>
+          <label htmlFor='phone'></label>
           <input
             type='text'
             className='mwInput pl-6 w-full'
             placeholder='모바일'
-            {...register('mobile')}
+            {...register('phone')}
           />
-          {errors.mobile && (
+          {errors.phone && (
             <p className='text-sm text-alert font-semibold pt-3'>
-              {errors.mobile.message}
+              {errors.phone.message}
             </p>
           )}
         </div>
