@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AiOutlineClose } from 'react-icons/ai';
 
 type Props = {};
 
 const Header = (props: Props) => {
   const [isOpen, setisOpen] = useState(false);
+  const navigate = useNavigate();
   const toggleMenu = () => {
     setisOpen((isOpen) => !isOpen);
   };
   return !isOpen ? (
     <div className='flex relative m-auto h-[100px] w-96 items-center justify-center'>
-      <div className='inset-x-0 top-0 text-cente'>
+      <div
+        className='inset-x-0 top-0 text-cente cursor-pointer'
+        onClick={() => navigate('/')}
+      >
         <span className='text-mw font-semibold'>MW </span>
         <span className='--black-100 font-light'>Loan</span>
       </div>
