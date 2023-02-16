@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import LoanBox from '../../components/MyPage/LoanBox';
 import Slider from 'react-slick';
 import LikeBox from '../../components/MyPage/LikeBox';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useNavigate } from 'react-router-dom';
+import { getFavor } from '../../api/axios';
+import { FavorType } from '../../api/axios';
 
 type Props = {};
 
 const Mypage = (props: Props) => {
+  const [favor, setFavor] = useState<Array<FavorType>>([]);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    async function fetchData() {
+      const favorData = await getFavor();
+      setFavor(favorData);
+    }
+    fetchData();
+  }, []);
+  console.log(favor);
+
   const settings = {
     dots: true,
     slidesToShow: 3,
@@ -17,6 +31,7 @@ const Mypage = (props: Props) => {
     centerPadding: '60px',
     arrows: false,
   };
+
   return (
     <div className='mx-[60px] mb-[500px]'>
       <h1 className='text-[20px]'>
@@ -32,11 +47,11 @@ const Mypage = (props: Props) => {
       </div>
       <h2 className='text-[20px] font-bold my-[20px]'>관심 상품</h2>
       <Slider {...settings} dotsClass='mypage-dots' className='likeItem'>
-        <LikeBox />
-        <LikeBox />
-        <LikeBox />
-        <LikeBox />
-        <LikeBox />
+        {favor ? (
+          favor.map((item) => <LikeBox item={item} key={item.snq} />)
+        ) : (
+          <div>관심 상품이 없습니다.</div>
+        )}
       </Slider>
       <div>
         <h2 className='text-[20px] font-bold mt-[20px] mb-[10px]'>
