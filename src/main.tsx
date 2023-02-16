@@ -12,6 +12,7 @@ import ProductDetail from './pages/ProductDetail';
 import SignUpPage from './pages/SignUpPage';
 import SignInPage from './pages/SignInPage';
 import OptionalInfo from './pages/SignUpPage/OptionalInfo';
+import Loading from './pages/LoadingPage';
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: '/cart',
         element: <CartNLikesPage />,
+      },
+      {
+        path: '/loading',
+        element: <Loading />,
       },
     ],
   },

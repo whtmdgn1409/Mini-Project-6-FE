@@ -5,7 +5,7 @@ import MainPage from './pages/MainPage';
 
 function App() {
   return (
-    <div className='w-[480px] m-auto'>
+    <div className='w-[480px] m-auto relative'>
       <ScrollRestoration />
       <Header />
       <Outlet />
