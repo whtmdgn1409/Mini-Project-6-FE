@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
-import { AiOutlineClose } from 'react-icons/ai';
+import ToggleHeader from './MainPage/ToggleMenu/ToggleHeader';
 
 type Props = {};
 
@@ -11,7 +11,7 @@ const Header = (props: Props) => {
   const toggleMenu = () => {
     setisOpen((isOpen) => !isOpen);
   };
-  return !isOpen ? (
+  return (
     <div className='flex relative m-auto h-[100px] w-96 items-center justify-center'>
       <div
         className='inset-x-0 top-0 text-center cursor-pointer'
@@ -26,17 +26,14 @@ const Header = (props: Props) => {
       >
         <AiOutlineMenu size='28' />
       </button>
-    </div>
-  ) : (
-    <div id='gnbMenu' className='w-full h-screen bg-[#000] z-[50]'>
-      <div id='menuHeader' className='w-full h-[210px] bg-mw'>
-        <div
-          className='float-right mt-9 mr-[50px]'
-          onClick={() => toggleMenu()}
-        >
-          {' '}
-          <AiOutlineClose size='32' color='#fff' />
-        </div>
+      <div
+        className={
+          isOpen
+            ? 'showMenu w-[480px] h-[500px] absolute top-0 right-[-48px] duration-1000 bg-white'
+            : 'hideMenu w-[480px] h-[500px] absolute top-0 right-[-528px] duration-1000 bg-white'
+        }
+      >
+        <ToggleHeader toggleMenu={toggleMenu} />
       </div>
     </div>
   );

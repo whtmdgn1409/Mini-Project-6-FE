@@ -1,16 +1,28 @@
 import React, { useState } from 'react';
+import { AiOutlineClose } from 'react-icons/ai';
+import ToggleBody from './ToggleBody';
 
-type props = {};
-
+interface props {
+  toggleMenu(): void;
+}
 const ToggleHeader = (props: props) => {
   const [logIn, setlogIn] = useState(false);
   const logInCheck = () => {
-    if(props){
-
+    if (props) {
     }
+  };
   return (
-    <div className=''>
+    <div>
+      <div className='w-full text-right bg-mw'>
+        {' '}
+        <AiOutlineClose
+          size='32'
+          color='#fff'
+          onClick={() => props.toggleMenu()}
+        />
+      </div>
       <div></div>
+      <ToggleBody />
     </div>
   );
 };
