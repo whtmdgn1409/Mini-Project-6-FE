@@ -46,9 +46,6 @@ const SignUpPage = (props: Props) => {
   } = useForm<IvalidationForm>({
     resolver: yupResolver(schema),
   });
-  const check = (data: string) => {
-    console.log(data);
-  };
   return (
     <section className='w-[300px] m-auto'>
       <h1 className='text-4xl font-bold text-center'>반가워요</h1>
