@@ -1,7 +1,15 @@
-export default function CartItem() {
+type CartItemProps = {
+  onClick: () => void;
+};
+
+export default function CartItem({ onClick }: CartItemProps) {
+  //  TODO: 로그인 기능되면 데이터 보고 props로 데이터 그리게 하기
   return (
     <div className='relative w-full h-[200px] flex justify-between items-center px-[32px]'>
-      <button className='absolute top-8 right-8 text-[#2AC1BC] text-3 font-bold'>
+      <button
+        onClick={onClick}
+        className='absolute top-8 right-8 text-[#2AC1BC] text-3 font-bold'
+      >
         X
       </button>
       <div>
