@@ -4,13 +4,14 @@ import App from './App';
 import CartNLikesPage from './pages/CartNLikesPage';
 import MainPage from './pages/MainPage';
 import Mypage from './pages/MyPage';
-import SignInPage from './pages/SignInPage';
-import OptionalInfo from './pages/SignInPage/OptionalInfo';
-import SignUpPage from './pages/SignUpPage';
+
 import UserInfoPage from './pages/UserInfoPage';
 import UserLoanPage from './pages/UserLoanPage';
 import './index.css';
 import ProductDetail from './pages/ProductDetail';
+import SignUpPage from './pages/SignUpPage';
+import SignInPage from './pages/SignInPage';
+import OptionalInfo from './pages/SignUpPage/OptionalInfo';
 
 const router = createBrowserRouter([
   {
@@ -26,15 +27,15 @@ const router = createBrowserRouter([
         element: <Mypage />,
       },
       {
-        path: '/signup',
-        element: <SignUpPage />,
-      },
-      {
         path: '/signin',
         element: <SignInPage />,
       },
       {
-        path: '/signin/optinfo',
+        path: '/signup',
+        element: <SignUpPage />,
+      },
+      {
+        path: '/signup/optinfo',
         element: <OptionalInfo />,
       },
       {

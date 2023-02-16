@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import AccountDetail from '../../components/UserLoan/AccountDetail';
-import AccoutHistory from '../../components/UserLoan/AccountHistory';
+import AccountHistory from '../../components/UserLoan/AccountHistory';
 
 type Props = {};
 
-const UserLonaPage = (props: Props) => {
+const UserLoanPage = (props: Props) => {
   const [menuChange, setMenuChange] = useState(false);
   const activeClassName = () => {
     return 'cursor-pointer text-mw font-bold border-solid border-mw border-b-4 text-[18px]';
@@ -15,8 +15,8 @@ const UserLonaPage = (props: Props) => {
 
   const accountHistory = () => (
     <>
-      <AccoutHistory />
-      <AccoutHistory />
+      <AccountHistory />
+      <AccountHistory />
     </>
   );
 
@@ -55,4 +55,4 @@ const UserLonaPage = (props: Props) => {
   );
 };
 
-export default UserLonaPage;
+export default UserLoanPage;

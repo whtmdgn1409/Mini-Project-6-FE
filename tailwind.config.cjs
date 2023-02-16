@@ -29,7 +29,8 @@ module.exports = {
       'mw-gray': '#c8c7cc',
       'mw-lGray': '#f9f8f8',
       white: '#fff',
-      black: '#000'
+      black: '#000',
+      alert: '#FF0066',
     },
     fontFamily: {
       main: ['Pretendard Variable', 'Apple SD Gothic Neo', 'sans-serif'],
