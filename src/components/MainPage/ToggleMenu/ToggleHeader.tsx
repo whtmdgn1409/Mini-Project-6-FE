@@ -12,8 +12,8 @@ const ToggleHeader = (props: props) => {
     }
   };
   return (
-    <div>
-      <div className='w-full text-right bg-mw'>
+    <div className='relative'>
+      <div className='absolute right-[10px] w-full text-right bg-mw'>
         {' '}
         <AiOutlineClose
           size='32'
