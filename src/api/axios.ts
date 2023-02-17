@@ -1,33 +1,22 @@
 import { AxiosError } from 'axios';
 import { request } from './core/api';
 
-// 인증
-interface AuthFn {
-  (
-    name?: string,
-    password?: string,
-    email?: string,
-    phone?: string,
-    accessToken?: string,
-  ): Promise<ResponseValue>;
-}
-
-interface ResponseValue {
-  accessToken: string;
-}
-
-export const signUp: AuthFn = async (name, password, email, phone) => {
+//니장바구니
+export const fetchCartList = async (): Promise<any> => {
+  return await request('/mypage/cart', {
+    method: 'get',
+  });
+// 로그인
+export const signIn: AuthFn = async (email, password) => {
   try {
-    const res = await request('/signup', {
+    const res = await request('/login', {
       method: 'post',
       data: {
-        name,
-        password,
         email,
-        phone,
+        password,
       },
     });
-    console.log('res.data', res.data);
+
     return res.data;
   } catch (error) {
     if (error instanceof AxiosError) {
@@ -37,8 +26,46 @@ export const signUp: AuthFn = async (name, password, email, phone) => {
   }
 };
 
-export const fetchCartList = async (): Promise<any> => {
-  return await request('/mypage/cart', {
-    method: 'get',
-  });
+// 회원 정보 조회
+export const getUserInfo = async () => {
+  try {
+    const res = await request('/mypage/info', {
+      method: 'GET',
+    });
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return false;
+  }
 };
+
+// 회원 추가 정보 조회
+export const getUserDetailInfo = async () => {
+  try {
+    const res = await request('/mypage/detail/info', {
+      method: 'GET',
+    });
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return false;
+  }
+};
+
+// 관심 상품
+export const getFavor = async () => {
+  try {
+    const res = await request('/mypage/favor', {
+      method: 'GET',
+    });
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return false;
+  }

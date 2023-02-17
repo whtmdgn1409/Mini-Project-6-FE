@@ -21,10 +21,10 @@ const OptionalInfo = (props: Props) => {
         맞춤 상품도 추천해드릴게요☺
       </p>
       <form className='flex-col mt-8 text-center'>
-        <InfoSelect infos={jobs} />
-        <InfoSelect infos={age} />
-        <InfoSelect infos={regions} />
-        <InfoSelect infos={banks} />
+        <InfoSelect infos={jobs} defaultValue={'null'} />
+        <InfoSelect infos={age} defaultValue={'null'} />
+        <InfoSelect infos={regions} defaultValue={'null'} />
+        <InfoSelect infos={banks} defaultValue={'null'} />
       </form>
 
       <div className='flex justify-center gap-3'>
