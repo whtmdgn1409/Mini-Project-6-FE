@@ -121,3 +121,18 @@ export const getFavor = async () => {
     return false;
   }
 };
+
+// 상세 정보
+export const getProductDetail = async () => {
+  try {
+    const res = await request('/finance/loan/detail?snq=13', {
+      method: 'GET',
+    });
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return false;
+  }
+};
