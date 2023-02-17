@@ -7,7 +7,7 @@ const LoanBox = () => {
   return (
     <div
       onClick={() => navigate('/userloan/123')}
-      className='shadow-default rounded-default bg-white w-[360px] h-[100px] flex flex-col px-5 relative justify-center cursor-pointer'
+      className='shadow-default rounded-default bg-white w-full h-[100px] flex flex-col px-5 relative justify-center cursor-pointer mx-[60px]'
     >
       <span className='text-mw font-bold text-[18px]'>
         중소기업취업청년대출

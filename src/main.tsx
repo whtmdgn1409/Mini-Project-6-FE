@@ -1,20 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import App from './App';
-import CartNLikesPage from './pages/CartNLikesPage';
-import MainPage from './pages/MainPage';
-import Mypage from './pages/MyPage';
-import UserInfoPage from './pages/UserInfoPage';
-import UserLoanPage from './pages/UserLoanPage';
+
 import './index.css';
-import ProductDetail from './pages/ProductDetail';
-import SignUpPage from './pages/SignUpPage';
-import SignInPage from './pages/SignInPage';
-import OptionalInfo from './pages/SignUpPage/OptionalInfo';
 import { Provider } from 'react-redux';
 import { persistor, store } from './app/store';
 import { PersistGate } from 'redux-persist/integration/react';
+import Loading from './pages/LoadingPage';
+
+const App = React.lazy(() => import('./App'));
+const MainPage = React.lazy(() => import('./pages/MainPage'));
+const MyPage = React.lazy(() => import('./pages/MyPage'));
+const CartNLikesPage = React.lazy(() => import('./pages/CartNLikesPage'));
+const UserInfoPage = React.lazy(() => import('./pages/UserInfoPage'));
+const UserLoanPage = React.lazy(() => import('./pages/UserLoanPage'));
+const ProductDetail = React.lazy(() => import('./pages/ProductDetail'));
+const SignUpPage = React.lazy(() => import('./pages/SignUpPage'));
+const SignInPage = React.lazy(() => import('./pages/SignInPage'));
+const OptionalInfo = React.lazy(
+  () => import('./pages/SignUpPage/OptionalInfo'),
+);
 
 const router = createBrowserRouter([
   {
@@ -27,7 +32,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/mypage',
-        element: <Mypage />,
+        element: <MyPage />,
       },
       {
         path: '/signin',
@@ -64,7 +69,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>
-      <RouterProvider router={router} />
+      <React.Suspense fallback={<Loading />}>
+        <RouterProvider router={router} />
+      </React.Suspense>
     </PersistGate>
   </Provider>,
 );

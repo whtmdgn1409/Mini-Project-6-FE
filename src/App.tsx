@@ -5,7 +5,7 @@ import MenuBar from './components/MenuBar';
 
 function App() {
   return (
-    <div className='w-[480px] m-auto'>
+    <div className='w-[375px] m-auto'>
       <ScrollRestoration />
       <Header />
       <Outlet />
