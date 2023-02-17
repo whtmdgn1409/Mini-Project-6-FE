@@ -3,20 +3,17 @@ import CartItem from './components/CartItem';
 import logo from '../../assets/008.png';
 import vector from '../../assets/Vector.svg';
 import { fetchCartList } from '../../api/axios';
-import Loading from '../LoadingPage';
 import { AxiosError } from 'axios';
 
 type Props = {};
 
 const CartNLikesPage = (props: Props) => {
   const [carts, setCarts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   const getCartList = async () => {
     try {
       const response = await fetchCartList();
       setCarts(response.data);
-      setIsLoading(false);
     } catch (error) {
       if (error instanceof AxiosError) {
         console.log(error.message);
@@ -35,8 +32,6 @@ const CartNLikesPage = (props: Props) => {
   useEffect(() => {
     getCartList();
   }, []);
-
-  if (isLoading) return <Loading />;
 
   return (
     <div className='relative'>

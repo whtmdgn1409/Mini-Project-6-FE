@@ -32,7 +32,7 @@ const Mypage = (props: Props) => {
   };
 
   return (
-    <div className='mx-[60px]'>
+    <div className='mx-[60px] mb-[500px]'>
       <h1 className='text-[20px]'>
         <span className='text-mw font-bold'>미왕이</span> 님 안녕하세요!
       </h1>
