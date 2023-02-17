@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import InfoSelect from '../../components/InfoSelect';
-import age from '../../utils/age';
-import jobs from '../../utils/jobs';
-import regions from '../../utils/regions';
-import banks from '../../utils/banks';
 import { getUserDetailInfo, UserDetailInfoType } from '../../api/axios';
+import { age, banks, jobs, regions } from '../../utils/infoData';
 
 type Props = {};
 
