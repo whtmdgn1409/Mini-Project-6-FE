@@ -94,11 +94,3 @@
   box-sizing: border-box;
   margin: 0 4px;
 }
-
-.likeItem {
-  background-color: antiquewhite;
-}
-
-.likeItem.slick-list {
-  width: 500px;
-}
