@@ -4,6 +4,7 @@ import Slider from 'react-slick';
 import LikeBox from '../../components/MyPage/LikeBox';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import '../../assets/index.css';
 import { useNavigate } from 'react-router-dom';
 import { getFavor } from '../../api/axios';
 import { FavorType } from '../../api/axios';
@@ -27,7 +28,7 @@ const Mypage = (props: Props) => {
 
   const settings = {
     dots: true,
-    slidesToShow: 3,
+    slidesToShow: 1,
     arrows: false,
   };
 
