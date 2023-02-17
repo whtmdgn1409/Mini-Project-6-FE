@@ -1,7 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { signIn } from '../../api/axios';
+import { useAppDispatch } from '../../app/hooks';
+import { setUser } from '../../features/authSlice';
 
 type Props = {};
 
@@ -11,6 +14,8 @@ interface IvalidationForm {
 }
 
 const SignInPage = (props: Props) => {
+  const dispatch = useAppDispatch();
+
   const schema = yup.object().shape({
     email: yup
       .string()
@@ -31,11 +36,23 @@ const SignInPage = (props: Props) => {
     resolver: yupResolver(schema),
   });
 
+  const onSubmit = async (data: FieldValues) => {
+    const { email, password } = data;
+    const res = await signIn(email, password);
+    if (res.token) {
+      dispatch(setUser(res));
+      navigate('/');
+    }
+  };
+
   const navigate = useNavigate();
   return (
     <section>
       <h1 className='text-6xl font-bold text-center'>안녕하세요</h1>
-      <form className='flex-col mt-24 text-center'>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className='flex-col mt-24 text-center'
+      >
         <div>
           <label htmlFor='email'></label>
           <input
