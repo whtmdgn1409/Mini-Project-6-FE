@@ -50,7 +50,7 @@ const router = createBrowserRouter([
         element: <UserLoanPage />,
       },
       {
-        path: '/product/:Id',
+        path: '/product/:snq',
         element: <ProductDetail />,
       },
       {

@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import InfoSelect from '../../components/InfoSelect';
-import age from '../../utils/age';
-import jobs from '../../utils/jobs';
-import regions from '../../utils/regions';
-import banks from '../../utils/banks';
 import { crdtGrade, income } from '../../utils/crdtGrade';
 import {
   getUserDetailInfo,
@@ -15,6 +11,7 @@ import {
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FieldValues, useForm } from 'react-hook-form';
+import { age, banks, jobs, regions } from '../../utils/infoData';
 
 type Props = {};
 

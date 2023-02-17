@@ -174,3 +174,18 @@ export const fetchCartList = async (): Promise<any> => {
     method: 'get',
   });
 };
+
+// 상세 정보
+export const getProductDetail = async () => {
+  try {
+    const res = await request('/finance/loan/detail?snq=1', {
+      method: 'GET',
+    });
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return false;
+  }
+};

@@ -1,9 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import InfoSelect from '../../components/InfoSelect';
-import age from '../../utils/age';
-import banks from '../../utils/banks';
-import jobs from '../../utils/jobs';
-import regions from '../../utils/regions';
+import { age, banks, jobs, regions } from '../../utils/infoData';
 
 type Props = {};
 
