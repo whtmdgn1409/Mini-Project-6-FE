@@ -121,3 +121,10 @@ export const getFavor = async () => {
     return false;
   }
 };
+
+// 장바구니 조회
+export const fetchCartList = async (): Promise<any> => {
+  return await request('/mypage/cart', {
+    method: 'get',
+  });
+};
