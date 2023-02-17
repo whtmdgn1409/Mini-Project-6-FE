@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import InfoSelect from '../../components/InfoSelect';
-import { crdtGrade, income } from '../../utils/crdtGrade';
 import {
   getUserDetailInfo,
   UserDetailInfoType,
@@ -11,7 +10,14 @@ import {
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FieldValues, useForm } from 'react-hook-form';
-import { age, banks, jobs, regions } from '../../utils/infoData';
+import {
+  age,
+  banks,
+  jobs,
+  regions,
+  crdtGrade,
+  income,
+} from '../../utils/infoData';
 
 type Props = {};
 
@@ -77,7 +83,7 @@ const UserInfoPage = (props: Props) => {
       >
         <div>
           <label htmlFor='name'></label>
-          <h3 className=''>전화 번호 변경</h3>
+          <h3 className='font-semibold mb-2'>전화 번호 변경</h3>
           <input
             type='text'
             className='mwInput pl-6 w-full'
@@ -92,7 +98,7 @@ const UserInfoPage = (props: Props) => {
         </div>
         <div className='mt-8'>
           <label htmlFor='password'></label>
-          <h3>비밀번호 변경</h3>
+          <h3 className='font-semibold mb-2'>비밀번호 변경</h3>
           <input
             type='password'
             className='mwInput pl-6 w-full'
@@ -116,17 +122,23 @@ const UserInfoPage = (props: Props) => {
     <div className='w-[300px] m-auto'>
       {userInfoData ? (
         <form className='flex-col text-center'>
+          <h3 className='font-semibold mt-8'>수입 형태</h3>
           <InfoSelect infos={jobs} defaultValue={userDetailInfoData.job} />
+          <h3 className='font-semibold'>나이</h3>
           <InfoSelect infos={age} defaultValue={userDetailInfoData.age} />
+          <h3 className='font-semibold'>거주지</h3>
           <InfoSelect
             infos={regions}
             defaultValue={userDetailInfoData.district}
           />
+          <h3 className='font-semibold'>주거래 은행</h3>
           <InfoSelect infos={banks} defaultValue={userDetailInfoData.bank} />
+          <h3 className='font-semibold'>신용점수</h3>
           <InfoSelect
             infos={crdtGrade}
             defaultValue={userDetailInfoData.crdtGrad}
           />
+          <h3 className='font-semibold'>수입 연봉</h3>
           <InfoSelect infos={income} defaultValue={userDetailInfoData.income} />
         </form>
       ) : (

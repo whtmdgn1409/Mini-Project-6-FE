@@ -6,13 +6,14 @@ interface Props {
 const InfoSelect = ({ infos, defaultValue }: Props) => {
   const findDefaultValue = () => {
     const index = infos?.findIndex((item) => item == defaultValue);
-    infos.splice(index, 1);
-    console.log(defaultValue, index);
+    if (index !== -1) {
+      infos.splice(index, 1);
+    }
   };
 
   findDefaultValue();
   return (
-    <select className='select w-full text-mw-dGray shadow-default rounded-default font-normal text-base pl-6 mt-8'>
+    <select className='select w-full text-mw-dGray shadow-default rounded-default font-normal text-base pl-6 mb-8'>
       <option value='' defaultValue={defaultValue}>
         {defaultValue}
       </option>

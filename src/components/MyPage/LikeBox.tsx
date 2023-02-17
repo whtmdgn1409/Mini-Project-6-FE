@@ -10,7 +10,7 @@ const LikeBox = ({ item }: Props) => {
   const navigate = useNavigate();
 
   return (
-    <div className='w-[180px] h-[250px] bg-mw flex flex-col items-center justify-center rounded-default shadow-default text-white p-5 gap-2'>
+    <div className='m-auto w-[180px] h-[250px] bg-mw flex flex-col items-center justify-center rounded-default shadow-default text-white p-5 gap-2'>
       <span className='font-bold text-center truncate w-full'>
         {item.loanName}
       </span>

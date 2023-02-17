@@ -1,6 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import InfoSelect from '../../components/InfoSelect';
-import { age, banks, jobs, regions } from '../../utils/infoData';
+import {
+  age,
+  banks,
+  jobs,
+  regions,
+  crdtGrade,
+  income,
+} from '../../utils/infoData';
 
 type Props = {};
 
@@ -18,10 +25,12 @@ const OptionalInfo = (props: Props) => {
         맞춤 상품도 추천해드릴게요☺
       </p>
       <form className='flex-col mt-8 text-center'>
-        <InfoSelect infos={jobs} defaultValue={'null'} />
-        <InfoSelect infos={age} defaultValue={'null'} />
-        <InfoSelect infos={regions} defaultValue={'null'} />
-        <InfoSelect infos={banks} defaultValue={'null'} />
+        <InfoSelect infos={jobs} defaultValue={'수입 형태'} />
+        <InfoSelect infos={age} defaultValue={'나이'} />
+        <InfoSelect infos={regions} defaultValue={'거주지'} />
+        <InfoSelect infos={banks} defaultValue={'주거래 은행'} />
+        <InfoSelect infos={crdtGrade} defaultValue={'신용점수'} />
+        <InfoSelect infos={income} defaultValue={'수입 연봉'} />
       </form>
 
       <div className='flex justify-center gap-3'>
