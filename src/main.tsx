@@ -12,6 +12,7 @@ import ProductDetail from './pages/ProductDetail';
 import SignUpPage from './pages/SignUpPage';
 import SignInPage from './pages/SignInPage';
 import OptionalInfo from './pages/SignUpPage/OptionalInfo';
+import Loading from './pages/LoadingPage';
 import { Provider } from 'react-redux';
 import { persistor, store } from './app/store';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
       {
         path: '/cart',
         element: <CartNLikesPage />,
+      },
+      {
+        path: '/loading',
+        element: <Loading />,
       },
     ],
   },

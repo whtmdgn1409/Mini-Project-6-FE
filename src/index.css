@@ -52,3 +52,7 @@ body {
 .mwInput:focus {
   outline: none;
 }
+
+.ease-linear {
+  transition-timing-function: linear;
+}
