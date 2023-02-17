@@ -26,16 +26,6 @@ export type FavorType = {
   ratePercent: string;
 };
 
-// 회원 추가 정보
-// export type UserDetailInfoType = {
-//   age: string;
-//   bank: string;
-//   crdtGrad: string;
-//   district: string;
-//   income: string;
-//   job: string;
-// };
-
 export interface UserDetailInfoType {
   age: string;
   bank: string;
@@ -106,6 +96,21 @@ export const getUserInfo = async () => {
 export const getUserDetailInfo = async () => {
   try {
     const res = await request('/mypage/detail/info', {
+      method: 'GET',
+    });
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return false;
+  }
+};
+
+// 관심 상품
+export const getFavor = async () => {
+  try {
+    const res = await request('/mypage/favor', {
       method: 'GET',
     });
     return res.data;
