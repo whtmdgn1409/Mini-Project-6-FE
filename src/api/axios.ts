@@ -125,7 +125,7 @@ export const getFavor = async () => {
 // 상세 정보
 export const getProductDetail = async () => {
   try {
-    const res = await request('/finance/loan/detail?snq=13', {
+    const res = await request('/finance/loan/detail?snq=1', {
       method: 'GET',
     });
     return res.data;
