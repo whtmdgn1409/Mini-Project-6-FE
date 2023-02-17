@@ -7,6 +7,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import { useNavigate } from 'react-router-dom';
 import { getFavor } from '../../api/axios';
 import { FavorType } from '../../api/axios';
+import { IoBookmarksOutline } from 'react-icons/io5';
 
 type Props = {};
 
@@ -27,32 +28,34 @@ const Mypage = (props: Props) => {
   const settings = {
     dots: true,
     slidesToShow: 3,
-    centerMode: true,
-    centerPadding: '60px',
     arrows: false,
   };
 
   return (
-    <div className='mx-[60px] mb-[500px]'>
+    <div className='mx-[60px]'>
       <h1 className='text-[20px]'>
         <span className='text-mw font-bold'>미왕이</span> 님 안녕하세요!
       </h1>
       <div className='mt-[20px]'>
-        <span className='text-[14px]'>이용 중인 대출 3건</span>
+        <span className='text-[16px]'>이용 중인 대출 3건</span>
         <div className='flex gap-5 flex-col items-center'>
           <LoanBox />
           <LoanBox />
           <button className='mwBtn !h-[30px] !text-[14px]'>더 보기</button>
         </div>
       </div>
-      <h2 className='text-[20px] font-bold my-[20px]'>관심 상품</h2>
-      <Slider {...settings} dotsClass='mypage-dots' className='likeItem'>
-        {favor ? (
-          favor.map((item) => <LikeBox item={item} key={item.snq} />)
-        ) : (
-          <div>관심 상품이 없습니다.</div>
-        )}
-      </Slider>
+      <h2 className='text-[20px] font-bold my-[20px] flex'>
+        관심 상품 <IoBookmarksOutline className='text-[24px] ml-2' />
+      </h2>
+      {favor ? (
+        <Slider {...settings} dotsClass='mypage-dots' className='likeItem'>
+          {favor.map((item) => (
+            <LikeBox item={item} key={item.snq} />
+          ))}
+        </Slider>
+      ) : (
+        <div>관심 상품이 없습니다.</div>
+      )}
       <div>
         <h2 className='text-[20px] font-bold mt-[20px] mb-[10px]'>
           회원 정보 수정

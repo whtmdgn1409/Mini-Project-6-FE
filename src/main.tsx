@@ -1,10 +1,10 @@
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import App from './App';
 import CartNLikesPage from './pages/CartNLikesPage';
 import MainPage from './pages/MainPage';
 import Mypage from './pages/MyPage';
-
 import UserInfoPage from './pages/UserInfoPage';
 import UserLoanPage from './pages/UserLoanPage';
 import './index.css';
