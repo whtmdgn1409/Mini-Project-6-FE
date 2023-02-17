@@ -4,6 +4,7 @@ import age from '../../utils/age';
 import jobs from '../../utils/jobs';
 import regions from '../../utils/regions';
 import banks from '../../utils/banks';
+import { crdtGrade, income } from '../../utils/crdtGrade';
 import { getUserDetailInfo, UserDetailInfoType } from '../../api/axios';
 
 type Props = {};
@@ -57,8 +58,8 @@ const UserInfoPage = (props: Props) => {
           <InfoSelect infos={age} defaultValue={userInfoData.age} />
           <InfoSelect infos={regions} defaultValue={userInfoData.district} />
           <InfoSelect infos={banks} defaultValue={userInfoData.bank} />
-          <InfoSelect infos={banks} defaultValue={userInfoData.bank} />
-          <InfoSelect infos={banks} defaultValue={userInfoData.bank} />
+          <InfoSelect infos={crdtGrade} defaultValue={userInfoData.crdtGrad} />
+          <InfoSelect infos={income} defaultValue={userInfoData.income} />
         </form>
       ) : (
         ''
