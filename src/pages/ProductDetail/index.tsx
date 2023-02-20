@@ -4,21 +4,42 @@ import { getProductDetail } from '../../api/axios';
 import Etc from '../../components/ProductDetail/Etc';
 import Loan from '../../components/ProductDetail/Loan';
 import Target from '../../components/ProductDetail/Target';
-type Props = {};
 
 const lists = ['상품요건', '지원 대상 요건', '기타 상품 정보'];
 
-export interface ProductDetail {
-  etc: {
-    divisionOffice: string;
-    earlyRedemptionFee: string;
-    etcNote: string;
-    homepage: string;
-    primeCondition: string;
-    provider: string;
-    userOffice: string;
-  };
-  loan: {
+const ProductDetail = () => {
+  interface ProductDetail {
+    etc: {
+      divisionOffice: string;
+      earlyRedemptionFee: string;
+      etcNote: string;
+      homepage: string;
+      primeCondition: string;
+      provider: string;
+      userOffice: string;
+    };
+    loan: {
+      baseRate: string;
+      gracePeriod: string;
+      loanLimit: string;
+      loanName: string;
+      rate: string;
+      repayMethod: string;
+      repayPeriod: string;
+      usge: string;
+      wholePeriod: string;
+    };
+    target: {
+      age: string;
+      area: string;
+      creditScore: string;
+      income: string;
+      loanDescription: string;
+      loanTarget: string;
+    };
+  }
+
+  interface Iloan {
     baseRate: string;
     gracePeriod: string;
     loanLimit: string;
@@ -28,47 +49,37 @@ export interface ProductDetail {
     repayPeriod: string;
     usge: string;
     wholePeriod: string;
-  };
-  target: {
-    age: string;
-    area: string;
-    creditScore: string;
-    income: string;
-    loanDescription: string;
-    loanTarget: string;
-  };
-}
+  }
 
-const ProductDetail = (props: Props) => {
   const [activeMenu, setActiveMenu] = useState(0);
   const [detail, setDetail] = useState<ProductDetail | null>(null);
 
-  // useEffect(() => {
-  //   const getDetail = async () => {
-  //     const res = await getProductDetail();
-  //     setDetail(res);
-  //     console.log('detail', detail);
-  //   };
-  //   getDetail();
-  // }, []);
+  useEffect(() => {
+    const getDetail = async () => {
+      const res = await getProductDetail();
+      setDetail(res);
+      console.log('detail', detail);
+    };
+    getDetail();
+  }, []);
 
   return (
-    <section className='w-[480px] m-auto'>
-      <div className='bg-mw w-[480px] h-[230px] top-40 absolute'></div>
-      <div className='relative shadow-default p-2 w-96 h-52 mx-auto my-3 rounded-default border text-left flex bg-mw-lGray'>
+    <section className='w-[375px]'>
+      <div className='bg-mw w-[375px] h-[230px] top-40 absolute'></div>
+      <div className=' relative shadow-default p-2 w-[335px] h-52 mx-auto my-3 rounded-default border text-left flex bg-mw-lGray'>
         <div className='mx-4 mt-12'>
           <p className='font-bold text-xl'>
             <span className='text-mw'>MW</span>
-            &nbsp;{detail?.loan?.loanName}
+            {detail?.loan?.loanName}
           </p>
           <p className='text-sm '></p>
-          <div className='flex gap-4 justify-center h-[70px] items-center'>
-            <div className='font-semibold text-lg border h-[35px] my-auto border-mw rounded-default px-4 py-0.5'>
+          <div className='gap-4 justify-center h-[70px] items-center'>
+            <span className='font-semibold text-lg border h-[35px] my-auto border-mw rounded-default px-4 py-0.5'>
               금리 {detail?.loan?.rate}
-            </div>
-            <div className='font-semibold text-lg border h-[35px] border-mw rounded-default px-4 py-0.5'>
+            </span>
+            <span className='font-semibold text-lg border h-[35px] border-mw rounded-default px-4 py-0.5'>
               최대한도 {detail?.loan?.loanLimit}
-            </div>
+            </span>
           </div>
         </div>
 
@@ -93,7 +104,9 @@ const ProductDetail = (props: Props) => {
           );
         })}
       </ul>
-      <div className='pt-6'>{[<Loan />, <Target />, <Etc />][activeMenu]}</div>
+      <div className='pt-6'>
+        {[<Loan loan={detail?.loan} />, <Target />, <Etc />][activeMenu]}
+      </div>
     </section>
   );
 };

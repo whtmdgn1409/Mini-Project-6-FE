@@ -1,14 +1,36 @@
-const Loan = () => {
+export interface Iprop {
+  loanName: string;
+  gracePeriod: string;
+  loanLimit: string;
+  overdueRat: string;
+  rate: string;
+  repayMethod: string;
+  repayPeriod: string;
+  usge: string;
+  wholePeriod: string;
+}
+
+const loans = [
+  'loanName',
+  'gracePeriod',
+  'loanLimit',
+  'overdueRat',
+  'rate',
+  'repayMethod',
+  'repayPeriod',
+  'usge',
+  'wholePeriod',
+];
+
+const Loan = (props: Iprop) => {
   return (
     <ul className='px-[20px]'>
-      <li className='flex w-full flex-row items-center my-3'>
-        <span className='basis-1/3 font-bold text-[18px]'>대출 이름</span>
-        <span className='basis-2/3 text-right'></span>
-      </li>
-      <li className='flex w-full flex-row items-center my-3'>
-        <span className='basis-1/3 font-bold text-[18px]'>대출 계좌 번호</span>
-        <span className='basis-2/3 text-right'>123-456-78-910</span>
-      </li>
+      {loans.map((loan, i) => (
+        <li className='flex w-full flex-row items-center my-3' key={i}>
+          <span className='basis-1/3 font-bold text-[18px]'>{loan}</span>
+          <span className='basis-2/3 text-right'>{loan}</span>
+        </li>
+      ))}
     </ul>
   );
 };
