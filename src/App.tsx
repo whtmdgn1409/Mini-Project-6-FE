@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ScrollRestoration, Outlet } from 'react-router-dom';
 import Header from './components/Header';
-import MenuBar from './components/MenuBar';
+import MenuBar2 from './components/MenuBar2';
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <ScrollRestoration />
       <Header />
       <Outlet />
-      <MenuBar />
+      <MenuBar2 />
     </div>
   );
 }

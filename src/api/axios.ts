@@ -200,7 +200,7 @@ export const getFavor = async () => {
 // 관심 상품 삭제
 export const deleteFavor = async (snq: string) => {
   try {
-    const res = await request('/mypage/favor', {
+    const res = await request('/favor', {
       method: 'DELETE',
       data: {
         snq,

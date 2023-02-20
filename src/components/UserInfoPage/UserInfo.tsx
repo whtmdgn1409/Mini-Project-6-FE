@@ -28,7 +28,6 @@ const UserInfo = (props: Props) => {
     }
     fetchData();
   }, []);
-  console.log(userInfoData);
 
   const navigate = useNavigate();
   const onSubmit = async (data: FieldValues) => {

@@ -57,7 +57,7 @@ const UserDetail = (props: Props) => {
   const { register, handleSubmit } = useForm();
 
   return (
-    <div className='w-[300px] m-auto mb-[500px]'>
+    <div className='w-[300px] m-auto'>
       {userDetailInfoData ? (
         <form
           className='flex-col text-center'

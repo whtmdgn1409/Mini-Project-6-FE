@@ -37,7 +37,10 @@ const LikeBox = ({ item }: Props) => {
       </button>
       <button
         className='mwBtn-white !w-[100px] !h-[30px] !text-[12px]'
-        onClick={() => deleteFavor(item.snq)}
+        onClick={() => {
+          deleteFavor(item.snq);
+          location.reload();
+        }}
       >
         삭제하기
       </button>

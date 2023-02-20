@@ -22,7 +22,7 @@ const UserLoanPage = (props: Props) => {
 
   const accountDetail = () => <AccountDetail />;
   return (
-    <div>
+    <div className='w-full'>
       <div className='h-[390px] bg-mw flex flex-col justify-center items-center rounded-b-[50px]'>
         <span className='font-bold text-white text-[24px] mt-10'>
           중소기업취업청년전월세보증금대출
