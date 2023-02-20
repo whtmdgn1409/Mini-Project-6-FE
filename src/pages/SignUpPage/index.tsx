@@ -3,6 +3,7 @@ import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { signUp } from '../../api/axios';
+import { useAppDispatch } from '../../app/hooks';
 
 type Props = {};
 
@@ -12,14 +13,10 @@ interface IvalidationForm {
   email: string;
   phone: string;
 }
-const onSubmit = async (data: FieldValues) => {
-  const { name, email, password, phone } = data;
-  const test = await signUp(name, email, password, phone);
-  console.log('test', test);
-};
 
 const SignUpPage = (props: Props) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const schema = yup.object().shape({
     name: yup
       .string()
@@ -51,6 +48,15 @@ const SignUpPage = (props: Props) => {
   } = useForm<IvalidationForm>({
     resolver: yupResolver(schema),
   });
+
+  const onSubmit = async (data: FieldValues) => {
+    const { name, email, password, phone } = data;
+    const test = await signUp(name, email, password, phone);
+    // if (status === 200) {
+    //   navigate('/signin');
+    //   dispatch(setUser(test));
+    // }
+  };
   return (
     <section className='w-[300px] m-auto'>
       <h1 className='text-4xl font-bold text-center'>반가워요</h1>
@@ -127,7 +133,7 @@ const SignUpPage = (props: Props) => {
         이미 회원이신가요?
         <button
           onClick={() => {
-            navigate('/signup');
+            navigate('/signin');
           }}
           className='font-bold text-mw'
         >
