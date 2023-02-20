@@ -7,12 +7,12 @@ import {
 } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 
-const MenuBar = () => {
+const MenuBar2 = () => {
   const navigate = useNavigate();
   return (
     <div
       className={
-        'w-[350px] h-[80px] bg-white shadow-default rounded-[40px] flex justify-center items-center gap-5 fixed bottom-[30px] !z-50 left-[50%] translate-x-[-50%]'
+        'w-[350px] h-[80px] bg-white shadow-default rounded-[40px] flex justify-center items-center gap-5 bottom-[30px] mt-5 m-auto'
       }
     >
       <div
@@ -47,4 +47,4 @@ const MenuBar = () => {
   );
 };
 
-export default MenuBar;
+export default MenuBar2;

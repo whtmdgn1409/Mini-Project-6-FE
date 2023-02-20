@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import LoanBox from '../../components/MyPage/LoanBox';
 import Slider from 'react-slick';
 import LikeBox from '../../components/MyPage/LikeBox';
@@ -33,7 +33,7 @@ const Mypage = (props: Props) => {
   };
 
   return (
-    <div className='mx-[60px] mb-[500px]'>
+    <div className='mx-[60px]'>
       <h1 className='text-[20px]'>
         <span className='text-mw font-bold'>미왕이</span> 님 안녕하세요!
       </h1>

@@ -18,19 +18,6 @@ import { FieldValues, useForm } from 'react-hook-form';
 
 type Props = {};
 
-const onSubmit = async (data: FieldValues) => {
-  const { job, age, address, bank, crdtGrade, income } = data;
-  const res = await changeUserDetailInfo(
-    age,
-    address,
-    job,
-    bank,
-    crdtGrade,
-    income,
-  );
-  console.log('회원 정보 수정', res);
-};
-
 const UserDetail = (props: Props) => {
   const [userDetailInfoData, setUserDetailInfoData] =
     useState<UserDetailInfoType>({
@@ -53,10 +40,24 @@ const UserDetail = (props: Props) => {
 
   const navigate = useNavigate();
 
+  const onSubmit = async (data: FieldValues) => {
+    const { job, age, address, bank, crdtGrade, income } = data;
+    const res = await changeUserDetailInfo(
+      age,
+      address,
+      job,
+      bank,
+      crdtGrade,
+      income,
+    );
+    console.log('회원 정보 수정', res);
+    if (res === 'success') navigate('/mypage');
+  };
+
   const { register, handleSubmit } = useForm();
 
   return (
-    <div className='w-[300px] m-auto mb-[500px]'>
+    <div className='w-[300px] m-auto'>
       {userDetailInfoData ? (
         <form
           className='flex-col text-center'

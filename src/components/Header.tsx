@@ -12,13 +12,13 @@ const Header = (props: Props) => {
     setisOpen((isOpen) => !isOpen);
   };
   return (
-    <div className='flex relative m-auto h-[100px] w-96 items-center justify-center'>
+    <div className='flex relative m-auto h-[100px] w-full items-center justify-center'>
       <div
         className='inset-x-0 top-0 text-center cursor-pointer'
         onClick={() => navigate('/')}
       >
-        <span className='text-mw font-semibold'>MW </span>
-        <span className='--black-100 font-light'>Loan</span>
+        <span className='text-mw font-bold text-[20px]'>MW </span>
+        <span className='--black-100 text-[20px]'>Loan</span>
       </div>
       <button
         className='absolute right-2 top-[50%] translate-y-[-50%]'
