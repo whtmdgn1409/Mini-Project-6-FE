@@ -16,6 +16,7 @@ export interface EtcTypes {
   primeCondition: string;
   provider: string;
   userOffice: string;
+  divisionOffice: string;
 }
 
 export interface LoanTypes {
@@ -50,13 +51,15 @@ const ProductDetail = () => {
   const [activeMenu, setActiveMenu] = useState(0);
   const [detail, setDetail] = useState<ProductDetail>({
     etc: {
-      divisionOffice: '',
+      contact: '',
       earlyRedemptionFee: '',
-      etcNote: '',
+      etcNode: '',
       homepage: '',
+      joinMethod: '',
       primeCondition: '',
       provider: '',
       userOffice: '',
+      divisionOffice: '',
     },
     loan: {
       baseRate: '',
@@ -99,12 +102,12 @@ const ProductDetail = () => {
           </p>
           <p className='text-sm '></p>
           <div className='gap-4 justify-center h-[70px] items-center'>
-            <span className='font-semibold text-lg border h-[35px] my-auto border-mw rounded-default px-4 py-0.5'>
+            <div className='font-semibold text-lg border-2 h-[30px] mt-2 text-center border-mw rounded-default'>
               금리 {detail?.loan?.rate}
-            </span>
-            <span className='font-semibold text-lg border h-[35px] border-mw rounded-default px-4 py-0.5'>
+            </div>
+            <div className='font-semibold text-lg border-2 h-[30px] mt-2 text-center border-mw rounded-default'>
               최대한도 {detail?.loan?.loanLimit}
-            </span>
+            </div>
           </div>
         </div>
 

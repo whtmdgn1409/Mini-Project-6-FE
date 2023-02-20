@@ -1,7 +1,6 @@
 import { EtcTypes } from '../../pages/ProductDetail';
 
 const Etc = (props: { etc: EtcTypes }) => {
-  console.log(props);
   return (
     <ul className='px-[20px]'>
       <li className='flex w-full flex-row items-center my-3'>
