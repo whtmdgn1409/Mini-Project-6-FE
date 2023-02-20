@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import LoanBox from '../../components/MyPage/LoanBox';
 import Slider from 'react-slick';
 import LikeBox from '../../components/MyPage/LikeBox';

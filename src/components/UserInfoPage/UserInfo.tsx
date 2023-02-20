@@ -15,6 +15,7 @@ type Props = {};
 interface IvalidationForm {
   phone: string;
   password: string;
+  newPassword: string;
 }
 
 const UserInfo = (props: Props) => {
@@ -31,9 +32,9 @@ const UserInfo = (props: Props) => {
 
   const navigate = useNavigate();
   const onSubmit = async (data: FieldValues) => {
-    const { phone, password } = data;
+    const { phone, newPassword, password } = data;
     const res = await checkUser(password).then(() =>
-      changeUserInfo(phone, password),
+      changeUserInfo(phone, newPassword),
     );
     if (res === 'success') {
       navigate('/mypage');
@@ -42,6 +43,15 @@ const UserInfo = (props: Props) => {
 
   const schema = yup.object().shape({
     password: yup
+      .string()
+      .min(8, '8자 이상 16자 이하의 숫자 혹은 문자를 입력해 주세요.')
+      .max(16, '8자 이상 16자 이하의 숫자 혹은 문자를 입력해 주세요.')
+      .matches(
+        /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]+$/,
+        '숫자 혹은 문자로만 구성되어야 합니다',
+      )
+      .required('비밀번호를 입력해 주세요.'),
+    newPassword: yup
       .string()
       .min(8, '8자 이상 16자 이하의 숫자 혹은 문자를 입력해 주세요.')
       .max(16, '8자 이상 16자 이하의 숫자 혹은 문자를 입력해 주세요.')
@@ -88,13 +98,24 @@ const UserInfo = (props: Props) => {
           <h3 className='font-semibold mb-2'>비밀번호 변경</h3>
           <input
             type='password'
-            className='mwInput pl-6 w-full'
-            placeholder='새로운 비밀번호'
+            className='mwInput pl-6 w-full mb-3'
+            placeholder='기존 비밀번호'
             {...register('password')}
           />
           {errors.password && (
             <p className='text-xs text-alert pt-3 text-left ml-5'>
               {errors.password.message}
+            </p>
+          )}
+          <input
+            type='password'
+            className='mwInput pl-6 w-full'
+            placeholder='새로운 비밀번호'
+            {...register('newPassword')}
+          />
+          {errors.newPassword && (
+            <p className='text-xs text-alert pt-3 text-left ml-5'>
+              {errors.newPassword.message}
             </p>
           )}
         </div>
