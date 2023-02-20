@@ -8,10 +8,11 @@ import Target from '../../components/ProductDetail/Target';
 const lists = ['상품요건', '지원 대상 요건', '기타 상품 정보'];
 
 export interface EtcTypes {
-  divisionOffice: string;
+  contact: string;
   earlyRedemptionFee: string;
-  etcNote: string;
+  etcNode: string;
   homepage: string;
+  joinMethod: string;
   primeCondition: string;
   provider: string;
   userOffice: string;
@@ -22,6 +23,7 @@ export interface LoanTypes {
   gracePeriod: string;
   loanLimit: string;
   loanName: string;
+  overdueRate: string;
   rate: string;
   repayMethod: string;
   repayPeriod: string;
@@ -48,32 +50,33 @@ const ProductDetail = () => {
   const [activeMenu, setActiveMenu] = useState(0);
   const [detail, setDetail] = useState<ProductDetail>({
     etc: {
-      divisionOffice: '므ㅏ',
-      earlyRedemptionFee: '므ㅏ',
-      etcNote: '므ㅏ',
-      homepage: '므ㅏ',
-      primeCondition: '므ㅏ',
-      provider: '므ㅏ',
-      userOffice: '므ㅏ',
+      divisionOffice: '',
+      earlyRedemptionFee: '',
+      etcNote: '',
+      homepage: '',
+      primeCondition: '',
+      provider: '',
+      userOffice: '',
     },
     loan: {
-      baseRate: '므ㅏ',
-      gracePeriod: '므ㅏ',
-      loanLimit: '므ㅏ',
-      loanName: '므ㅏ',
-      rate: '므ㅏ',
-      repayMethod: '므ㅏ',
-      repayPeriod: '므ㅏ',
-      usge: '므ㅏ',
-      wholePeriod: '므ㅏ',
+      baseRate: '',
+      gracePeriod: '',
+      loanLimit: '',
+      loanName: '',
+      rate: '',
+      repayMethod: '',
+      repayPeriod: '',
+      overdueRate: '',
+      usge: '',
+      wholePeriod: '',
     },
     target: {
-      age: '므ㅏ',
-      area: '므ㅏ',
-      creditScore: '므ㅏ',
-      income: '므ㅏ',
-      loanDescription: '므ㅏ',
-      loanTarget: '므ㅏ',
+      age: '',
+      area: '',
+      creditScore: '',
+      income: '',
+      loanDescription: '',
+      loanTarget: '',
     },
   });
 
@@ -81,7 +84,6 @@ const ProductDetail = () => {
     const getDetail = async () => {
       const res = await getProductDetail();
       setDetail(res);
-      console.log('detail', detail);
     };
     getDetail();
   }, []);
@@ -128,7 +130,13 @@ const ProductDetail = () => {
         })}
       </ul>
       <div className='pt-6'>
-        {[<Loan loanItem={detail?.loan} />, <Target />, <Etc />][activeMenu]}
+        {
+          [
+            <Loan loanItem={detail?.loan} />,
+            <Target target={detail?.target} />,
+            <Etc etc={detail?.etc} />,
+          ][activeMenu]
+        }
       </div>
     </section>
   );
