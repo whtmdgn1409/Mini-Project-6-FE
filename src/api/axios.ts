@@ -85,6 +85,56 @@ export const signIn: AuthFn = async (email, password) => {
   }
 };
 
+// 회원 추가 정보 입력
+export const changeUserDetailInfo = async (
+  age: string,
+  adress: string,
+  job: string,
+  bank: string,
+  crdtGrade: string,
+  income: string,
+) => {
+  try {
+    const res = await request('/mypage/check', {
+      method: 'POST',
+      data: {
+        age,
+        adress,
+        job,
+        bank,
+        crdtGrade,
+        income,
+      },
+    });
+    console.log(res);
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return false;
+  }
+};
+
+// 회원 확인
+export const checkUser = async (password: string) => {
+  try {
+    const res = await request('/mypage/check', {
+      method: 'POST',
+      data: {
+        password,
+      },
+    });
+    console.log(res);
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return false;
+  }
+};
+
 // 회원 정보 조회
 export const getUserInfo = async () => {
   try {

@@ -10,7 +10,7 @@ const Loading = (props: Props) => {
   return (
     <div
       className='absolute top-0 left-0 flex flex-col justify-center items-center h-screen w-screen bg-center bg-no-repeat bg-cover'
-      style={{ backgroundImage: `url('../../assets/loading/loading-bg.jpg')` }}
+      style={{ backgroundImage: `url('./src/assets/loading/loading-bg.jpg')` }}
     >
       <h1 className='text-[64px] font-bold'>Loading !</h1>
       <div className='flex justify-center items-center w-screen'>

@@ -20,6 +20,9 @@ const SignInPage = React.lazy(() => import('./pages/SignInPage'));
 const OptionalInfo = React.lazy(
   () => import('./pages/SignUpPage/OptionalInfo'),
 );
+const PasswordCheck = React.lazy(
+  () => import('./pages/UserInfoPage/PasswordCheck'),
+);
 
 const router = createBrowserRouter([
   {
@@ -49,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: '/userinfo',
         element: <UserInfoPage />,
+      },
+      {
+        path: '/userinfo/pwcheck',
+        element: <PasswordCheck />,
       },
       {
         path: '/userloan/:loanId',

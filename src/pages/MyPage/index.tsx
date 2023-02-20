@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import LoanBox from '../../components/MyPage/LoanBox';
 import Slider from 'react-slick';
 import LikeBox from '../../components/MyPage/LikeBox';
@@ -45,23 +45,28 @@ const Mypage = (props: Props) => {
           <button className='mwBtn !h-[30px] !text-[14px]'>더 보기</button>
         </div>
       </div>
-      <h2 className='text-[20px] font-bold my-[20px] flex'>
-        관심 상품 <IoBookmarksOutline className='text-[24px] ml-2' />
-      </h2>
-      {favor ? (
-        <Slider {...settings} dotsClass='mypage-dots' className='likeItem'>
-          {favor.map((item) => (
-            <LikeBox item={item} key={item.snq} />
-          ))}
-        </Slider>
-      ) : (
-        <div>관심 상품이 없습니다.</div>
-      )}
+      <div>
+        <h2 className='text-[20px] font-bold my-[20px] flex'>
+          관심 상품 <IoBookmarksOutline className='text-[24px] ml-2' />
+        </h2>
+        {favor ? (
+          <Slider {...settings} dotsClass='mypage-dots' className='likeItem'>
+            {favor.map((item) => (
+              <LikeBox item={item} key={item.snq} />
+            ))}
+          </Slider>
+        ) : (
+          <div className='p-5 text-center'>관심 상품이 없습니다.</div>
+        )}
+      </div>
       <div>
         <h2 className='text-[20px] font-bold mt-[20px] mb-[10px]'>
           회원 정보 수정
         </h2>
-        <span onClick={() => navigate('/userinfo')} className='cursor-pointer'>
+        <span
+          onClick={() => navigate('/userinfo/pwcheck')}
+          className='cursor-pointer'
+        >
           비밀번호 | 맞춤 정보 변경
         </span>
       </div>
