@@ -42,6 +42,15 @@ export interface UserDetailInfoType {
   income: string;
   job: string;
 }
+// 상품리스트 정보
+export interface getProductType {
+  snq: string;
+  loanName: string;
+  loanDescription: string;
+  loanTarget: string;
+  baseRate: string;
+  ratePercent: string;
+}
 
 // 회원가입
 export const signUp: AuthFn = async (name, password, email, phone) => {
@@ -179,6 +188,21 @@ export const fetchCartList = async (): Promise<any> => {
 export const getProductDetail = async () => {
   try {
     const res = await request('/finance/loan/detail?snq=1', {
+      method: 'GET',
+    });
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return false;
+  }
+};
+
+// 상품 리스트
+export const getProduct = async (): Promise<any> => {
+  try {
+    const res = await request('/finance/loan/', {
       method: 'GET',
     });
     return res.data;
