@@ -28,6 +28,7 @@ const onSubmit = async (data: FieldValues) => {
     crdtGrade,
     income,
   );
+  console.log('회원 정보 수정', res);
 };
 
 const UserDetail = (props: Props) => {
@@ -97,12 +98,7 @@ const UserDetail = (props: Props) => {
             defaultValue={userDetailInfoData.income}
             {...register('income')}
           />
-          <button
-            className='mwBtn !w-[300px] font-semibold mt-12'
-            onClick={() => navigate('/mypage')}
-          >
-            변경
-          </button>
+          <button className='mwBtn !w-[300px] font-semibold mt-12'>변경</button>
         </form>
       ) : (
         ''
