@@ -1,14 +1,4 @@
-export interface Iprop {
-  loanName: string;
-  gracePeriod: string;
-  loanLimit: string;
-  overdueRat: string;
-  rate: string;
-  repayMethod: string;
-  repayPeriod: string;
-  usge: string;
-  wholePeriod: string;
-}
+import { LoanTypes } from '../../pages/ProductDetail';
 
 const loans = [
   'loanName',
@@ -22,7 +12,7 @@ const loans = [
   'wholePeriod',
 ];
 
-const Loan = (props: Iprop) => {
+const Loan = (props: { loanItem: LoanTypes }) => {
   return (
     <ul className='px-[20px]'>
       {loans.map((loan, i) => (

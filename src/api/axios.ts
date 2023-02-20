@@ -37,8 +37,8 @@ export interface UserInfoType {
 export interface UserDetailInfoType {
   age: string;
   bank: string;
-  crdtGrad: string;
-  district: string;
+  crdtGrade: string;
+  address: string;
   income: string;
   job: string;
 }
@@ -76,6 +76,54 @@ export const signIn: AuthFn = async (email, password) => {
       },
     });
 
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return false;
+  }
+};
+
+// 회원 추가 정보 입력
+export const changeUserDetailInfo = async (
+  age: string,
+  address: string,
+  job: string,
+  bank: string,
+  crdtGrade: string,
+  income: string,
+) => {
+  try {
+    const res = await request('/signup/detail', {
+      method: 'POST',
+      data: {
+        age,
+        address,
+        job,
+        bank,
+        crdtGrade,
+        income,
+      },
+    });
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return false;
+  }
+};
+
+// 회원 확인
+export const checkUser = async (password: string) => {
+  try {
+    const res = await request('/mypage/check', {
+      method: 'POST',
+      data: {
+        password,
+      },
+    });
     return res.data;
   } catch (error) {
     if (error instanceof AxiosError) {

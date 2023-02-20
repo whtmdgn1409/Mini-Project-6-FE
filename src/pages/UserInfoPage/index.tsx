@@ -1,152 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import InfoSelect from '../../components/InfoSelect';
-import {
-  getUserDetailInfo,
-  UserDetailInfoType,
-  getUserInfo,
-  UserInfoType,
-  changeUserInfo,
-} from '../../api/axios';
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { FieldValues, useForm } from 'react-hook-form';
-import {
-  age,
-  banks,
-  jobs,
-  regions,
-  crdtGrade,
-  income,
-} from '../../utils/infoData';
+import React, { useState } from 'react';
+import UserDetail from '../../components/UserInfoPage/UserDetail';
+import UserInfo from '../../components/UserInfoPage/UserInfo';
 
 type Props = {};
 
-interface IvalidationForm {
-  phone: string;
-  password: string;
-}
-
-const onSubmit = async (data: FieldValues) => {
-  const { phone, password } = data;
-  const res = await changeUserInfo(phone, password);
-  console.log('회원 정보 변경', res);
-};
-
 const UserInfoPage = (props: Props) => {
   const [menuChange, setMenuChange] = useState(false);
-  const [userInfoData, setUserInfoData] = useState<UserInfoType | null>(null);
-  const [userDetailInfoData, setUserDetailInfoData] =
-    useState<UserDetailInfoType>({
-      age: '',
-      bank: '',
-      crdtGrad: '',
-      district: '',
-      income: '',
-      job: '',
-    });
 
-  useEffect(() => {
-    async function fetchData() {
-      const userDetailData = await getUserDetailInfo();
-      const userData = await getUserInfo();
-      setUserInfoData(userData);
-      setUserDetailInfoData(userDetailData);
-    }
-    fetchData();
-  }, []);
-  console.log(userDetailInfoData);
-  console.log(userInfoData);
-
-  const schema = yup.object().shape({
-    password: yup
-      .string()
-      .min(8, '8자 이상 16자 이하의 숫자 혹은 문자를 입력해 주세요.')
-      .max(16, '8자 이상 16자 이하의 숫자 혹은 문자를 입력해 주세요.')
-      .required('비밀번호를 입력해 주세요.'),
-    phone: yup
-      .string()
-      .matches(/^[0-9]{11}$/i, '번호는 01012345678 형태로 입력해 주세요.')
-      .required('전화 번호를 입력해 주세요.'),
-  });
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IvalidationForm>({ resolver: yupResolver(schema) });
-
-  const password = () => (
-    <div className='w-[300px] m-auto'>
-      <form
-        className='flex-col mt-8 text-center'
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <div>
-          <label htmlFor='name'></label>
-          <h3 className='font-semibold mb-2'>전화 번호 변경</h3>
-          <input
-            type='text'
-            className='mwInput pl-6 w-full'
-            placeholder={userInfoData?.phone}
-            {...register('phone')}
-          />
-          {errors.phone && (
-            <p className='text-sm text-alert font-semibold pt-3'>
-              {errors.phone.message}
-            </p>
-          )}
-        </div>
-        <div className='mt-8'>
-          <label htmlFor='password'></label>
-          <h3 className='font-semibold mb-2'>비밀번호 변경</h3>
-          <input
-            type='password'
-            className='mwInput pl-6 w-full'
-            placeholder='새로운 비밀번호'
-            {...register('password')}
-          />
-          {errors.password && (
-            <p className='text-sm text-alert font-semibold pt-3'>
-              {errors.password.message}
-            </p>
-          )}
-        </div>
-        <button type='submit' className='mwBtn !w-[300px] font-semibold mt-12'>
-          회원 정보 변경
-        </button>
-      </form>
-    </div>
-  );
-
-  const userInfo = () => (
-    <div className='w-[300px] m-auto'>
-      {userInfoData ? (
-        <form className='flex-col text-center'>
-          <h3 className='font-semibold mt-8'>수입 형태</h3>
-          <InfoSelect infos={jobs} defaultValue={userDetailInfoData.job} />
-          <h3 className='font-semibold'>나이</h3>
-          <InfoSelect infos={age} defaultValue={userDetailInfoData.age} />
-          <h3 className='font-semibold'>거주지</h3>
-          <InfoSelect
-            infos={regions}
-            defaultValue={userDetailInfoData.district}
-          />
-          <h3 className='font-semibold'>주거래 은행</h3>
-          <InfoSelect infos={banks} defaultValue={userDetailInfoData.bank} />
-          <h3 className='font-semibold'>신용점수</h3>
-          <InfoSelect
-            infos={crdtGrade}
-            defaultValue={userDetailInfoData.crdtGrad}
-          />
-          <h3 className='font-semibold'>수입 연봉</h3>
-          <InfoSelect infos={income} defaultValue={userDetailInfoData.income} />
-        </form>
-      ) : (
-        ''
-      )}
-      <button className='mwBtn !w-[300px] font-semibold mt-12'>변경</button>
-    </div>
-  );
   const activeClassName = () => {
     return 'cursor-pointer text-mw font-bold border-solid border-mw border-b-4';
   };
@@ -169,7 +29,7 @@ const UserInfoPage = (props: Props) => {
           맞춤 정보 변경
         </h2>
       </div>
-      {!menuChange ? password() : userInfo()}
+      {!menuChange ? <UserInfo /> : <UserDetail />}
     </div>
   );
 };
