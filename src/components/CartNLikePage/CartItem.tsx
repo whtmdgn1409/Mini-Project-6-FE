@@ -1,8 +1,13 @@
+import { CartType } from '../../api/axios';
+import InfoSelect from '../InfoSelect';
+
 type CartItemProps = {
   onClick: () => void;
+  info: CartType;
 };
 
-export default function CartItem({ onClick }: CartItemProps) {
+export default function CartItem({ onClick, info }: CartItemProps) {
+  console.log(info);
   //  TODO: 로그인 기능되면 데이터 보고 props로 데이터 그리게 하기
   return (
     <div className='relative w-full h-[200px] flex justify-between items-center px-[32px]'>
@@ -17,7 +22,6 @@ export default function CartItem({ onClick }: CartItemProps) {
           대출
         </div>
         <div className='text-[20px] font-medium text--black-90'>
-          중소기업취업청년대출
         </div>
         <div className='text-[#828F9C] text-[13px]'>#청년대출</div>
       </div>
