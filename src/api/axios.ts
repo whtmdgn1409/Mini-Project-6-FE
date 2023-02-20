@@ -37,8 +37,8 @@ export interface UserInfoType {
 export interface UserDetailInfoType {
   age: string;
   bank: string;
-  crdtGrad: string;
-  district: string;
+  crdtGrade: string;
+  address: string;
   income: string;
   job: string;
 }
@@ -88,25 +88,24 @@ export const signIn: AuthFn = async (email, password) => {
 // 회원 추가 정보 입력
 export const changeUserDetailInfo = async (
   age: string,
-  adress: string,
+  address: string,
   job: string,
   bank: string,
   crdtGrade: string,
   income: string,
 ) => {
   try {
-    const res = await request('/mypage/check', {
+    const res = await request('/signup/detail', {
       method: 'POST',
       data: {
         age,
-        adress,
+        address,
         job,
         bank,
         crdtGrade,
         income,
       },
     });
-    console.log(res);
     return res.data;
   } catch (error) {
     if (error instanceof AxiosError) {
@@ -125,7 +124,6 @@ export const checkUser = async (password: string) => {
         password,
       },
     });
-    console.log(res);
     return res.data;
   } catch (error) {
     if (error instanceof AxiosError) {

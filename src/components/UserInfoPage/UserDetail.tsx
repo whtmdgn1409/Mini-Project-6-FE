@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   age,
   banks,
@@ -8,17 +9,34 @@ import {
   income,
 } from '../../utils/infoData';
 import InfoSelect from '../../components/InfoSelect';
-import { getUserDetailInfo, UserDetailInfoType } from '../../api/axios';
+import {
+  changeUserDetailInfo,
+  getUserDetailInfo,
+  UserDetailInfoType,
+} from '../../api/axios';
+import { FieldValues, useForm } from 'react-hook-form';
 
 type Props = {};
+
+const onSubmit = async (data: FieldValues) => {
+  const { job, age, address, bank, crdtGrade, income } = data;
+  const res = await changeUserDetailInfo(
+    age,
+    address,
+    job,
+    bank,
+    crdtGrade,
+    income,
+  );
+};
 
 const UserDetail = (props: Props) => {
   const [userDetailInfoData, setUserDetailInfoData] =
     useState<UserDetailInfoType>({
       age: '나이',
       bank: '주거래 은행',
-      crdtGrad: '신용점수',
-      district: '거주지',
+      crdtGrade: '신용점수',
+      address: '거주지',
       income: '수입 연봉',
       job: '수입 형태',
     });
@@ -27,35 +45,61 @@ const UserDetail = (props: Props) => {
     async function fetchData() {
       const userDetailData = await getUserDetailInfo();
       setUserDetailInfoData(userDetailData);
+      console.log(userDetailData);
     }
     fetchData();
   }, []);
 
+  const navigate = useNavigate();
+
+  const { register, handleSubmit } = useForm();
+
   return (
-    <div className='w-[300px] m-auto'>
+    <div className='w-[300px] m-auto mb-[500px]'>
       {userDetailInfoData ? (
-        <form className='flex-col text-center'>
+        <form
+          className='flex-col text-center'
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <h3 className='font-semibold mt-8'>수입 형태</h3>
-          <InfoSelect infos={jobs} defaultValue={userDetailInfoData.job} />
+          <InfoSelect
+            infos={jobs}
+            defaultValue={userDetailInfoData.job}
+            {...register('job')}
+          />
           <h3 className='font-semibold'>나이</h3>
-          <InfoSelect infos={age} defaultValue={userDetailInfoData.age} />
+          <InfoSelect
+            infos={age}
+            defaultValue={userDetailInfoData.age}
+            {...register('age')}
+          />
           <h3 className='font-semibold'>거주지</h3>
           <InfoSelect
             infos={regions}
-            defaultValue={userDetailInfoData.district}
+            defaultValue={userDetailInfoData.address}
+            {...register('address')}
           />
           <h3 className='font-semibold'>주거래 은행</h3>
-          <InfoSelect infos={banks} defaultValue={userDetailInfoData.bank} />
+          <InfoSelect
+            infos={banks}
+            defaultValue={userDetailInfoData.bank}
+            {...register('bank')}
+          />
           <h3 className='font-semibold'>신용점수</h3>
           <InfoSelect
             infos={crdtGrade}
-            defaultValue={userDetailInfoData.crdtGrad}
+            defaultValue={userDetailInfoData.crdtGrade}
+            {...register('crdtGrade')}
           />
           <h3 className='font-semibold'>수입 연봉</h3>
-          <InfoSelect infos={income} defaultValue={userDetailInfoData.income} />
+          <InfoSelect
+            infos={income}
+            defaultValue={userDetailInfoData.income}
+            {...register('income')}
+          />
           <button
             className='mwBtn !w-[300px] font-semibold mt-12'
-            // onSubmit={() => changeUserInfo()}
+            onClick={() => navigate('/mypage')}
           >
             변경
           </button>

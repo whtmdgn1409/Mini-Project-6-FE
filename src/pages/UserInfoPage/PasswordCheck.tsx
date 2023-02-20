@@ -11,14 +11,16 @@ interface IvalidationForm {
   password: string;
 }
 
-const onSubmit = async (data: FieldValues) => {
-  const { password } = data;
-  const res = await checkUser(password);
-  console.log('회원 확인', res);
-};
-
 const PasswordCheck = (props: Props) => {
   const navigate = useNavigate();
+
+  const onSubmit = async (data: FieldValues) => {
+    const { password } = data;
+    const res = await checkUser(password);
+    if (res.name) {
+      navigate('/userinfo');
+    }
+  };
 
   const schema = yup.object().shape({
     password: yup
@@ -33,6 +35,7 @@ const PasswordCheck = (props: Props) => {
     handleSubmit,
     formState: { errors },
   } = useForm<IvalidationForm>({ resolver: yupResolver(schema) });
+
   return (
     <div className='w-[300px] m-auto'>
       <h1 className='text-4xl font-bold text-center'>비밀번호 확인</h1>
@@ -48,11 +51,7 @@ const PasswordCheck = (props: Props) => {
             {errors.password.message}
           </p>
         )}
-        <button
-          type='submit'
-          className='mwBtn !w-full font-semibold mt-12'
-          onClick={() => navigate('/userinfo')}
-        >
+        <button type='submit' className='mwBtn !w-full font-semibold mt-12'>
           확인
         </button>
       </form>

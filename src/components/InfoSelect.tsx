@@ -14,7 +14,7 @@ const InfoSelect = ({ infos, defaultValue }: Props) => {
   findDefaultValue();
   return (
     <select className='select w-full text-mw-dGray shadow-default rounded-default font-normal text-base pl-6 mb-8'>
-      <option value='' defaultValue={defaultValue}>
+      <option value={defaultValue} defaultValue={defaultValue}>
         {defaultValue}
       </option>
       {infos.map((info) => {
