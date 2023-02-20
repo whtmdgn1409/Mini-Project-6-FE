@@ -10,11 +10,11 @@ import CartItem from './CartItem';
 const dummyCart:CartType[] = [
   {
     snq: 123,
-    loanName: "하나원큐신용대출",
-    loanDescription: "1. 현 직장 6개월이상 국민건강보험 직장인 가입 손님으로 스크래핑에 의해 건강보험료 6개월이상 정상 납입 손님2. CB사 소득에 의해 대출한도가 산정되는 손님",
-    loanTarget: ["근로자"],
-    baseRate: "-",
-    rate: "-",
+    loanName: "미소금융 취약계층임차보증금대출",
+    loanDescription: "취약계층 자립자금 지원대상자 중 개인신용평점 하위 20% 또는 차상위계층 이하 또는 근로장려금 신청 대상자(수급자)이며, 85㎡ 이하, 임차보증금 2억원(수도권 3억원) 이하 거주자 또는 3개월 이내 거주 예정인 자",
+    loanTarget: ["금융취약계층"],
+    baseRate: "고정금리",
+    rate: "2.5%",
   },{
     snq: 456,
     loanName: "하나원큐신용대출",
@@ -23,12 +23,12 @@ const dummyCart:CartType[] = [
     baseRate: "-",
     rate: "-",
   },{
-    snq: 674,
-    loanName: "하나원큐신용대출",
-    loanDescription: "1. 현 직장 6개월이상 국민건강보험 직장인 가입 손님으로 스크래핑에 의해 건강보험료 6개월이상 정상 납입 손님2. CB사 소득에 의해 대출한도가 산정되는 손님",
-    loanTarget: ["근로자"],
+    snq: 628,
+    loanName: "참신한중금리",
+    loanDescription: "NICE 신용평점 590점 이상인 고객 중 현 직장 근속기간 만 3개월 이상  & 연소득 2,600만원 이상인 급여소득자",
+    loanTarget: ["근로자", "사업자", "소상공인"],
     baseRate: "-",
-    rate: "-",
+    rate: "5.8~19.4%",
   },{
     snq: 789,
     loanName: "하나원큐신용대출",
