@@ -7,52 +7,75 @@ import Target from '../../components/ProductDetail/Target';
 
 const lists = ['상품요건', '지원 대상 요건', '기타 상품 정보'];
 
+export interface EtcTypes {
+  divisionOffice: string;
+  earlyRedemptionFee: string;
+  etcNote: string;
+  homepage: string;
+  primeCondition: string;
+  provider: string;
+  userOffice: string;
+}
+
+export interface LoanTypes {
+  baseRate: string;
+  gracePeriod: string;
+  loanLimit: string;
+  loanName: string;
+  rate: string;
+  repayMethod: string;
+  repayPeriod: string;
+  usge: string;
+  wholePeriod: string;
+}
+
+export interface TargetTypes {
+  age: string;
+  area: string;
+  creditScore: string;
+  income: string;
+  loanDescription: string;
+  loanTarget: string;
+}
+
+export interface ProductDetail {
+  etc: EtcTypes;
+  loan: LoanTypes;
+  target: TargetTypes;
+}
+
 const ProductDetail = () => {
-  interface ProductDetail {
-    etc: {
-      divisionOffice: string;
-      earlyRedemptionFee: string;
-      etcNote: string;
-      homepage: string;
-      primeCondition: string;
-      provider: string;
-      userOffice: string;
-    };
-    loan: {
-      baseRate: string;
-      gracePeriod: string;
-      loanLimit: string;
-      loanName: string;
-      rate: string;
-      repayMethod: string;
-      repayPeriod: string;
-      usge: string;
-      wholePeriod: string;
-    };
-    target: {
-      age: string;
-      area: string;
-      creditScore: string;
-      income: string;
-      loanDescription: string;
-      loanTarget: string;
-    };
-  }
-
-  interface Iloan {
-    baseRate: string;
-    gracePeriod: string;
-    loanLimit: string;
-    loanName: string;
-    rate: string;
-    repayMethod: string;
-    repayPeriod: string;
-    usge: string;
-    wholePeriod: string;
-  }
-
   const [activeMenu, setActiveMenu] = useState(0);
-  const [detail, setDetail] = useState<ProductDetail | null>(null);
+  const [detail, setDetail] = useState<ProductDetail>({
+    etc: {
+      divisionOffice: '므ㅏ',
+      earlyRedemptionFee: '므ㅏ',
+      etcNote: '므ㅏ',
+      homepage: '므ㅏ',
+      primeCondition: '므ㅏ',
+      provider: '므ㅏ',
+      userOffice: '므ㅏ',
+    },
+    loan: {
+      baseRate: '므ㅏ',
+      gracePeriod: '므ㅏ',
+      loanLimit: '므ㅏ',
+      loanName: '므ㅏ',
+      rate: '므ㅏ',
+      repayMethod: '므ㅏ',
+      repayPeriod: '므ㅏ',
+      usge: '므ㅏ',
+      wholePeriod: '므ㅏ',
+    },
+    target: {
+      age: '므ㅏ',
+      area: '므ㅏ',
+      creditScore: '므ㅏ',
+      income: '므ㅏ',
+      loanDescription: '므ㅏ',
+      loanTarget: '므ㅏ',
+    },
+  });
 
   useEffect(() => {
     const getDetail = async () => {
@@ -105,7 +128,7 @@ const ProductDetail = () => {
         })}
       </ul>
       <div className='pt-6'>
-        {[<Loan loan={detail?.loan} />, <Target />, <Etc />][activeMenu]}
+        {[<Loan loanItem={detail?.loan} />, <Target />, <Etc />][activeMenu]}
       </div>
     </section>
   );
