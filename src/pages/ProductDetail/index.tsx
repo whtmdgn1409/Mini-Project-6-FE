@@ -8,13 +8,15 @@ import Target from '../../components/ProductDetail/Target';
 const lists = ['상품요건', '지원 대상 요건', '기타 상품 정보'];
 
 export interface EtcTypes {
-  divisionOffice: string;
+  contact: string;
   earlyRedemptionFee: string;
-  etcNote: string;
+  etcNode: string;
   homepage: string;
+  joinMethod: string;
   primeCondition: string;
   provider: string;
   userOffice: string;
+  divisionOffice: string;
 }
 
 export interface LoanTypes {
@@ -22,6 +24,7 @@ export interface LoanTypes {
   gracePeriod: string;
   loanLimit: string;
   loanName: string;
+  overdueRate: string;
   rate: string;
   repayMethod: string;
   repayPeriod: string;
@@ -48,32 +51,35 @@ const ProductDetail = () => {
   const [activeMenu, setActiveMenu] = useState(0);
   const [detail, setDetail] = useState<ProductDetail>({
     etc: {
-      divisionOffice: '므ㅏ',
-      earlyRedemptionFee: '므ㅏ',
-      etcNote: '므ㅏ',
-      homepage: '므ㅏ',
-      primeCondition: '므ㅏ',
-      provider: '므ㅏ',
-      userOffice: '므ㅏ',
+      contact: '',
+      earlyRedemptionFee: '',
+      etcNode: '',
+      homepage: '',
+      joinMethod: '',
+      primeCondition: '',
+      provider: '',
+      userOffice: '',
+      divisionOffice: '',
     },
     loan: {
-      baseRate: '므ㅏ',
-      gracePeriod: '므ㅏ',
-      loanLimit: '므ㅏ',
-      loanName: '므ㅏ',
-      rate: '므ㅏ',
-      repayMethod: '므ㅏ',
-      repayPeriod: '므ㅏ',
-      usge: '므ㅏ',
-      wholePeriod: '므ㅏ',
+      baseRate: '',
+      gracePeriod: '',
+      loanLimit: '',
+      loanName: '',
+      rate: '',
+      repayMethod: '',
+      repayPeriod: '',
+      overdueRate: '',
+      usge: '',
+      wholePeriod: '',
     },
     target: {
-      age: '므ㅏ',
-      area: '므ㅏ',
-      creditScore: '므ㅏ',
-      income: '므ㅏ',
-      loanDescription: '므ㅏ',
-      loanTarget: '므ㅏ',
+      age: '',
+      area: '',
+      creditScore: '',
+      income: '',
+      loanDescription: '',
+      loanTarget: '',
     },
   });
 
@@ -81,7 +87,6 @@ const ProductDetail = () => {
     const getDetail = async () => {
       const res = await getProductDetail();
       setDetail(res);
-      console.log('detail', detail);
     };
     getDetail();
   }, []);
@@ -97,12 +102,12 @@ const ProductDetail = () => {
           </p>
           <p className='text-sm '></p>
           <div className='gap-4 justify-center h-[70px] items-center'>
-            <span className='font-semibold text-lg border h-[35px] my-auto border-mw rounded-default px-4 py-0.5'>
+            <div className='font-semibold text-lg border-2 h-[30px] mt-2 text-center border-mw rounded-default'>
               금리 {detail?.loan?.rate}
-            </span>
-            <span className='font-semibold text-lg border h-[35px] border-mw rounded-default px-4 py-0.5'>
+            </div>
+            <div className='font-semibold text-lg border-2 h-[30px] mt-2 text-center border-mw rounded-default'>
               최대한도 {detail?.loan?.loanLimit}
-            </span>
+            </div>
           </div>
         </div>
 
@@ -128,7 +133,13 @@ const ProductDetail = () => {
         })}
       </ul>
       <div className='pt-6'>
-        {[<Loan loanItem={detail?.loan} />, <Target />, <Etc />][activeMenu]}
+        {
+          [
+            <Loan loanItem={detail?.loan} />,
+            <Target target={detail?.target} />,
+            <Etc etc={detail?.etc} />,
+          ][activeMenu]
+        }
       </div>
     </section>
   );
