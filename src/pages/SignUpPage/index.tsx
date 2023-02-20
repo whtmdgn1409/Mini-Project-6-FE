@@ -24,11 +24,16 @@ const SignUpPage = (props: Props) => {
     name: yup
       .string()
       .max(5, '최대 길이는 5글자 입니다')
+      .matches(/^[가-힣]+$/, '이름은 한글로만 입력해주세요')
       .required('이름을 입력해주세요'),
     password: yup
       .string()
-      .min(8, '8자 이상 16자 이하의 숫자 혹은 문자를 입력해주세요')
-      .max(16, '8자 이상 16자 이하의 숫자 혹은 문자를 입력해주세요')
+      .min(8, '비밀번호는 8자 이상 16자로 설정해주세요')
+      .max(16, '비밀번호는 8자 이상 16자로 설정해주세요')
+      .matches(
+        /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]+$/,
+        '숫자 혹은 문자로만 구성되어야 합니다',
+      )
       .required('비밀번호를 입력해주세요'),
     email: yup
       .string()
@@ -67,7 +72,7 @@ const SignUpPage = (props: Props) => {
             {...register('name')}
           />
           {errors.name && (
-            <p className='text-sm text-alert font-semibold pt-3'>
+            <p className='text-xs text-alert pt-3 text-left ml-5'>
               {errors.name.message}
             </p>
           )}
@@ -81,7 +86,7 @@ const SignUpPage = (props: Props) => {
             {...register('password')}
           />
           {errors.password && (
-            <p className='text-sm text-alert font-semibold pt-3'>
+            <p className='text-xs text-alert pt-3 text-left ml-5'>
               {errors.password.message}
             </p>
           )}
@@ -95,7 +100,7 @@ const SignUpPage = (props: Props) => {
             {...register('email')}
           />
           {errors.email && (
-            <p className='text-sm text-alert font-semibold pt-3'>
+            <p className='text-xs text-alert pt-3 text-left ml-5'>
               {errors.email.message}
             </p>
           )}
@@ -109,7 +114,7 @@ const SignUpPage = (props: Props) => {
             {...register('phone')}
           />
           {errors.phone && (
-            <p className='text-sm text-alert font-semibold pt-3'>
+            <p className='text-xs text-alert pt-3 text-left ml-5'>
               {errors.phone.message}
             </p>
           )}
