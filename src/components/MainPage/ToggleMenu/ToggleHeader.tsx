@@ -27,7 +27,7 @@ const ToggleHeader = (props: props) => {
           />
         </div>
         <div className='absolute top-[70px] left-[41px] w-[270px] h-[148px] mx-auto '>
-          <div className='flex gap-5 justify-center'>
+          <div className='flex gap-5'>
             <div className='w-[70px] h-[70px] rounded-full'>
               <img src='./images/Users.png' alt='사용자' />
             </div>
