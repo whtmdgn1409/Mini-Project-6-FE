@@ -66,6 +66,7 @@ export const signUp: AuthFn = async (name, password, email, phone) => {
       },
     });
     console.log('res.data', res.data);
+    console.log('res', res);
     return res.data;
   } catch (error) {
     if (error instanceof AxiosError) {
@@ -230,19 +231,19 @@ export const deleteFavor = async (snq: string) => {
 export const getCartList = async (): Promise<CartType[]> => {
   const res = await request('/mypage/cart', {
     method: 'get',
-  })
+  });
   return res.data;
 };
 
 // 장바구니 삭제
 export const deleteCart = async (snq: number) => {
-    const res = await request('/cart', {
-      method: 'DELETE',
-      data: {
-        snq,
-      },
-    });
-    return res.data;
+  const res = await request('/cart', {
+    method: 'DELETE',
+    data: {
+      snq,
+    },
+  });
+  return res.data;
 };
 
 // 상세 정보
