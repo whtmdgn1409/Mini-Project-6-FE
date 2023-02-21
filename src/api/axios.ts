@@ -26,6 +26,16 @@ export type FavorType = {
   ratePercent: string;
 };
 
+// 장바구니 아이템 정보
+export type CartType = {
+  snq: number;
+  loanName: string;
+  loanDescription: string;
+  loanTarget: string[];
+  baseRate: string;
+  rate: string;
+};
+
 // 회원 정보
 export interface UserInfoType {
   userId: string;
@@ -217,10 +227,22 @@ export const deleteFavor = async (snq: string) => {
 };
 
 // 장바구니 조회
-export const fetchCartList = async (): Promise<any> => {
-  return await request('/mypage/cart', {
+export const getCartList = async (): Promise<CartType[]> => {
+  const res = await request('/mypage/cart', {
     method: 'get',
-  });
+  })
+  return res.data;
+};
+
+// 장바구니 삭제
+export const deleteCart = async (snq: number) => {
+    const res = await request('/cart', {
+      method: 'DELETE',
+      data: {
+        snq,
+      },
+    });
+    return res.data;
 };
 
 // 상세 정보

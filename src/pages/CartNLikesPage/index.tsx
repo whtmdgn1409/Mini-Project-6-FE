@@ -1,37 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import CartItem from './components/CartItem';
+import React from 'react';
 import logo from '../../assets/008.png';
 import vector from '../../assets/Vector.svg';
-import { fetchCartList } from '../../api/axios';
-import { AxiosError } from 'axios';
+import CartList from '../../components/CartNLikePage/CarList';
 
 type Props = {};
 
 const CartNLikesPage = (props: Props) => {
-  const [carts, setCarts] = useState([]);
-
-  const getCartList = async () => {
-    try {
-      const response = await fetchCartList();
-      setCarts(response.data);
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        console.log(error.message);
-      }
-      return false;
-    }
-  };
-
-  const removeCart = (index: number) => {
-    setCarts((prev) => {
-      prev.splice(index, 1);
-      return prev;
-    });
-  };
-
-  useEffect(() => {
-    getCartList();
-  }, []);
 
   return (
     <div className='relative'>
@@ -43,17 +17,7 @@ const CartNLikesPage = (props: Props) => {
       <div className='mt-5 text-center text-[30px] font-bold'>
         <span className='text-mw'>미왕이</span>님 상품몰 장바구니
       </div>
-      <div className='-text--black-100 font-bold text-5 my-6 text-center'>
-        장바구니 등록한 <span className='text-mw'>{carts.length}개</span>의
-        상품을 확인해 보세요
-      </div>
-      {carts.map((_, index) => {
-        return (
-          <div className='border-b-[1px] border--black-80'>
-            <CartItem onClick={() => removeCart(index)} />
-          </div>
-        );
-      })}
+      <CartList/>
       <div className='px-[24px] mb-48'>
         <div className='rounded-[16px] border-[1px] border--black-70  flex justify-between items-center w-full h-[120px] px-6 my-6'>
           <div className='text--border--black-40 text-[20px]'>
