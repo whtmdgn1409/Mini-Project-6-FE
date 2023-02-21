@@ -24,13 +24,9 @@ const RecommendList = () => {
       item: 'http://placehold.it/1200x400/00ffff',
       name: '이미지04',
     },
-    {
-      item: 'http://placehold.it/1200x400/00ffff',
-      name: '이미지05',
-    },
   ];
   return (
-    <div className='relative top-10 max-w-ms'>
+    <div className='relative top-10 max-w-ms z-0'>
       <p className='font-semibold text-2xl p-10 ml-3 box-border'>
         <span className='text-mw'>미왕이</span> 님을 위한 추천상품이에요.
       </p>

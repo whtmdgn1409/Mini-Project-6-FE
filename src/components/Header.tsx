@@ -12,7 +12,7 @@ const Header = (props: Props) => {
     setisOpen((isOpen) => !isOpen);
   };
   return (
-    <div className='flex relative m-auto h-[100px] w-96 items-center justify-center'>
+    <div className='flex relative m-auto h-[100px] w-[375px] items-center justify-center'>
       <div
         className='inset-x-0 top-0 text-center cursor-pointer'
         onClick={() => navigate('/')}
@@ -29,8 +29,8 @@ const Header = (props: Props) => {
       <div
         className={
           isOpen
-            ? 'showMenu w-[480px] h-screen absolute top-0 right-[-48px] duration-500 opacity-1'
-            : 'hideMenu w-[480px] h-screen absolute top-0 right-[-528px] duration-500'
+            ? 'showMenu w-[375px] h-screen absolute top-0 left-[0px] z-[1000] duration-500 opacity-1'
+            : 'hideMenu w-[375px] h-screen absolute top-0 left-[375px] z-[1000] duration-500 opacity-0'
         }
       >
         <ToggleHeader toggleMenu={toggleMenu} />

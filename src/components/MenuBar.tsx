@@ -15,7 +15,7 @@ const MenuBar = (props: Props) => {
     return navigate(`/${link}`);
   };
   return (
-    <div className='w-[350px] h-[80px] bg-white shadow-default rounded-[40px] flex justify-center items-center gap-5 fixed bottom-[30px] !z-50 left-[50%] translate-x-[-50%]'>
+    <div className='w-[350px] h-[80px] bg-white shadow-default rounded-[40px] flex justify-center items-center gap-5 fixed bottom-[30px] !z-50 left-[12px]'>
       <div
         onClick={() => navigateHandler('')}
         className='flex flex-col items-center cursor-pointer'
