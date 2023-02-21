@@ -29,8 +29,8 @@ const Header = (props: Props) => {
       <div
         className={
           isOpen
-            ? 'showMenu w-[480px] h-[500px] absolute top-0 opacity-1 right-[-48px] duration-1000 bg-white'
-            : 'hideMenu w-[480px] h-[500px] absolute top-0 opacity-0 right-[-528px] duration-1000 bg-white'
+            ? 'showMenu w-[480px] h-screen absolute top-0 right-[-48px] duration-500 opacity-1'
+            : 'hideMenu w-[480px] h-screen absolute top-0 right-[-528px] duration-500'
         }
       >
         <ToggleHeader toggleMenu={toggleMenu} />

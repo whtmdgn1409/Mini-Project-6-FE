@@ -4,7 +4,7 @@ type props = {};
 
 const ToggleBody = (props: props) => {
   return (
-    <div className='w-full bg-white text-black'>
+    <div className='absolute top-[240px] w-full bg-mw-gray text-black'>
       <div>
         <ul className=''>
           <li>
