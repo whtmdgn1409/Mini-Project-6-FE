@@ -51,7 +51,7 @@ const SignInPage = (props: Props) => {
 
   const navigate = useNavigate();
   return (
-    <section>
+    <section className='w-[300px] m-auto'>
       <h1 className='text-6xl font-bold text-center'>안녕하세요</h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
