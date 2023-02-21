@@ -1,42 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Agency from './Agency';
+import Location from './Location';
+import Using from './Using';
+import Target from './Target';
 
 type props = {};
 
-const typeslist = [
-  ['기관', ['공공/정부기관', '여신금융회사', '은행', '일반기관', '기타']],
-  [
-    '지역',
-    [
-      '강원',
-      '경기',
-      '경남',
-      '경북',
-      '광주',
-      '대구',
-      '대전',
-      '부산',
-      '서울',
-      '세종',
-      '인천',
-      '전국',
-      '전남',
-      '전북',
-      '제주',
-      '충남',
-      '충북',
-    ],
-  ],
-  ['용도', ['생계', '운영', '주거', '창업', '학자금', '기타']],
-  ['타겟층', ['근로자', '사업가', '소상공인', '사회적경제기업', '기타']],
-];
+const lists = ['기관', '지역', '용도', '직업'];
 
 const ToggleBody = (props: props) => {
+  const [activeMenu, setactiveMenu] = useState(0);
   return (
-    <div className='absolute top-[240px] w-full bg-mw-gray text-black'>
+    <div className='absolute top-[240px] w-full bg-white text-black'>
       <div className='flex'>
-        {typeslist.map((types, index) => (
-          <div>{types}</div>
-        ))}
+        <ul className='w-[100px] h-[200px] flex flex-col justify-center items-center text-center gap-2'>
+          {lists.map((list, i) => {
+            return (
+              <li
+                key={i}
+                className={
+                  i === activeMenu
+                    ? 'w-[90px] h-[63px] ml-2 text-white bg-mw rounded-[15px] flex justify-center items-center '
+                    : 'w-[90px] h-[63px] ml-2 text-black flex justify-center items-center'
+                }
+                onClick={() => setactiveMenu(i)}
+              >
+                {list}
+              </li>
+            );
+          })}
+        </ul>
+        <div className='ml-3 mt-3 flex flex-col'>
+          {[<Agency />, <Location />, <Using />, <Target />][activeMenu]}
+        </div>
       </div>
     </div>
   );
