@@ -4,84 +4,14 @@ import { getProductDetail } from '../../api/axios';
 import Etc from '../../components/ProductDetail/Etc';
 import Loan from '../../components/ProductDetail/Loan';
 import Target from '../../components/ProductDetail/Target';
+import { ProductDetail } from './interface';
+import { defaultProductData } from './const';
 
 const lists = ['상품요건', '지원 대상 요건', '기타 상품 정보'];
 
-export interface EtcTypes {
-  contact: string;
-  earlyRedemptionFee: string;
-  etcNode: string;
-  homepage: string;
-  joinMethod: string;
-  primeCondition: string;
-  provider: string;
-  userOffice: string;
-  divisionOffice: string;
-}
-
-export interface LoanTypes {
-  baseRate: string;
-  gracePeriod: string;
-  loanLimit: string;
-  loanName: string;
-  overdueRate: string;
-  rate: string;
-  repayMethod: string;
-  repayPeriod: string;
-  usge: string;
-  wholePeriod: string;
-}
-
-export interface TargetTypes {
-  age: string;
-  area: string;
-  creditScore: string;
-  income: string;
-  loanDescription: string;
-  loanTarget: string;
-}
-
-export interface ProductDetail {
-  etc: EtcTypes;
-  loan: LoanTypes;
-  target: TargetTypes;
-}
-
 const ProductDetail = () => {
   const [activeMenu, setActiveMenu] = useState(0);
-  const [detail, setDetail] = useState<ProductDetail>({
-    etc: {
-      contact: '',
-      earlyRedemptionFee: '',
-      etcNode: '',
-      homepage: '',
-      joinMethod: '',
-      primeCondition: '',
-      provider: '',
-      userOffice: '',
-      divisionOffice: '',
-    },
-    loan: {
-      baseRate: '',
-      gracePeriod: '',
-      loanLimit: '',
-      loanName: '',
-      rate: '',
-      repayMethod: '',
-      repayPeriod: '',
-      overdueRate: '',
-      usge: '',
-      wholePeriod: '',
-    },
-    target: {
-      age: '',
-      area: '',
-      creditScore: '',
-      income: '',
-      loanDescription: '',
-      loanTarget: '',
-    },
-  });
+  const [detail, setDetail] = useState<ProductDetail>(defaultProductData);
 
   useEffect(() => {
     const getDetail = async () => {
