@@ -259,30 +259,6 @@ export const addFavor = async (snq: string | number) => {
   }
 };
 
-// 관심 상품 추가
-export const addFavor = async (snq: string | number) => {
-  try {
-    const res = await request('/favor', {
-      method: 'POST',
-      data: {
-        snq,
-      },
-    });
-    console.log(res);
-    return {
-      ok: true,
-      favorData: res.data,
-    };
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      console.log(error.message);
-    }
-    return {
-      ok: false,
-    };
-  }
-};
-
 // 관심 상품 삭제
 export const deleteFavor = async (snq: string | number) => {
   const res = await request('/favor', {
