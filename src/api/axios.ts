@@ -140,12 +140,17 @@ export const changeUserDetailInfo = async (
         income,
       },
     });
-    return res.data;
+    return {
+      ok: true,
+      userDetailInfoData: res.data,
+    };
   } catch (error) {
     if (error instanceof AxiosError) {
       console.log(error.message);
     }
-    return false;
+    return {
+      ok: false,
+    };
   }
 };
 
@@ -158,12 +163,17 @@ export const checkUser = async (password: string) => {
         password,
       },
     });
-    return res.data;
+    return {
+      ok: true,
+      checkData: res.data,
+    };
   } catch (error) {
     if (error instanceof AxiosError) {
       console.log(error.message);
     }
-    return false;
+    return {
+      ok: false,
+    };
   }
 };
 
@@ -173,12 +183,17 @@ export const getUserInfo = async () => {
     const res = await request('/mypage/info', {
       method: 'GET',
     });
-    return res.data;
+    return {
+      ok: true,
+      userInfoData: res.data,
+    };
   } catch (error) {
     if (error instanceof AxiosError) {
       console.log(error.message);
     }
-    return false;
+    return {
+      ok: false,
+    };
   }
 };
 
@@ -188,12 +203,17 @@ export const getUserDetailInfo = async () => {
     const res = await request('/mypage/detail/info', {
       method: 'GET',
     });
-    return res.data;
+    return {
+      ok: true,
+      userDetailInfoData: res.data,
+    };
   } catch (error) {
     if (error instanceof AxiosError) {
       console.log(error.message);
     }
-    return false;
+    return {
+      ok: false,
+    };
   }
 };
 
@@ -207,7 +227,10 @@ export const changeUserInfo = async (phone: string, password: string) => {
         password,
       },
     });
-    return res.data;
+    return {
+      ok: true,
+      changeUserInfoData: res.data,
+    };
   } catch (error) {
     if (error instanceof AxiosError) {
       console.log(error.message);
@@ -236,8 +259,8 @@ export const getFavor = async () => {
     method: 'GET',
   });
   return {
-    ok: res.status,
-    data: res.data,
+    ok: true,
+    favorData: res.data,
   };
 };
 
@@ -274,8 +297,8 @@ export const deleteFavor = async (snq: string | number) => {
     },
   });
   return {
-    ok: res.status,
-    data: res.data,
+    ok: true,
+    favorData: res.data,
   };
 };
 // 장바구니 추가
@@ -287,20 +310,28 @@ export const addCartList = async (snq: string) => {
         snq,
       },
     });
-    return res.data;
+    return {
+      ok: true,
+      cartData: res.data,
+    };
   } catch (error) {
     if (error instanceof AxiosError) {
       console.log(error.message);
     }
-    return false;
+    return {
+      ok: false,
+    };
   }
 };
 // 장바구니 조회
-export const getCartList = async (): Promise<CartType[]> => {
+export const getCartList = async () => {
   const res = await request('/mypage/cart', {
     method: 'get',
   });
-  return res.data;
+  return {
+    ok: true,
+    cartData: res.data,
+  };
 };
 
 // 장바구니 삭제
@@ -311,7 +342,10 @@ export const deleteCart = async (snq: number) => {
       snq,
     },
   });
-  return res.data;
+  return {
+    ok: true,
+    cartData: res.data,
+  };
 };
 
 // 상세 정보
@@ -320,12 +354,17 @@ export const getProductDetail = async (snq: number | string) => {
     const res = await request(`/finance/loan/detail?snq=${snq}`, {
       method: 'GET',
     });
-    return res.data;
+    return {
+      ok: true,
+      productDetailData: res.data,
+    };
   } catch (error) {
     if (error instanceof AxiosError) {
       console.log(error.message);
     }
-    return false;
+    return {
+      ok: false,
+    };
   }
 };
 
@@ -335,12 +374,17 @@ export const getProduct = async (): Promise<any> => {
     const res = await request('/finance/loan/', {
       method: 'GET',
     });
-    return res.data;
+    return {
+      ok: true,
+      productData: res.data,
+    };
   } catch (error) {
     if (error instanceof AxiosError) {
       console.log(error.message);
     }
-    return false;
+    return {
+      ok: false,
+    };
   }
 };
 
@@ -350,12 +394,17 @@ export const memberRecommend = async (): Promise<any> => {
     const res = await request('/finance/member/recommend/loan', {
       method: 'GET',
     });
-    return res.data;
+    return {
+      ok: true,
+      recommendData: res.data,
+    };
   } catch (error) {
     if (error instanceof AxiosError) {
       console.log(error.message);
     }
-    return false;
+    return {
+      ok: false,
+    };
   }
 };
 
@@ -364,11 +413,16 @@ export const nomemberRecommend = async (): Promise<any> => {
     const res = await request('/finance/recommend/loan', {
       method: 'GET',
     });
-    return res.data;
+    return {
+      ok: true,
+      recommend: res.data,
+    };
   } catch (error) {
     if (error instanceof AxiosError) {
       console.log(error.message);
     }
-    return false;
+    return {
+      ok: false,
+    };
   }
 };
