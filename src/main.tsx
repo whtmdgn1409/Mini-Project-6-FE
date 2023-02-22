@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { persistor, store } from './app/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import Loading from './pages/LoadingPage';
+import NotFound from './pages/NotFound';
 
 const App = React.lazy(() => import('./App'));
 const MainPage = React.lazy(() => import('./pages/MainPage'));
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
     path: '/',
     element: <App />,
     children: [
+      {
+        path: '*',
+        element: <NotFound />,
+      },
       {
         path: '/',
         element: <MainPage />,
