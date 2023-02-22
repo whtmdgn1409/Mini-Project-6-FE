@@ -203,37 +203,42 @@ export const changeUserInfo = async (phone: string, password: string) => {
 };
 
 // 관심 상품 조회
+// export const getFavor = async () => {
+//   try {
+//     const res = await request('/mypage/favor', {
+//       method: 'GET',
+//     });
+//     return res.data;
+//   } catch (error) {
+//     if (error instanceof AxiosError) {
+//       console.log(error.message);
+//     }
+//     return false;
+//   }
+// };
+
 export const getFavor = async () => {
-  try {
-    const res = await request('/mypage/favor', {
-      method: 'GET',
-    });
-    return res.data;
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      console.log(error.message);
-    }
-    return false;
-  }
+  const res = await request('/mypage/favor', {
+    method: 'GET',
+  });
+  return {
+    ok: res.status,
+    data: res.data,
+  };
 };
 
 // 관심 상품 삭제
 export const deleteFavor = async (snq: string) => {
-  try {
-    const res = await request('/favor', {
-      method: 'DELETE',
-      data: {
-        snq,
-      },
-    });
-    console.log(res.data);
-    return res.data;
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      console.log(error.message);
-    }
-    return false;
-  }
+  const res = await request('/favor', {
+    method: 'DELETE',
+    data: {
+      snq,
+    },
+  });
+  return {
+    ok: res.status,
+    data: res.data,
+  };
 };
 
 // 장바구니 조회

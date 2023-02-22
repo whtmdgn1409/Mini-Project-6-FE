@@ -78,8 +78,9 @@ const UserInfo = (props: Props) => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <div>
-          <label htmlFor='name'></label>
-          <h3 className='font-semibold mb-2'>전화 번호 변경</h3>
+          <label htmlFor='phone' className='font-semibold mb-2'>
+            전화 번호 변경
+          </label>
           <input
             type='text'
             className='mwInput pl-6 w-full'
@@ -93,8 +94,9 @@ const UserInfo = (props: Props) => {
           )}
         </div>
         <div className='mt-8'>
-          <label htmlFor='password'></label>
-          <h3 className='font-semibold mb-2'>비밀번호 변경</h3>
+          <label htmlFor='password' className='font-semibold mb-2'>
+            비밀번호 변경
+          </label>
           <input
             type='password'
             className='mwInput pl-6 w-full mb-3'
