@@ -26,7 +26,7 @@ const MenuBar2 = () => {
         onClick={() => navigate('/mypage')}
         className='flex flex-col items-center cursor-pointer'
       >
-        <IoBookmarksOutline className='text-[28px]' />
+        <IoBookmarksOutline className='text-[30px]' />
         <span className='text-[14px]'>관심 상품</span>
       </div>
       <div

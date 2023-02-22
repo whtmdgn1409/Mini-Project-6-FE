@@ -47,7 +47,7 @@ const PasswordCheck = (props: Props) => {
           {...register('password')}
         />
         {errors.password && (
-          <p className='text-sm text-alert font-semibold pt-3'>
+          <p className='text-xs text-alert pt-3 text-left ml-5'>
             {errors.password.message}
           </p>
         )}

@@ -19,8 +19,8 @@ const Mypage = (props: Props) => {
 
   useEffect(() => {
     async function fetchData() {
-      const favorData = await getFavor();
-      setFavor(favorData);
+      const { ok, data } = await getFavor();
+      setFavor(data);
     }
     fetchData();
   }, []);

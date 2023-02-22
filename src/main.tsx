@@ -20,7 +20,7 @@ const SignInPage = React.lazy(() => import('./pages/SignInPage'));
 const PasswordCheck = React.lazy(
   () => import('./pages/UserInfoPage/PasswordCheck'),
 );
-
+const AllProduct = React.lazy(() => import('./pages/allProduct'));
 const router = createBrowserRouter([
   {
     path: '/',
@@ -61,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: '/cart',
         element: <CartNLikesPage />,
+      },
+      {
+        path: '/allproduct',
+        element: <AllProduct />,
       },
     ],
   },

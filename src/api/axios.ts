@@ -63,6 +63,9 @@ export interface getProductType {
   baseRate: string;
   ratePercent: string;
 }
+export interface ProductList {
+  content: getProductType[];
+}
 
 // 회원가입
 export const signUp: AuthFn = async (name, password, email, phone) => {
@@ -76,7 +79,6 @@ export const signUp: AuthFn = async (name, password, email, phone) => {
         phone,
       },
     });
-    console.log('res', res);
     return {
       ok: true,
       signData: res.data,
@@ -209,17 +211,51 @@ export const changeUserInfo = async (phone: string, password: string) => {
 };
 
 // 관심 상품 조회
+// export const getFavor = async () => {
+//   try {
+//     const res = await request('/mypage/favor', {
+//       method: 'GET',
+//     });
+//     return res.data;
+//   } catch (error) {
+//     if (error instanceof AxiosError) {
+//       console.log(error.message);
+//     }
+//     return false;
+//   }
+// };
+
 export const getFavor = async () => {
+  const res = await request('/mypage/favor', {
+    method: 'GET',
+  });
+  return {
+    ok: res.status,
+    data: res.data,
+  };
+};
+
+// 관심 상품 추가
+export const addFavor = async (snq: string | number) => {
   try {
-    const res = await request('/mypage/favor', {
-      method: 'GET',
+    const res = await request('/favor', {
+      method: 'POST',
+      data: {
+        snq,
+      },
     });
-    return res.data;
+    console.log(res);
+    return {
+      ok: true,
+      favorData: res.data,
+    };
   } catch (error) {
     if (error instanceof AxiosError) {
       console.log(error.message);
     }
-    return false;
+    return {
+      ok: false,
+    };
   }
 };
 
@@ -249,14 +285,26 @@ export const addFavor = async (snq: string | number) => {
 
 // 관심 상품 삭제
 export const deleteFavor = async (snq: string | number) => {
+  const res = await request('/favor', {
+    method: 'DELETE',
+    data: {
+      snq,
+    },
+  });
+  return {
+    ok: res.status,
+    data: res.data,
+  };
+};
+// 장바구니 추가
+export const addCartList = async (snq: string) => {
   try {
-    const res = await request('/favor', {
-      method: 'DELETE',
+    const res = await request('/cart', {
+      method: 'POST',
       data: {
         snq,
       },
     });
-    console.log(res.data);
     return res.data;
   } catch (error) {
     if (error instanceof AxiosError) {
@@ -265,7 +313,6 @@ export const deleteFavor = async (snq: string | number) => {
     return false;
   }
 };
-
 // 장바구니 조회
 export const getCartList = async (): Promise<CartType[]> => {
   const res = await request('/mypage/cart', {
@@ -304,6 +351,35 @@ export const getProductDetail = async (snq: number | string) => {
 export const getProduct = async (): Promise<any> => {
   try {
     const res = await request('/finance/loan/', {
+      method: 'GET',
+    });
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return false;
+  }
+};
+
+// 로그인 시 추천상품 리스트
+export const memberRecommend = async (): Promise<any> => {
+  try {
+    const res = await request('/finance/member/recommend/loan', {
+      method: 'GET',
+    });
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return false;
+  }
+};
+
+export const nomemberRecommend = async (): Promise<any> => {
+  try {
+    const res = await request('/finance/recommend/loan', {
       method: 'GET',
     });
     return res.data;
