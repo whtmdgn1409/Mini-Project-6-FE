@@ -103,7 +103,9 @@ const UserDetail = (props: Props) => {
           <button className='mwBtn !w-[300px] font-semibold mt-12'>변경</button>
         </form>
       ) : (
-        ''
+        <div className='font-semibold text-center my-5'>
+          정보를 불러오는 중이에요!
+        </div>
       )}
     </div>
   );
