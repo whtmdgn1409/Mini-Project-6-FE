@@ -13,7 +13,7 @@ const ToggleBody = (props: props) => {
   return (
     <div className='absolute top-[240px] w-full bg-white text-black'>
       <div className='flex'>
-        <ul className='w-[100px] h-[200px] flex flex-col justify-center items-center text-center gap-2'>
+        <ul className='my-2 w-[100px] h-[200px] flex flex-col justify-center items-center text-center gap-2'>
           {lists.map((list, i) => {
             return (
               <li
