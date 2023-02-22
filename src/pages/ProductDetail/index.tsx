@@ -17,8 +17,8 @@ const ProductDetail = () => {
   const snq = location.pathname.slice(9);
   useEffect(() => {
     const getDetail = async () => {
-      const res = await getProductDetail(snq);
-      setDetail(res);
+      const { ok, productDetailData } = await getProductDetail(snq);
+      setDetail(productDetailData);
     };
     getDetail();
   }, []);

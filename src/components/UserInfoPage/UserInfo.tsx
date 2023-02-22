@@ -23,8 +23,8 @@ const UserInfo = (props: Props) => {
 
   useEffect(() => {
     async function fetchData() {
-      const userData = await getUserInfo();
-      setUserInfoData(userData);
+      const { ok, userInfoData } = await getUserInfo();
+      setUserInfoData(userInfoData);
     }
     fetchData();
   }, []);
@@ -32,10 +32,10 @@ const UserInfo = (props: Props) => {
   const navigate = useNavigate();
   const onSubmit = async (data: FieldValues) => {
     const { phone, newPassword, password } = data;
-    const res = await checkUser(password).then(() =>
+    const { ok } = await checkUser(password).then(() =>
       changeUserInfo(phone, newPassword),
     );
-    if (res === 'success') {
+    if (ok) {
       navigate('/mypage');
     }
   };
