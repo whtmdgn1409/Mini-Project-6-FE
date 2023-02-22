@@ -62,6 +62,10 @@ export interface getProductType {
 }
 export interface ProductList {
   content: getProductType[];
+  productData: getProductType[];
+}
+export interface ProductData {
+  recommend: ProductList;
 }
 
 // 회원가입
