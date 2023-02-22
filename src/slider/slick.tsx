@@ -39,7 +39,7 @@ function Slick({
       <Slider
         {...settings}
         dotsClass='test-css'
-        className='mx-auto shadow-default w-[350px] h-[200px] rounded-[20px]'
+        className='mx-auto shadow-default w-[320px] h-[200px] rounded-[20px]'
       >
         {children}
       </Slider>
