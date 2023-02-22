@@ -16,8 +16,8 @@ const PasswordCheck = (props: Props) => {
 
   const onSubmit = async (data: FieldValues) => {
     const { password } = data;
-    const res = await checkUser(password);
-    if (res.name) {
+    const { ok, checkData } = await checkUser(password);
+    if (ok) {
       navigate('/userinfo');
     }
   };
