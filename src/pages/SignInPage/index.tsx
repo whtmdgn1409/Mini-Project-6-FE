@@ -5,6 +5,7 @@ import * as yup from 'yup';
 import { signIn, ResponseValue } from '../../api/axios';
 import { useAppDispatch } from '../../app/hooks';
 import { setUser } from '../../features/authSlice';
+import { setCookie } from '../../utils/cookieFn';
 
 type Props = {};
 
@@ -45,7 +46,7 @@ const SignInPage = (props: Props) => {
     const { ok, signData }: ResponseValue = await signIn(email, password);
     console.log(ok, signData);
     if (ok) {
-      document.cookie = 'accessToken' + '=' + signData?.token;
+      setCookie('accessToken', signData?.token!, 1);
       dispatch(setUser(signData));
       navigate('/');
     }

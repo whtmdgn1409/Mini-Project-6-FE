@@ -1,10 +1,6 @@
 import type { AxiosRequestConfig } from 'axios';
 import axios from 'axios';
-
-const getCookie = (cookieKey: string) => {
-  const value = document.cookie.match('(^|;) ?' + cookieKey + '=([^;]*)(;|$)');
-  return value ? value[2] : null;
-};
+import { getCookie } from '../../utils/cookieFn';
 
 export const token = getCookie('accessToken');
 
