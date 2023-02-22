@@ -9,7 +9,6 @@ module.exports = {
   },
   plugins: [
     "react",
-    "@typescript-eslint",
     "import",
     "jsx-a11y",
     "react-hooks",
@@ -29,16 +28,16 @@ module.exports = {
     es2021: true
   },
   rules: {
-    "@typescript-eslint/interface-name-prefix": "on",
-    "@typescript-eslint/explicit-function-return-type": "on",
-    "@typescript-eslint/explicit-module-boundary-types": "on",
-    "@typescript-eslint/no-explicit-any": "on",
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
+    "@typescript-eslint/interface-name-prefix": 0,
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "react-hooks/rules-of-hooks": 2,
+    "react-hooks/exhaustive-deps": 1,
     "prettier/prettier": [
-      "warn", {
+      1, {
         "endOfLine": "auto",
-        "sigleQuote": true
+        "singleQuote": true
       }
     ]
   }
