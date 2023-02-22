@@ -6,7 +6,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../../assets/index.css';
 import { useNavigate } from 'react-router-dom';
-import { getFavor } from '../../api/axios';
+import { getFavor, getUserInfo, UserInfoType } from '../../api/axios';
 import { FavorType } from '../../api/axios';
 import { IoBookmarksOutline } from 'react-icons/io5';
 
@@ -14,17 +14,21 @@ type Props = {};
 
 const Mypage = (props: Props) => {
   const [favor, setFavor] = useState<Array<FavorType>>([]);
+  const [user, setUser] = useState<UserInfoType | null>(null);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
-      const { ok, favorData } = await getFavor();
-      setFavor(favorData);
+      const { favorData } = await getFavor();
+      const { ok, userInfoData } = await getUserInfo();
+      if (ok) {
+        setFavor(favorData);
+        setUser(userInfoData);
+      }
     }
     fetchData();
   }, []);
-  console.log(favor);
 
   const settings = {
     dots: true,
@@ -35,7 +39,7 @@ const Mypage = (props: Props) => {
   return (
     <div className='mx-[60px]'>
       <h1 className='text-[20px]'>
-        <span className='text-mw font-bold'>미왕이</span> 님 안녕하세요!
+        <span className='text-mw font-bold'>{user?.name}</span> 님 안녕하세요!
       </h1>
       <div className='mt-[20px]'>
         <span className='text-[16px]'>이용 중인 대출 3건</span>
@@ -49,7 +53,7 @@ const Mypage = (props: Props) => {
         <h2 className='text-[20px] font-bold my-[20px] flex'>
           관심 상품 <IoBookmarksOutline className='text-[24px] ml-2' />
         </h2>
-        {favor ? (
+        {favor.length ? (
           <Slider {...settings} dotsClass='mypage-dots' className='likeItem'>
             {favor.map((item) => (
               <LikeBox item={item} key={item.snq} />

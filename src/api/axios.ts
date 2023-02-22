@@ -22,7 +22,9 @@ export type FavorType = {
   loanDescription: string;
   loanName: string;
   loanTarget: string;
-  ratePercent: string;
+  rate: string;
+  loanLimit: string;
+  provider: string;
 };
 
 // 장바구니 아이템 정보

@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { FieldValues, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type Props = {};
 
@@ -19,6 +21,9 @@ const PasswordCheck = (props: Props) => {
     const { ok, checkData } = await checkUser(password);
     if (ok) {
       navigate('/userinfo');
+    } else {
+      const notify = () => toast.warn('비밀번호가 틀립니다.');
+      notify();
     }
   };
 
@@ -38,6 +43,18 @@ const PasswordCheck = (props: Props) => {
 
   return (
     <div className='w-[300px] m-auto'>
+      <ToastContainer
+        position='top-center'
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='light'
+      />
       <h1 className='text-4xl font-bold text-center'>비밀번호 확인</h1>
       <form className='mt-8 text-center' onSubmit={handleSubmit(onSubmit)}>
         <input

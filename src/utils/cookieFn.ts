@@ -1,5 +1,5 @@
 export const setCookie = (key: string, value: string, exp: number) => {
-  document.cookie = `${key}=${value} ;max-age=1800; path=/`;
+  document.cookie = `${key}=${value} ;max-age=3600; path=/`;
 };
 
 export const getCookie = (key: string) => {
