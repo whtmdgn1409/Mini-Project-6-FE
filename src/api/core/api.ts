@@ -6,7 +6,7 @@ const getCookie = (cookieKey: string) => {
   return value ? value[2] : null;
 };
 
-const token = getCookie('accessToken');
+export const token = getCookie('accessToken');
 
 const axiosConfig: AxiosRequestConfig = {
   baseURL: 'https://www.meewang.store',
