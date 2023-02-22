@@ -1,4 +1,4 @@
-import { EtcTypes } from '../../pages/ProductDetail';
+import { EtcTypes } from '../../pages/ProductDetail/interface';
 
 const Etc = (props: { etc: EtcTypes }) => {
   return (

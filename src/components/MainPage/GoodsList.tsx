@@ -23,7 +23,7 @@ const GoodsList = (props: props) => {
     <div className='relative'>
       <div className='box-border mt-20 ml-3 font-semibold text-xl p-10'>
         <button>
-          <Link to='/' className='flex text-center align-middle'>
+          <Link to='/allproduct' className='flex text-center align-middle'>
             <span>전체 상품</span>
             <MdKeyboardArrowRight size='28' />
           </Link>
@@ -33,6 +33,7 @@ const GoodsList = (props: props) => {
         {lists.map((item, index) => (
           <ListBox
             key={index}
+            snq={item.snq}
             title={item.loanName}
             desc={item.loanDescription}
             target={item.loanTarget}
