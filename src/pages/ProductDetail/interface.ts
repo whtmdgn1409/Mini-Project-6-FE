@@ -32,7 +32,7 @@ export interface TargetTypes {
   loanTarget: string;
 }
 
-export interface ProductDetail {
+export interface IProductDetail {
   etc: EtcTypes;
   loan: LoanTypes;
   target: TargetTypes;
