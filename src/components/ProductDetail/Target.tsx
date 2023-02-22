@@ -1,4 +1,4 @@
-import { TargetTypes } from '../../pages/ProductDetail';
+import { TargetTypes } from '../../pages/ProductDetail/interface';
 const Target = (props: { target: TargetTypes }) => {
   return (
     <ul className='px-[20px]'>
