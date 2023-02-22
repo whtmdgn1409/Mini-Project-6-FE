@@ -3,14 +3,14 @@ import Slick from '../../slider/slick';
 import {
   memberRecommend,
   nomemberRecommend,
-  ProductList,
+  ProductData,
 } from '../../api/axios';
 import { token } from '../../api/core/api';
 type props = {};
 
 const RecommendList = (props: props) => {
-  const [memberlists, setmemberlists] = useState<ProductList>();
-  const [nomemberlists, setnomemberlists] = useState<ProductList>();
+  const [memberlists, setmemberlists] = useState<ProductData>();
+  const [nomemberlists, setnomemberlists] = useState<ProductData>();
   useEffect(() => {
     async function fetchMemberData() {
       const memberrecommendList = await memberRecommend();
@@ -32,7 +32,7 @@ const RecommendList = (props: props) => {
       {/* 추천 상품 리스트 보여주기 */}
       <div className='SlickContainer w-80 h-36 mx-auto m-auto box-border'>
         <Slick>
-          {memberlists?.content.map((item) => (
+          {memberlists?.recommend?.content.map((item) => (
             <div
               key={item.snq}
               className='flex flex-col items-center justify-center mt-[40px] ml-[20px]'
@@ -57,7 +57,7 @@ const RecommendList = (props: props) => {
       {/* 추천 상품 리스트 보여주기 */}
       <div className='SlickContainer w-80 h-36 mx-auto box-border'>
         <Slick>
-          {nomemberlists?.content.map((item) => (
+          {nomemberlists?.recommend?.content.map((item) => (
             <div
               key={item.snq}
               className='flex flex-col items-center justify-center mt-[40px] ml-[20px]'
