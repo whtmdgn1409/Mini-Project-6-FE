@@ -13,7 +13,9 @@ interface AuthFn {
 }
 
 interface ResponseValue {
-  token: string;
+  ok: boolean;
+  token?: string;
+  signData?: AuthFn;
 }
 
 // 관심 상품
@@ -74,14 +76,18 @@ export const signUp: AuthFn = async (name, password, email, phone) => {
         phone,
       },
     });
-    console.log('res.data', res.data);
     console.log('res', res);
-    return res.data;
+    return {
+      ok: true,
+      signData: res.data,
+    };
   } catch (error) {
     if (error instanceof AxiosError) {
       console.log(error.message);
     }
-    return false;
+    return {
+      ok: false,
+    };
   }
 };
 
@@ -95,7 +101,7 @@ export const signIn: AuthFn = async (email, password) => {
         password,
       },
     });
-
+    console.log(res.data);
     return res.data;
   } catch (error) {
     if (error instanceof AxiosError) {
@@ -217,8 +223,32 @@ export const getFavor = async () => {
   }
 };
 
+// 관심 상품 추가
+export const addFavor = async (snq: string | number) => {
+  try {
+    const res = await request('/favor', {
+      method: 'POST',
+      data: {
+        snq,
+      },
+    });
+    console.log(res);
+    return {
+      ok: true,
+      favorData: res.data,
+    };
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return {
+      ok: false,
+    };
+  }
+};
+
 // 관심 상품 삭제
-export const deleteFavor = async (snq: string) => {
+export const deleteFavor = async (snq: string | number) => {
   try {
     const res = await request('/favor', {
       method: 'DELETE',
@@ -256,9 +286,9 @@ export const deleteCart = async (snq: number) => {
 };
 
 // 상세 정보
-export const getProductDetail = async () => {
+export const getProductDetail = async (snq: number | string) => {
   try {
-    const res = await request('/finance/loan/detail?snq=1', {
+    const res = await request(`/finance/loan/detail?snq=${snq}`, {
       method: 'GET',
     });
     return res.data;
