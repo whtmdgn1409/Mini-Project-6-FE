@@ -61,6 +61,9 @@ export interface getProductType {
   baseRate: string;
   ratePercent: string;
 }
+export interface ProductList {
+  content: getProductType[];
+}
 
 // 회원가입
 export const signUp: AuthFn = async (name, password, email, phone) => {
@@ -75,7 +78,6 @@ export const signUp: AuthFn = async (name, password, email, phone) => {
       },
     });
     console.log('res.data', res.data);
-    console.log('res', res);
     return res.data;
   } catch (error) {
     if (error instanceof AxiosError) {
@@ -240,7 +242,23 @@ export const deleteFavor = async (snq: string) => {
     data: res.data,
   };
 };
-
+// 장바구니 추가
+export const addCartList = async (snq: string) => {
+  try {
+    const res = await request('/cart', {
+      method: 'POST',
+      data: {
+        snq,
+      },
+    });
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return false;
+  }
+};
 // 장바구니 조회
 export const getCartList = async (): Promise<CartType[]> => {
   const res = await request('/mypage/cart', {
@@ -279,6 +297,35 @@ export const getProductDetail = async () => {
 export const getProduct = async (): Promise<any> => {
   try {
     const res = await request('/finance/loan/', {
+      method: 'GET',
+    });
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return false;
+  }
+};
+
+// 로그인 시 추천상품 리스트
+export const memberRecommend = async (): Promise<any> => {
+  try {
+    const res = await request('/finance/member/recommend/loan', {
+      method: 'GET',
+    });
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return false;
+  }
+};
+
+export const nomemberRecommend = async (): Promise<any> => {
+  try {
+    const res = await request('/finance/recommend/loan', {
       method: 'GET',
     });
     return res.data;
