@@ -4,15 +4,16 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { signUp } from '../../api/axios';
 import { useAppDispatch } from '../../app/hooks';
+import { setUser } from '../../features/authSlice';
 
 type Props = {};
 
-interface IvalidationForm {
+type IvalidationForm = {
   name: string;
   password: string;
   email: string;
   phone: string;
-}
+};
 
 const SignUpPage = (props: Props) => {
   const navigate = useNavigate();
@@ -50,12 +51,12 @@ const SignUpPage = (props: Props) => {
   });
 
   const onSubmit = async (data: FieldValues) => {
-    const { name, email, password, phone } = data;
-    const test = await signUp(name, email, password, phone);
-    // if (status === 200) {
-    //   navigate('/signin');
-    //   dispatch(setUser(test));
-    // }
+    const { email, password, name, phone } = data;
+    const { ok, signData } = await signUp(name, password, email, phone);
+    if (ok) {
+      dispatch(setUser(signData));
+      navigate('/signin');
+    }
   };
   return (
     <section className='w-[300px] m-auto'>
@@ -70,39 +71,11 @@ const SignUpPage = (props: Props) => {
         className='flex-col mt-16 text-center'
       >
         <div>
-          <label htmlFor='name'></label>
+          <label htmlFor='text'>이메일</label>
           <input
             type='text'
-            className='mwInput pl-6 w-full'
-            placeholder='이름'
-            {...register('name')}
-          />
-          {errors.name && (
-            <p className='text-xs text-alert pt-3 text-left ml-5'>
-              {errors.name.message}
-            </p>
-          )}
-        </div>
-        <div className='mt-8'>
-          <label htmlFor='password'></label>
-          <input
-            type='password'
-            className='mwInput pl-6 w-full'
-            placeholder='비밀번호'
-            {...register('password')}
-          />
-          {errors.password && (
-            <p className='text-xs text-alert pt-3 text-left ml-5'>
-              {errors.password.message}
-            </p>
-          )}
-        </div>
-        <div className='mt-8'>
-          <label htmlFor='text'></label>
-          <input
-            type='text'
-            className='mwInput pl-6 w-full'
-            placeholder='이메일'
+            className='mwInput pl-6 w-full text-sm'
+            placeholder='이메일 형식에 맞게 입력하세요'
             {...register('email')}
           />
           {errors.email && (
@@ -112,11 +85,39 @@ const SignUpPage = (props: Props) => {
           )}
         </div>
         <div className='mt-8'>
-          <label htmlFor='phone'></label>
+          <label htmlFor='password'>비밀번호</label>
+          <input
+            type='password'
+            className='mwInput pl-6 w-full text-sm'
+            placeholder='8자 이상 16자의 숫자 혹은 문자로 설정하세요'
+            {...register('password')}
+          />
+          {errors.password && (
+            <p className='text-xs text-alert pt-3 text-left ml-5'>
+              {errors.password.message}
+            </p>
+          )}
+        </div>
+        <div className='mt-8'>
+          <label htmlFor='name'>이름</label>
           <input
             type='text'
-            className='mwInput pl-6 w-full'
-            placeholder='모바일'
+            className='mwInput pl-6 w-full text-sm'
+            placeholder='이름을 입력해주세요'
+            {...register('name')}
+          />
+          {errors.name && (
+            <p className='text-xs text-alert pt-3 text-left ml-5'>
+              {errors.name.message}
+            </p>
+          )}
+        </div>
+        <div className='mt-8'>
+          <label htmlFor='phone'>핸드폰 번호</label>
+          <input
+            type='text'
+            className='mwInput pl-6 w-full text-sm'
+            placeholder=' - 을 제외한 11자리를 입력해주세요 '
             {...register('phone')}
           />
           {errors.phone && (

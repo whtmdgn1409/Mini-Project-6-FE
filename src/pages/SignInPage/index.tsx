@@ -61,7 +61,7 @@ const SignInPage = (props: Props) => {
           <label htmlFor='email'></label>
           <input
             type='text'
-            className='mwInput pl-6'
+            className='mwInput pl-6 text-sm'
             placeholder='이메일을 입력해주세요'
             {...register('email')}
           />
@@ -75,7 +75,7 @@ const SignInPage = (props: Props) => {
           <label htmlFor=''></label>
           <input
             type='password'
-            className='mwInput pl-6'
+            className='mwInput pl-6 text-sm'
             placeholder='비밀번호를 입력해주세요'
             {...register('password')}
           />

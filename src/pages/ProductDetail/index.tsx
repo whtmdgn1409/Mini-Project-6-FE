@@ -1,21 +1,23 @@
 import { useEffect, useState } from 'react';
 import { IoBookmarksOutline } from 'react-icons/io5';
-import { getProductDetail } from '../../api/axios';
+import { getProductDetail, addFavor } from '../../api/axios';
 import Etc from '../../components/ProductDetail/Etc';
 import Loan from '../../components/ProductDetail/Loan';
 import Target from '../../components/ProductDetail/Target';
-import { ProductDetail } from './interface';
+import { IProductDetail } from './interface';
 import { defaultProductData } from './const';
+import { useLocation } from 'react-router-dom';
 
 const lists = ['상품요건', '지원 대상 요건', '기타 상품 정보'];
 
 const ProductDetail = () => {
   const [activeMenu, setActiveMenu] = useState(0);
-  const [detail, setDetail] = useState<ProductDetail>(defaultProductData);
-
+  const [detail, setDetail] = useState<IProductDetail>(defaultProductData);
+  const location = useLocation();
+  const snq = location.pathname.slice(9);
   useEffect(() => {
     const getDetail = async () => {
-      const res = await getProductDetail();
+      const res = await getProductDetail(snq);
       setDetail(res);
     };
     getDetail();
@@ -41,7 +43,10 @@ const ProductDetail = () => {
           </div>
         </div>
 
-        <button className='absolute bottom-40 right-5'>
+        <button
+          className='absolute bottom-40 right-5'
+          onClick={() => addFavor(snq)}
+        >
           <IoBookmarksOutline className='text-3xl' />
         </button>
       </div>
