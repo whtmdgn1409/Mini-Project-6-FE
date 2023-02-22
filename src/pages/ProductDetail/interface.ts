@@ -1,8 +1,6 @@
 export interface EtcTypes {
-  contact: string;
   earlyRedemptionFee: string;
   etcNode: string;
-  homepage: string;
   joinMethod: string;
   primeCondition: string;
   provider: string;
