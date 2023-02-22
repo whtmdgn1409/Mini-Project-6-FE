@@ -33,6 +33,7 @@ const GoodsList = (props: props) => {
         {lists.map((item, index) => (
           <ListBox
             key={index}
+            snq={item.snq}
             title={item.loanName}
             desc={item.loanDescription}
             target={item.loanTarget}
