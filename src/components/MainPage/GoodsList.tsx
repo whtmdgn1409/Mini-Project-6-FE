@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import ListBox from './ListBox';
-import { getProduct, getProductType } from '../../api/axios';
+import { getProduct, ProductList } from '../../api/axios';
 type props = {};
 
 const GoodsList = (props: props) => {
-  const [lists, setlists] = useState<Array<getProductType>>([]);
+  const [lists, setlists] = useState<ProductList>();
 
   const navigate = useNavigate();
 
@@ -19,6 +19,8 @@ const GoodsList = (props: props) => {
     }
     fetchData();
   }, []);
+  console.log(lists?.productData);
+
   return (
     <div className='relative'>
       <div className='box-border mt-20 ml-3 font-semibold text-xl p-10'>
@@ -30,7 +32,7 @@ const GoodsList = (props: props) => {
         </button>
       </div>
       <div className='flex flex-col'>
-        {lists.map((item, index) => (
+        {lists?.productData.map((item, index) => (
           <ListBox
             key={index}
             snq={item.snq}
