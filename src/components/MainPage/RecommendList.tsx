@@ -23,8 +23,8 @@ const RecommendList = (props: props) => {
       setnomemberlists(nomemberrecommendList);
     }
     async function fetchLogin() {
-      const checkLogin = await getUserInfo();
-      setlogin(checkLogin);
+      const { ok, userInfoData } = await getUserInfo();
+      setlogin(userInfoData);
     }
     fetchMemberData();
     fetchNoMemberData();
