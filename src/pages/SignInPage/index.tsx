@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { signIn } from '../../api/axios';
+import { signIn, ResponseValue } from '../../api/axios';
 import { useAppDispatch } from '../../app/hooks';
 import { setUser } from '../../features/authSlice';
 
@@ -42,9 +42,11 @@ const SignInPage = (props: Props) => {
 
   const onSubmit = async (data: FieldValues) => {
     const { email, password } = data;
-    const res = await signIn(email, password);
-    if (res.token) {
-      dispatch(setUser(res));
+    const { ok, signData }: ResponseValue = await signIn(email, password);
+    console.log(ok, signData);
+    if (ok) {
+      document.cookie = 'accessToken' + '=' + signData?.token;
+      dispatch(setUser(signData));
       navigate('/');
     }
   };
