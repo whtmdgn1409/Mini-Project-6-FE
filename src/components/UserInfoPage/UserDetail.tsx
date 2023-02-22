@@ -33,6 +33,7 @@ const UserDetail = (props: Props) => {
     async function fetchData() {
       const { ok, userDetailInfoData } = await getUserDetailInfo();
       setUserDetailInfoData(userDetailInfoData);
+      console.log(ok);
       console.log(userDetailInfoData);
     }
     fetchData();

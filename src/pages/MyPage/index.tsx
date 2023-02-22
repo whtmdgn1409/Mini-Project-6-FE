@@ -24,7 +24,6 @@ const Mypage = (props: Props) => {
     }
     fetchData();
   }, []);
-  console.log(favor);
 
   const settings = {
     dots: true,
@@ -49,7 +48,7 @@ const Mypage = (props: Props) => {
         <h2 className='text-[20px] font-bold my-[20px] flex'>
           관심 상품 <IoBookmarksOutline className='text-[24px] ml-2' />
         </h2>
-        {favor ? (
+        {favor.length ? (
           <Slider {...settings} dotsClass='mypage-dots' className='likeItem'>
             {favor.map((item) => (
               <LikeBox item={item} key={item.snq} />
