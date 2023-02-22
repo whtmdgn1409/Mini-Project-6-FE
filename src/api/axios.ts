@@ -3,18 +3,15 @@ import { request } from './core/api';
 
 // 인증
 interface AuthFn {
-  (
-    name?: string,
-    password?: string,
-    email?: string,
-    phone?: string,
-    accessToken?: string,
-  ): Promise<ResponseValue>;
+  name?: string;
+  password?: string;
+  email?: string;
+  phone?: string;
+  token?: string;
 }
 
-interface ResponseValue {
+export interface ResponseValue {
   ok: boolean;
-  token?: string;
   signData?: AuthFn;
 }
 
@@ -68,7 +65,12 @@ export interface ProductList {
 }
 
 // 회원가입
-export const signUp: AuthFn = async (name, password, email, phone) => {
+export const signUp = async (
+  name: string,
+  password: string,
+  email: string,
+  phone: string,
+) => {
   try {
     const res = await request('/signup', {
       method: 'post',
@@ -94,7 +96,7 @@ export const signUp: AuthFn = async (name, password, email, phone) => {
 };
 
 // 로그인
-export const signIn: AuthFn = async (email, password) => {
+export const signIn = async (email: string, password: string) => {
   try {
     const res = await request('/login', {
       method: 'post',
@@ -103,13 +105,17 @@ export const signIn: AuthFn = async (email, password) => {
         password,
       },
     });
-    console.log(res.data);
-    return res.data;
+    return {
+      ok: true,
+      signData: res.data,
+    };
   } catch (error) {
     if (error instanceof AxiosError) {
       console.log(error.message);
     }
-    return false;
+    return {
+      ok: false,
+    };
   }
 };
 
