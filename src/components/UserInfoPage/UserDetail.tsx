@@ -31,9 +31,9 @@ const UserDetail = (props: Props) => {
 
   useEffect(() => {
     async function fetchData() {
-      const userDetailData = await getUserDetailInfo();
-      setUserDetailInfoData(userDetailData);
-      console.log(userDetailData);
+      const { ok, userDetailInfoData } = await getUserDetailInfo();
+      setUserDetailInfoData(userDetailInfoData);
+      console.log(userDetailInfoData);
     }
     fetchData();
   }, []);
@@ -42,7 +42,7 @@ const UserDetail = (props: Props) => {
 
   const onSubmit = async (data: FieldValues) => {
     const { job, age, address, bank, crdtGrade, income } = data;
-    const res = await changeUserDetailInfo(
+    const { ok, userDetailInfoData } = await changeUserDetailInfo(
       age,
       address,
       job,
@@ -50,8 +50,8 @@ const UserDetail = (props: Props) => {
       crdtGrade,
       income,
     );
-    console.log('회원 정보 수정', res);
-    if (res === 'success') navigate('/mypage');
+    console.log('회원 정보 수정', userDetailInfoData);
+    if (ok) navigate('/mypage');
   };
 
   const { register, handleSubmit } = useForm();

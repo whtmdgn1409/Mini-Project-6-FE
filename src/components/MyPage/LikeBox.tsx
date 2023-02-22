@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FavorType, deleteFavor } from '../../api/axios';
+import { toast, ToastContainer } from 'react-toastify';
 
 type Props = {
   item: FavorType;
@@ -8,6 +9,7 @@ type Props = {
 
 const LikeBox = ({ item }: Props) => {
   const navigate = useNavigate();
+  const notify = () => toast('관심 상품이 삭제되었습니다.');
 
   return (
     <div className='m-auto w-[180px] h-[250px] bg-mw flex flex-col items-center justify-center rounded-default shadow-default text-white p-5 gap-2'>
@@ -39,11 +41,13 @@ const LikeBox = ({ item }: Props) => {
         className='mwBtn-white !w-[100px] !h-[30px] !text-[12px]'
         onClick={() => {
           deleteFavor(item.snq);
+          notify();
           location.reload();
         }}
       >
         삭제하기
       </button>
+      <ToastContainer />
     </div>
   );
 };

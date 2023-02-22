@@ -235,7 +235,9 @@ export const changeUserInfo = async (phone: string, password: string) => {
     if (error instanceof AxiosError) {
       console.log(error.message);
     }
-    return false;
+    return {
+      ok: false,
+    };
   }
 };
 
