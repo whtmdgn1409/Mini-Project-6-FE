@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { BsSearch } from 'react-icons/bs';
 import { MdKeyboardArrowRight } from 'react-icons/md';
+import { token } from '../../../api/core/api';
 
 import ToggleBody from './ToggleBody';
 
@@ -9,12 +10,7 @@ interface props {
   toggleMenu(): void;
 }
 const ToggleHeader = (props: props) => {
-  const [logIn, setlogIn] = useState(false);
-  const logInCheck = () => {
-    if (props) {
-    }
-  };
-  return logIn ? (
+  return token ? (
     <div className='relative w-full h-full z-[1000] bg-mw'>
       <div className='w-full h-[240px] m-auto'>
         {' '}
@@ -70,13 +66,10 @@ const ToggleHeader = (props: props) => {
         <div className='absolute top-[70px] left-[41px] w-[270px] h-[148px] mx-auto '>
           <div className='flex gap-5'>
             <div className='w-[70px] h-[70px] rounded-full'>
-              <img src='./images/Users.png' alt='사용자' />
+              <img src='./images/NeedLogin.svg' alt='사용자' />
             </div>
-            <div className='mt-4 text-sm'>
-              <p className='flex text-[20px]'>
-                미왕이 <MdKeyboardArrowRight size='20' />
-              </p>
-              <p className='text-[10px]'>최근접속 : 2023-02-13 13:50:00</p>
+            <div className='mt-4 text-sm text-center'>
+              <p>로그인이 필요합니다!</p>
             </div>
           </div>
           <div className='mt-[22px] flex items-center'>

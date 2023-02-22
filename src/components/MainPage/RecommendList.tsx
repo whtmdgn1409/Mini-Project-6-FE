@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Slick from '../../slider/slick';
 import {
-  getProductType,
   memberRecommend,
   nomemberRecommend,
-  getUserInfo,
   ProductList,
 } from '../../api/axios';
+import { token } from '../../api/core/api';
 type props = {};
 
 const RecommendList = (props: props) => {
   const [memberlists, setmemberlists] = useState<ProductList>();
   const [nomemberlists, setnomemberlists] = useState<ProductList>();
-  const [login, setlogin] = useState(Boolean);
   useEffect(() => {
     async function fetchMemberData() {
       const memberrecommendList = await memberRecommend();
@@ -22,16 +20,11 @@ const RecommendList = (props: props) => {
       const nomemberrecommendList = await nomemberRecommend();
       setnomemberlists(nomemberrecommendList);
     }
-    async function fetchLogin() {
-      const { ok, userInfoData } = await getUserInfo();
-      setlogin(userInfoData);
-    }
     fetchMemberData();
     fetchNoMemberData();
-    fetchLogin();
   }, []);
   //로그인이 되어 있을 때
-  return login ? (
+  return token ? (
     <div className='relative top-10 max-w-ms z-0'>
       <p className='font-semibold text-2xl p-10 ml-3 box-border'>
         <span className='text-mw'>미왕이</span> 님을 위한 추천상품이에요.
