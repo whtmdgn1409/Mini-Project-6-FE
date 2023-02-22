@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { IoBookmarksOutline } from 'react-icons/io5';
-import { getProductDetail, addFavor } from '../../api/axios';
+import { IoBookmarksOutline, IoCartOutline } from 'react-icons/io5';
+import { getProductDetail, addFavor, addCartList } from '../../api/axios';
 import Etc from '../../components/ProductDetail/Etc';
 import Loan from '../../components/ProductDetail/Loan';
 import Target from '../../components/ProductDetail/Target';
@@ -42,6 +42,13 @@ const ProductDetail = () => {
             </div>
           </div>
         </div>
+
+        <button
+          className='absolute bottom-40 right-14'
+          onClick={() => addCartList(snq)}
+        >
+          <IoCartOutline className='text-4xl' />
+        </button>
 
         <button
           className='absolute bottom-40 right-5'
