@@ -66,8 +66,19 @@ export interface ProductList {
   content: getProductType[];
   productData: getProductType[];
 }
+
 export interface ProductData {
   recommend: ProductList;
+  recommendData: ProductList;
+}
+
+export interface CategoryData {
+  baseRate: string;
+  loanDescription: string;
+  loanName: string;
+  loanTarget: string[];
+  rate: string;
+  snq: number;
 }
 
 // 회원가입
@@ -114,6 +125,26 @@ export const signIn = async (email: string, password: string) => {
     return {
       ok: true,
       signData: res.data,
+    };
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return {
+      ok: false,
+    };
+  }
+};
+
+// 로그아웃
+export const logOut = async () => {
+  try {
+    const res = await request('/logout', {
+      method: 'POST',
+    });
+    return {
+      ok: true,
+      checkData: res.data,
     };
   } catch (error) {
     if (error instanceof AxiosError) {
@@ -310,27 +341,17 @@ export const deleteFavor = async (snq: string | number) => {
   };
 };
 // 장바구니 추가
-export const addCartList = async (snq: string) => {
-  try {
-    const res = await request('/cart', {
+export const addCartList = async (snq: number) => {
+  return (
+    await request<boolean>('/cart', {
       method: 'POST',
       data: {
         snq,
       },
-    });
-    return {
-      ok: true,
-      cartData: res.data,
-    };
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      console.log(error.message);
-    }
-    return {
-      ok: false,
-    };
-  }
+    })
+  ).data;
 };
+
 // 장바구니 조회
 export const getCartList = async () => {
   const res = await request('/mypage/cart', {
@@ -351,11 +372,9 @@ export const deleteCart = async (snq: number) => {
     },
   });
   return {
-    ok: true,
-    cartData: res.data,
+    ok: res.data,
   };
 };
-
 // 상세 정보
 export const getProductDetail = async (snq: number | string) => {
   try {
@@ -424,6 +443,53 @@ export const nomemberRecommend = async (): Promise<any> => {
     return {
       ok: true,
       recommend: res.data,
+    };
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return {
+      ok: false,
+    };
+  }
+};
+
+// 카테고리별 분류
+export const getCategoryList = async (
+  category: string,
+  keyword: string,
+  page: number = 1,
+) => {
+  try {
+    const res = await request(
+      `finance/itemlist/${category}?${category}=${keyword}&pageno=${page}`,
+      {
+        method: 'GET',
+      },
+    );
+    return {
+      ok: true,
+      categoryData: res.data.content,
+    };
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return {
+      ok: false,
+    };
+  }
+};
+
+// 대출 전체 상품 리스트
+export const getAllList = async (page: number) => {
+  try {
+    const res = await request(`finance/itemlist?pageno=${page}`, {
+      method: 'GET',
+    });
+    return {
+      ok: true,
+      allData: res.data,
     };
   } catch (error) {
     if (error instanceof AxiosError) {
