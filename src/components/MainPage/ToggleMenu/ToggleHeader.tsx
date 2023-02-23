@@ -3,17 +3,27 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { BsSearch } from 'react-icons/bs';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import { BiLogOut } from 'react-icons/bi';
-import { token } from '../../../api/core/api';
 import { deleteCookie } from '../../../utils/cookieFn';
 import ToggleBody from './ToggleBody';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOutAction, autoCheck } from '../../../features/authSlice';
-import { logOut } from '../../../api/axios';
+import { logOut, getUserInfo, UserInfoType } from '../../../api/axios';
 interface props {
   toggleMenu(): void;
 }
 const ToggleHeader = (props: props) => {
+  const [user, setUser] = useState<UserInfoType | null>(null);
+  const date = new Date().toLocaleString('ko-KR');
+  useEffect(() => {
+    async function fetchData() {
+      const { ok, userInfoData } = await getUserInfo();
+      if (ok) {
+        setUser(userInfoData);
+      }
+    }
+    fetchData();
+  }, []);
   const isLogin = useSelector((state: autoCheck) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
   const logoutHandler = () => {
@@ -50,9 +60,9 @@ const ToggleHeader = (props: props) => {
             </div>
             <div className='mt-4 text-sm'>
               <p className='flex text-[20px]'>
-                미왕이 <MdKeyboardArrowRight size='20' />
+                {user?.name} <MdKeyboardArrowRight size='20' />
               </p>
-              <p className='text-[10px]'>최근접속 : 2023-02-13 13:50:00</p>
+              <p className='text-[10px]'>최근접속 : {date}</p>
             </div>
           </div>
           <div className='mt-[22px] flex items-center'>
