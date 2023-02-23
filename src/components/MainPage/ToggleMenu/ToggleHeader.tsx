@@ -63,7 +63,7 @@ const ToggleHeader = (props: props) => {
           </div>
         </div>
       </div>
-      <ToggleBody />
+      <ToggleBody toggleMenu={props.toggleMenu} />
     </div>
   ) : (
     <div className='relative w-full h-full z-[1000] bg-mw'>
@@ -104,7 +104,7 @@ const ToggleHeader = (props: props) => {
           </div>
         </div>
       </div>
-      <ToggleBody />
+      <ToggleBody toggleMenu={props.toggleMenu} />
     </div>
   );
 };

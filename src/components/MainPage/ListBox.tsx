@@ -1,20 +1,26 @@
 import { current } from '@reduxjs/toolkit';
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { addCartList } from '../../api/axios';
 type props = {
-  snq: string;
+  snq: string | number;
   title: string;
   desc: string;
-  target: string;
+  target: string | string[];
   baseRate: string;
 };
 const ListBox = (props: props) => {
   let description = props.desc;
   let replaceDesc = description.replace('<br/>/g', '');
+  const navigate = useNavigate();
   return (
     <div className='boxContainer bg-mw-lGray relative w-[350px] h-52 mx-auto my-3 shadow-default rounded-default text-left'>
-      <p className='loanTitle text-lg absolute top-7 left-8'>{props.title}</p>
+      <p
+        className='loanTitle text-lg absolute top-7 left-8 cursor-pointer'
+        onClick={() => navigate(`/product/${props.snq}`)}
+      >
+        {props.title}
+      </p>
       <p className='loanDesc text-xs absolute top-20 left-8 w-72'>
         {replaceDesc.slice(0, 80)}...
       </p>

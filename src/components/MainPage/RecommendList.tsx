@@ -28,7 +28,7 @@ const RecommendList = (props: props) => {
       }
       fetchNoMemberData();
     }
-  }, []);
+  }, [isLogin]);
   //로그인이 되어 있을 때
   return isLogin ? (
     <div className='relative top-10 max-w-ms z-0'>
