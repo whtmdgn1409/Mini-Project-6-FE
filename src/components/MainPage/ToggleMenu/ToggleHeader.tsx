@@ -7,23 +7,24 @@ import { token } from '../../../api/core/api';
 import { deleteCookie } from '../../../utils/cookieFn';
 import ToggleBody from './ToggleBody';
 import { Link } from 'react-router-dom';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { logOutAction, autoCheck } from '../../../features/authSlice';
 interface props {
   toggleMenu(): void;
 }
 const ToggleHeader = (props: props) => {
-  const [logOut, setlogOut] = useState(String);
-  function logOutBtn() {
+  const isLogin = useSelector((state: autoCheck) => state.auth.isAuthenticated);
+  const dispatch = useDispatch();
+  const logoutHandler = () => {
     deleteCookie('accessToken');
-    setlogOut('LOGOUT!');
-  }
-  console.log(logOut);
-  return token ? (
+    dispatch(logOutAction());
+  };
+  return isLogin ? (
     <div className='relative w-full h-full z-[1000] bg-mw'>
       <div className='w-full h-[240px] m-auto'>
         <div className='absolute flex justify-end top-[30px] right-0 items-end gap-3'>
           <div>
-            <BiLogOut size='32' color='#fff' onClick={() => logOutBtn()} />
+            <BiLogOut size='32' color='#fff' onClick={() => logoutHandler()} />
           </div>{' '}
           <div className='mr-[10px] cursor-pointer'>
             {' '}
