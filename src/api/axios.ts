@@ -494,7 +494,7 @@ export const getCategoryList = async (
 };
 
 // 대출 전체 상품 리스트
-export const getAllList = async (page: number = 1) => {
+export const getAllList = async (page: number) => {
   try {
     const res = await request(`finance/itemlist?pageno=${page}`, {
       method: 'GET',
