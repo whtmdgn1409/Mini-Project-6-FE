@@ -340,16 +340,28 @@ export const deleteFavor = async (snq: string | number) => {
     favorData: res.data,
   };
 };
+
 // 장바구니 추가
-export const addCartList = async (snq: number) => {
-  return (
-    await request<boolean>('/cart', {
+export const addCartList = async (snq: string | number) => {
+  try {
+    const res = await request('/cart', {
       method: 'POST',
       data: {
         snq,
       },
-    })
-  ).data;
+    });
+    return {
+      ok: true,
+      cartData: res.data,
+    };
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return {
+      ok: false,
+    };
+  }
 };
 
 // 장바구니 조회

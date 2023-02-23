@@ -38,7 +38,7 @@ export const getCartItems = createAsyncThunk<CartInfo[]>(
 export const addCartItems = createAsyncThunk<boolean, string>(
   'ADD_CART',
   async (snq: string) => {
-    return await addCartList(Number(snq));
+    return (await addCartList(snq)).cartData;
   },
 );
 
