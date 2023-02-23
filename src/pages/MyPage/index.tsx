@@ -5,16 +5,19 @@ import LikeBox from '../../components/MyPage/LikeBox';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../../assets/index.css';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { getFavor, getUserInfo, UserInfoType } from '../../api/axios';
 import { FavorType } from '../../api/axios';
 import { IoBookmarksOutline } from 'react-icons/io5';
+import { useSelector } from 'react-redux';
+import { autoCheck } from '../../features/authSlice';
 
 type Props = {};
 
 const Mypage = (props: Props) => {
   const [favor, setFavor] = useState<Array<FavorType>>([]);
   const [user, setUser] = useState<UserInfoType | null>(null);
+  const isLogin = useSelector((state: autoCheck) => state.auth.isAuthenticated);
 
   const navigate = useNavigate();
 
@@ -36,7 +39,7 @@ const Mypage = (props: Props) => {
     arrows: false,
   };
 
-  return (
+  return isLogin ? (
     <div className='mx-[30px]'>
       <h1 className='text-[20px]'>
         <span className='text-mw font-bold'>{user?.name}</span> 님 안녕하세요!
@@ -75,6 +78,8 @@ const Mypage = (props: Props) => {
         </span>
       </div>
     </div>
+  ) : (
+    <Navigate to='/signin'></Navigate>
   );
 };
 

@@ -58,7 +58,7 @@ const RecommendList = (props: props) => {
                 <p>{item.loanName}</p>
               </div>
               <div className='w-[280px] h-[100px] text-[14px] whitespace-normal overflow-hidden'>
-                <p>{item.loanDescription.slice(0, 80)}...</p>
+                <p>{item.loanDescription.slice(0, 80)}</p>
               </div>
             </div>
           ))}
