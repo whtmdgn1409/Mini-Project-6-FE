@@ -21,17 +21,20 @@ const ToggleHeader = (props: props) => {
   return token ? (
     <div className='relative w-full h-full z-[1000] bg-mw'>
       <div className='w-full h-[240px] m-auto'>
-        <div>
-          <BiLogOut size='32' color='#fff' onClick={() => logOutBtn()} />
-        </div>{' '}
-        <div className='float-right mt-[35px] mr-[10px] cursor-pointer'>
-          {' '}
-          <AiOutlineClose
-            size='32'
-            color='#fff'
-            onClick={() => props.toggleMenu()}
-          />
+        <div className='absolute flex justify-end top-[30px] right-0 items-end gap-3'>
+          <div>
+            <BiLogOut size='32' color='#fff' onClick={() => logOutBtn()} />
+          </div>{' '}
+          <div className='mr-[10px] cursor-pointer'>
+            {' '}
+            <AiOutlineClose
+              size='32'
+              color='#fff'
+              onClick={() => props.toggleMenu()}
+            />
+          </div>
         </div>
+
         <div className='absolute top-[70px] left-[41px] w-[270px] h-[148px] mx-auto '>
           <div className='flex gap-5'>
             <div className='w-[70px] h-[70px] rounded-full'>

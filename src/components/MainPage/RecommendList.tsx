@@ -15,19 +15,22 @@ const RecommendList = (props: props) => {
   const [memberlists, setmemberlists] = useState<ProductData>();
   const [nomemberlists, setnomemberlists] = useState<ProductData>();
   useEffect(() => {
-    async function fetchMemberData() {
-      const memberrecommendList = await memberRecommend();
-      setmemberlists(memberrecommendList);
+    if (token) {
+      async function fetchMemberData() {
+        const memberrecommendList = await memberRecommend();
+        setmemberlists(memberrecommendList);
+      }
+      fetchMemberData();
+    } else {
+      async function fetchNoMemberData() {
+        const nomemberrecommendList = await nomemberRecommend();
+        setnomemberlists(nomemberrecommendList);
+      }
+      fetchNoMemberData();
     }
-    async function fetchNoMemberData() {
-      const nomemberrecommendList = await nomemberRecommend();
-      setnomemberlists(nomemberrecommendList);
-    }
-    fetchMemberData();
-    fetchNoMemberData();
   }, []);
   //로그인이 되어 있을 때
-  return isLogin ? (
+  return token ? (
     <div className='relative top-10 max-w-ms z-0'>
       <p className='font-semibold text-2xl p-10 ml-3 box-border'>
         <span className='text-mw'>미왕이</span> 님을 위한 추천상품이에요.
