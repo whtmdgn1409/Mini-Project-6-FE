@@ -340,6 +340,7 @@ export const deleteFavor = async (snq: string | number) => {
     favorData: res.data,
   };
 };
+
 // 장바구니 추가
 export const addCartList = async (snq: string | number) => {
   try {
@@ -362,6 +363,7 @@ export const addCartList = async (snq: string | number) => {
     };
   }
 };
+
 // 장바구니 조회
 export const getCartList = async () => {
   const res = await request('/mypage/cart', {
@@ -383,10 +385,9 @@ export const deleteCart = async (snq: number) => {
   });
   return {
     ok: true,
-    cartData: res.data,
+    data: res.data,
   };
 };
-
 // 상세 정보
 export const getProductDetail = async (snq: number | string) => {
   try {
