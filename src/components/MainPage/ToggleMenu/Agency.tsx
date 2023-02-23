@@ -1,13 +1,24 @@
 import React from 'react';
 import { agencyList } from '../../../utils/infoData';
-type props = {};
+import { useNavigate } from 'react-router';
+type props = {
+  toggleMenu: () => void;
+};
 
-const Agency = (props: props) => {
+const Agency = ({ toggleMenu }: props) => {
+  const navigate = useNavigate();
   return (
-    <div className='flex flex-col w-[280px] gap-3'>
+    <div className='flex flex-col w-[230px] gap-3'>
       {agencyList.map((list) => {
         return (
-          <div key={list} className=''>
+          <div
+            key={list}
+            className='cursor-pointer'
+            onClick={() => {
+              toggleMenu();
+              navigate(`/category/office&${list}`);
+            }}
+          >
             {list}
           </div>
         );

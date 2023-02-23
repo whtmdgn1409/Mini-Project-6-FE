@@ -22,6 +22,7 @@ const PasswordCheck = React.lazy(
   () => import('./pages/UserInfoPage/PasswordCheck'),
 );
 const AllProduct = React.lazy(() => import('./pages/allProduct'));
+const CategoryPage = React.lazy(() => import('./pages/CategoryPage'));
 const router = createBrowserRouter([
   {
     path: '/',
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: '/allproduct',
         element: <AllProduct />,
+      },
+      {
+        path: '/category/:select',
+        element: <CategoryPage />,
       },
     ],
   },
