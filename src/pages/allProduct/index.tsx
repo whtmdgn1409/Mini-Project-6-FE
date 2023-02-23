@@ -11,7 +11,6 @@ const allProduct = (props: props) => {
   const [page, setpage] = useState(1);
   const handlePageChange = (page: number) => {
     setpage(page);
-    console.log(page);
   };
   useEffect(() => {
     const fetchData = async () => {

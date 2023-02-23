@@ -8,6 +8,7 @@ import { persistor, store } from './app/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import Loading from './pages/LoadingPage';
 import NotFound from './pages/NotFound';
+import { token } from './api/core/api';
 
 const App = React.lazy(() => import('./App'));
 const MainPage = React.lazy(() => import('./pages/MainPage'));
@@ -84,6 +85,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {},
 ]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
