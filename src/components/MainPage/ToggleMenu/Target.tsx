@@ -1,12 +1,23 @@
 import React from 'react';
 import { targetList } from '../../../utils/infoData';
-type props = {};
-const Target = (props: props) => {
+import { useNavigate } from 'react-router';
+type props = {
+  toggleMenu: () => void;
+};
+const Target = ({ toggleMenu }: props) => {
+  const navigate = useNavigate();
   return (
-    <div className='flex flex-col w-[280px] gap-3'>
+    <div className='flex flex-col w-[230px] gap-3'>
       {targetList.map((list) => {
         return (
-          <div key={list} className=''>
+          <div
+            key={list}
+            className='cursor-pointe'
+            onClick={() => {
+              toggleMenu();
+              navigate(`/category/target&${list}`);
+            }}
+          >
             {list}
           </div>
         );

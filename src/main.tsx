@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { persistor, store } from './app/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import Loading from './pages/LoadingPage';
+import NotFound from './pages/NotFound';
 
 const App = React.lazy(() => import('./App'));
 const MainPage = React.lazy(() => import('./pages/MainPage'));
@@ -21,11 +22,16 @@ const PasswordCheck = React.lazy(
   () => import('./pages/UserInfoPage/PasswordCheck'),
 );
 const AllProduct = React.lazy(() => import('./pages/allProduct'));
+const CategoryPage = React.lazy(() => import('./pages/CategoryPage'));
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     children: [
+      {
+        path: '*',
+        element: <NotFound />,
+      },
       {
         path: '/',
         element: <MainPage />,
@@ -65,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: '/allproduct',
         element: <AllProduct />,
+      },
+      {
+        path: '/category/:select',
+        element: <CategoryPage />,
       },
     ],
   },

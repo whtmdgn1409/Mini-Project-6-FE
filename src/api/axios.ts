@@ -53,7 +53,6 @@ export interface UserDetailInfoType {
   income: string;
   job: string;
 }
-
 // 상품리스트 정보
 export interface getProductType {
   snq: string;
@@ -63,12 +62,10 @@ export interface getProductType {
   baseRate: string;
   ratePercent: string;
 }
-
 export interface ProductList {
   content: getProductType[];
   productData: getProductType[];
 }
-
 export interface ProductData {
   recommend: ProductList;
 }
@@ -313,17 +310,27 @@ export const deleteFavor = async (snq: string | number) => {
   };
 };
 // 장바구니 추가
-export const addCartList = async (snq: number) => {
-  return (
-    await request<boolean>('/cart', {
+export const addCartList = async (snq: string) => {
+  try {
+    const res = await request('/cart', {
       method: 'POST',
       data: {
         snq,
       },
-    })
-  ).data;
+    });
+    return {
+      ok: true,
+      cartData: res.data,
+    };
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return {
+      ok: false,
+    };
+  }
 };
-
 // 장바구니 조회
 export const getCartList = async () => {
   const res = await request('/mypage/cart', {
@@ -344,8 +351,10 @@ export const deleteCart = async (snq: number) => {
     },
   });
   return {
-    ok: res.data
+    ok: true,
+    cartData: res.data,
   };
+};
 
 // 상세 정보
 export const getProductDetail = async (snq: number | string) => {
