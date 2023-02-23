@@ -3,22 +3,33 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { BsSearch } from 'react-icons/bs';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import { BiLogOut } from 'react-icons/bi';
-import { token } from '../../../api/core/api';
 import { deleteCookie } from '../../../utils/cookieFn';
 import ToggleBody from './ToggleBody';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOutAction, autoCheck } from '../../../features/authSlice';
+import { useNavigate } from 'react-router-dom';
+
 interface props {
   toggleMenu(): void;
 }
 const ToggleHeader = (props: props) => {
   const isLogin = useSelector((state: autoCheck) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
+  const [value, setValue] = useState('');
+
   const logoutHandler = () => {
     deleteCookie('accessToken');
     dispatch(logOutAction());
   };
+
+  const navigate = useNavigate();
+
+  const submitHandler = (keyword: string) => {
+    props.toggleMenu();
+    navigate(`/search/${keyword}`);
+  };
+
   return isLogin ? (
     <div className='relative w-full h-full z-[1000] bg-mw'>
       <div className='w-full h-[240px] m-auto'>
@@ -49,17 +60,21 @@ const ToggleHeader = (props: props) => {
             </div>
           </div>
           <div className='mt-[22px] flex items-center'>
-            <label className='relative block'>
-              <span className='absolute inset-y-0 left-0 flex items-center pl-5'>
-                {' '}
-                <BsSearch size='28' />{' '}
-              </span>
-              <input
-                type='text'
-                className='mwInput pl-14 m-auto'
-                placeholder='검색어를 입력해주세요'
-              />
-            </label>
+            <form onSubmit={() => submitHandler(value)}>
+              <label className='relative block'>
+                <span className='absolute inset-y-0 left-0 flex items-center pl-5'>
+                  {' '}
+                  <BsSearch size='28' />{' '}
+                </span>
+                <input
+                  type='text'
+                  className='mwInput pl-14 m-auto'
+                  placeholder='검색어를 입력해주세요'
+                  value={value}
+                  onChange={(event) => setValue(event?.target.value)}
+                />
+              </label>
+            </form>
           </div>
         </div>
       </div>

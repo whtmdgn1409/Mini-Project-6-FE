@@ -461,7 +461,30 @@ export const getCategoryList = async (
     );
     return {
       ok: true,
-      categoryData: res.data.content,
+      categoryData: res.data,
+    };
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return {
+      ok: false,
+    };
+  }
+};
+
+// 키워드 검색
+export const getKeywordSearch = async (keyword: string, page: number = 1) => {
+  try {
+    const res = await request(
+      `finance/itemlist/keyword?keyword=${keyword}&pageno=${page}`,
+      {
+        method: 'GET',
+      },
+    );
+    return {
+      ok: true,
+      searchData: res.data,
     };
   } catch (error) {
     if (error instanceof AxiosError) {
