@@ -126,6 +126,26 @@ export const signIn = async (email: string, password: string) => {
   }
 };
 
+// 로그아웃
+export const logOut = async () => {
+  try {
+    const res = await request('/logout', {
+      method: 'POST',
+    });
+    return {
+      ok: true,
+      checkData: res.data,
+    };
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return {
+      ok: false,
+    };
+  }
+};
+
 // 회원 추가 정보 입력
 export const changeUserDetailInfo = async (
   age: string,

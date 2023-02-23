@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { BsSearch } from 'react-icons/bs';
 import { MdKeyboardArrowRight } from 'react-icons/md';
@@ -9,6 +9,7 @@ import ToggleBody from './ToggleBody';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOutAction, autoCheck } from '../../../features/authSlice';
+import { logOut } from '../../../api/axios';
 interface props {
   toggleMenu(): void;
 }
@@ -24,7 +25,13 @@ const ToggleHeader = (props: props) => {
       <div className='w-full h-[240px] m-auto'>
         <div className='absolute flex justify-end top-[30px] right-0 items-end gap-3'>
           <div>
-            <BiLogOut size='32' color='#fff' onClick={() => logoutHandler()} />
+            <BiLogOut
+              size='32'
+              color='#fff'
+              onClick={() => {
+                logoutHandler(), logOut();
+              }}
+            />
           </div>{' '}
           <div className='mr-[10px] cursor-pointer'>
             {' '}
