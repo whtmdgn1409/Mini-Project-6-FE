@@ -337,14 +337,15 @@ export const getCartList = async () => {
 
 // 장바구니 삭제
 export const deleteCart = async (snq: number) => {
-  const res = await request<boolean>('/cart', {
+  const res = await request('/cart', {
     method: 'DELETE',
     data: {
       snq,
     },
   });
-  return res.data;
-};
+  return {
+    ok: res.data
+  };
 
 // 상세 정보
 export const getProductDetail = async (snq: number | string) => {

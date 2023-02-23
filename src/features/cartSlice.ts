@@ -20,7 +20,7 @@ export const deleteCartItems = createAsyncThunk<
 >('DELETE-CART', async (snq: number) => {
   const res = await deleteCart(snq);
   return {
-    ok: res,
+    ok: res.ok,
     snq,
   };
 });
@@ -35,10 +35,10 @@ export const getCartItems = createAsyncThunk<CartInfo[]>(
 );
 
 // 장바구니 조회
-export const addCartItems = createAsyncThunk<boolean, number>(
+export const addCartItems = createAsyncThunk<boolean, string>(
   'ADD_CART',
-  async (snq: number) => {
-    return await addCartList(snq);
+  async (snq: string) => {
+    return await addCartList(Number(snq));
   },
 );
 
@@ -49,7 +49,7 @@ const cart = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getCartItems.fulfilled, (state, { payload }) => {
-      state.concat(payload);
+      return payload;
     });
     builder.addCase(deleteCartItems.fulfilled, (state, { payload }) => {
       return state.filter((item: CartInfo) => item.snq !== payload.snq);
