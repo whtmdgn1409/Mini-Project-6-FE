@@ -4,11 +4,13 @@ import Location from './Location';
 import Using from './Using';
 import Target from './Target';
 
-type props = {};
+type props = {
+  toggleMenu: () => void;
+};
 
 const lists = ['기관', '지역', '용도', '직업'];
 
-const ToggleBody = (props: props) => {
+const ToggleBody = ({ toggleMenu }: props) => {
   const [activeMenu, setactiveMenu] = useState(0);
   return (
     <div className='absolute top-[240px] w-full bg-white text-black'>
@@ -20,8 +22,8 @@ const ToggleBody = (props: props) => {
                 key={i}
                 className={
                   i === activeMenu
-                    ? 'w-[90px] h-[63px] ml-2 text-white bg-mw rounded-[15px] flex justify-center items-center '
-                    : 'w-[90px] h-[63px] ml-2 text-black flex justify-center items-center'
+                    ? 'w-[90px] h-[63px] ml-2 text-white bg-mw rounded-[15px] flex justify-center items-center cursor-pointer'
+                    : 'w-[90px] h-[63px] ml-2 text-black flex justify-center items-center cursor-pointer'
                 }
                 onClick={() => setactiveMenu(i)}
               >
@@ -31,7 +33,14 @@ const ToggleBody = (props: props) => {
           })}
         </ul>
         <div className='ml-3 mt-3 flex flex-col'>
-          {[<Agency />, <Location />, <Using />, <Target />][activeMenu]}
+          {
+            [
+              <Agency toggleMenu={toggleMenu} />,
+              <Location toggleMenu={toggleMenu} />,
+              <Using toggleMenu={toggleMenu} />,
+              <Target toggleMenu={toggleMenu} />,
+            ][activeMenu]
+          }
         </div>
       </div>
     </div>

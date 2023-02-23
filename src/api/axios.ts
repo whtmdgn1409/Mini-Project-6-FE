@@ -66,9 +66,19 @@ export interface ProductList {
   content: getProductType[];
   productData: getProductType[];
 }
+
 export interface ProductData {
   recommend: ProductList;
   recommendData: ProductList;
+}
+
+export interface CategoryData {
+  baseRate: string;
+  loanDescription: string;
+  loanName: string;
+  loanTarget: string[];
+  rate: string;
+  snq: number;
 }
 
 // 회원가입
@@ -331,7 +341,7 @@ export const deleteFavor = async (snq: string | number) => {
   };
 };
 // 장바구니 추가
-export const addCartList = async (snq: string) => {
+export const addCartList = async (snq: string | number) => {
   try {
     const res = await request('/cart', {
       method: 'POST',
@@ -445,6 +455,33 @@ export const nomemberRecommend = async (): Promise<any> => {
     return {
       ok: true,
       recommend: res.data,
+    };
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return {
+      ok: false,
+    };
+  }
+};
+
+// 카테고리별 분류
+export const getCategoryList = async (
+  category: string,
+  keyword: string,
+  page: number = 1,
+) => {
+  try {
+    const res = await request(
+      `finance/itemlist/${category}?${category}=${keyword}&pageno=${page}`,
+      {
+        method: 'GET',
+      },
+    );
+    return {
+      ok: true,
+      categoryData: res.data.content,
     };
   } catch (error) {
     if (error instanceof AxiosError) {
