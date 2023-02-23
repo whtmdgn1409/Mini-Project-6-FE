@@ -1,7 +1,9 @@
 export const defaultProductData = {
   etc: {
+    contact: '',
     earlyRedemptionFee: '',
     etcNode: '',
+    homepage: '',
     joinMethod: '',
     primeCondition: '',
     provider: '',
