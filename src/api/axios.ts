@@ -22,9 +22,7 @@ export type FavorType = {
   loanDescription: string;
   loanName: string;
   loanTarget: string;
-  rate: string;
-  loanLimit: string;
-  provider: string;
+  ratePercent: string;
 };
 
 // 장바구니 아이템 정보
@@ -68,7 +66,7 @@ export interface ProductList {
 }
 export interface ProductData {
   recommend: ProductList;
-  recommendList: ProductList;
+  recommendData: ProductList;
 }
 
 // 회원가입

@@ -6,20 +6,23 @@ import { BiLogOut } from 'react-icons/bi';
 import { token } from '../../../api/core/api';
 import { deleteCookie } from '../../../utils/cookieFn';
 import ToggleBody from './ToggleBody';
+import { Link } from 'react-router-dom';
 
 interface props {
   toggleMenu(): void;
 }
 const ToggleHeader = (props: props) => {
+  const [logOut, setlogOut] = useState(String);
+  function logOutBtn() {
+    deleteCookie('accessToken');
+    setlogOut('LOGOUT!');
+  }
+  console.log(logOut);
   return token ? (
     <div className='relative w-full h-full z-[1000] bg-mw'>
       <div className='w-full h-[240px] m-auto'>
         <div>
-          <BiLogOut
-            size='32'
-            color='#fff'
-            onClick={() => deleteCookie('accessToken')}
-          />
+          <BiLogOut size='32' color='#fff' onClick={() => logOutBtn()} />
         </div>{' '}
         <div className='float-right mt-[35px] mr-[10px] cursor-pointer'>
           {' '}
@@ -71,14 +74,17 @@ const ToggleHeader = (props: props) => {
           />
         </div>
         <div className='absolute top-[70px] left-[41px] w-[270px] h-[148px] mx-auto '>
-          <div className='flex gap-5'>
-            <div className='w-[70px] h-[70px] rounded-full'>
-              <img src='./images/NeedLogin.svg' alt='사용자' />
+          <Link to='/signin'>
+            <div className='flex gap-5' onClick={() => props.toggleMenu()}>
+              <div className='w-[70px] h-[70px] rounded-full'>
+                <img src='./images/NeedLogin.svg' alt='사용자' />
+              </div>
+              <div className='mt-5 text-[20px] text-center text-white'>
+                <p>로그인하기</p>
+              </div>
             </div>
-            <div className='mt-4 text-sm text-center'>
-              <p>로그인이 필요합니다!</p>
-            </div>
-          </div>
+          </Link>
+
           <div className='mt-[22px] flex items-center'>
             <label className='relative block'>
               <span className='absolute inset-y-0 left-0 flex items-center pl-5'>
