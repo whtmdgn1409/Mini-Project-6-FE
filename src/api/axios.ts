@@ -73,6 +73,7 @@ export interface ProductData {
 }
 
 export interface CategoryData {
+  page: number;
   baseRate: string;
   loanDescription: string;
   loanName: string;
@@ -471,7 +472,7 @@ export const nomemberRecommend = async (): Promise<any> => {
 export const getCategoryList = async (
   category: string,
   keyword: string,
-  page = 1,
+  page: number,
 ) => {
   try {
     const res = await request(
@@ -490,6 +491,7 @@ export const getCategoryList = async (
     }
     return {
       ok: false,
+      categoryData: null,
     };
   }
 };
