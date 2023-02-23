@@ -4,12 +4,14 @@ interface InitialState {
   email: string;
   name: string;
   token: string;
+  isAuthenticated: boolean;
 }
 
 const initialState: InitialState = {
   email: '',
   name: '',
   token: '',
+  isAuthenticated: false,
 };
 
 const authSlice = createSlice({
@@ -20,11 +22,13 @@ const authSlice = createSlice({
       state.email = action.payload.email;
       state.name = action.payload.name;
       state.token = action.payload.token;
+      state.isAuthenticated = true;
     },
     logOutAction: (state) => {
       state.email = '';
       state.name = '';
       state.token = '';
+      state.isAuthenticated = false;
     },
   },
 });

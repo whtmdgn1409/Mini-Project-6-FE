@@ -6,9 +6,11 @@ import {
   ProductData,
 } from '../../api/axios';
 import { token } from '../../api/core/api';
+import { useSelector } from 'react-redux';
 type props = {};
 
 const RecommendList = (props: props) => {
+  // const isLogin = useSelector((state) => state.auth.isAuthenticated)
   const [memberlists, setmemberlists] = useState<ProductData>();
   const [nomemberlists, setnomemberlists] = useState<ProductData>();
   useEffect(() => {
