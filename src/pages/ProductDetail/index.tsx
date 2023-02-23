@@ -27,17 +27,16 @@ const ProductDetail = () => {
     <section className='w-[375px]'>
       <div className='bg-mw w-[375px] h-[230px] top-40 absolute'></div>
       <div className=' relative shadow-default p-2 w-[335px] h-52 mx-auto my-3 rounded-default border text-left flex bg-mw-lGray'>
-        <div className='mx-4 mt-12'>
-          <p className='font-bold text-xl'>
-            <span className='text-mw'>MW</span>
+        <div className='mx-auto my-auto'>
+          <p className='font-bold text-xl mb-2 mx-auto flex justify-center'>
+            <span className='text-mw'>MW&nbsp;</span>
             {detail?.loan?.loanName}
           </p>
-          <p className='text-sm '></p>
-          <div className='gap-4 justify-center h-[70px] items-center'>
-            <div className='font-semibold text-lg border-2 h-[30px] mt-2 text-center border-mw rounded-default'>
+          <div className='flex justify-center gap-2'>
+            <div className='font-semibold text-sm text-center border-2 rounded-default px-2 border-mw'>
               금리 {detail?.loan?.rate}
             </div>
-            <div className='font-semibold text-lg border-2 h-[30px] mt-2 text-center border-mw rounded-default'>
+            <div className='font-semibold text-sm text-center border-2 rounded-default px-2 border-mw'>
               최대한도 {detail?.loan?.loanLimit}
             </div>
           </div>
