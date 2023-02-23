@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
+import { useDispatch, useSelector } from 'react-redux';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import ListBox from './ListBox';
 import { getProduct, ProductList } from '../../api/axios';
@@ -19,8 +19,6 @@ const GoodsList = (props: props) => {
     }
     fetchData();
   }, []);
-  console.log(lists?.productData);
-
   return (
     <div className='relative'>
       <div className='box-border mt-20 ml-3 font-semibold text-xl p-10'>

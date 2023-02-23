@@ -68,6 +68,7 @@ export interface ProductList {
 }
 export interface ProductData {
   recommend: ProductList;
+  recommendData: ProductList;
 }
 
 // 회원가입
