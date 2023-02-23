@@ -136,6 +136,26 @@ export const signIn = async (email: string, password: string) => {
   }
 };
 
+// 로그아웃
+export const logOut = async () => {
+  try {
+    const res = await request('/logout', {
+      method: 'POST',
+    });
+    return {
+      ok: true,
+      checkData: res.data,
+    };
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return {
+      ok: false,
+    };
+  }
+};
+
 // 회원 추가 정보 입력
 export const changeUserDetailInfo = async (
   age: string,
@@ -485,6 +505,26 @@ export const getKeywordSearch = async (keyword: string, page: number = 1) => {
     return {
       ok: true,
       searchData: res.data,
+    };
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return {
+      ok: false,
+    };
+  }
+};
+
+// 대출 전체 상품 리스트
+export const getAllList = async (page: number) => {
+  try {
+    const res = await request(`finance/itemlist?pageno=${page}`, {
+      method: 'GET',
+    });
+    return {
+      ok: true,
+      allData: res.data,
     };
   } catch (error) {
     if (error instanceof AxiosError) {
