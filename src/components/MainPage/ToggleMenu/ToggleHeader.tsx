@@ -56,7 +56,7 @@ const ToggleHeader = (props: props) => {
         <div className='absolute top-[70px] left-[41px] w-[270px] h-[148px] mx-auto '>
           <div className='flex gap-5'>
             <div className='w-[70px] h-[70px] rounded-full'>
-              <img src='./images/Users.png' alt='사용자' />
+              <img src='/images/Users.svg' alt='사용자' />
             </div>
             <div className='mt-4 text-sm'>
               <p className='flex text-[20px]'>
@@ -98,7 +98,7 @@ const ToggleHeader = (props: props) => {
           <Link to='/signin'>
             <div className='flex gap-5' onClick={() => props.toggleMenu()}>
               <div className='w-[70px] h-[70px] rounded-full'>
-                <img src='./images/NeedLogin.svg' alt='사용자' />
+                <img src='/images/NeedLogin.svg' alt='사용자' />
               </div>
               <div className='mt-5 text-[20px] text-center text-white'>
                 <p>로그인하기</p>

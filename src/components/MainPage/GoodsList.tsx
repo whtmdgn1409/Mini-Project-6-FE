@@ -21,7 +21,7 @@ const GoodsList = (props: props) => {
   }, []);
   return (
     <div className='relative'>
-      <div className='box-border mt-20 ml-3 font-semibold text-xl p-10'>
+      <div className='box-border mt-[120px] ml-3 font-semibold text-xl pl-8 pr-10 pt-10'>
         <button>
           <Link to='/allproduct' className='flex text-center align-middle'>
             <span>전체 상품</span>

@@ -42,8 +42,8 @@ const RecommendList = (props: props) => {
   }, [isLogin]);
   //로그인이 되어 있을 때
   return isLogin ? (
-    <div className='relative top-10 max-w-ms z-0'>
-      <p className='font-semibold text-2xl p-10 ml-3 box-border'>
+    <div className='relative top-8 max-w-ms z-0'>
+      <p className='font-semibold text-xl p-10 ml-3 box-border'>
         <span className='text-mw'>{user?.name}</span> 님을 위한 추천상품이에요.
       </p>
       {/* 추천 상품 리스트 보여주기 */}
@@ -58,7 +58,7 @@ const RecommendList = (props: props) => {
                 <p>{item.loanName}</p>
               </div>
               <div className='w-[280px] h-[100px] text-[14px] whitespace-normal overflow-hidden'>
-                <p>{item.loanDescription.slice(0, 80)}...</p>
+                <p>{item.loanDescription.slice(0, 80)}</p>
               </div>
             </div>
           ))}
@@ -67,7 +67,7 @@ const RecommendList = (props: props) => {
     </div>
   ) : (
     //로그인이 안 되어 있을 때
-    <div className='relative top-10 max-w-ms z-0'>
+    <div className='relative top-8 max-w-ms z-0'>
       <p className='font-semibold text-2xl p-10 ml-3 box-border'>
         추천상품이 있어요
       </p>
