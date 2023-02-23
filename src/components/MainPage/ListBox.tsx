@@ -1,8 +1,8 @@
-import { current } from '@reduxjs/toolkit';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect } from 'react';
 import { IoBookmarksOutline, IoCartOutline } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
-import { addCartList } from '../../api/axios';
+import { addCartList, addFavor } from '../../api/axios';
 type props = {
   snq: string | number;
   title: string;
@@ -15,7 +15,7 @@ const ListBox = (props: props) => {
   let replaceDesc = description.replace('<br/>/g', '');
   const navigate = useNavigate();
   return (
-    <div className='boxContainer bg-mw-lGray relative w-full h-52 mx-auto my-3 shadow-default rounded-default'>
+    <div className='bg-mw-lGray relative w-full h-52 my-3 shadow-default rounded-default'>
       <div className='flex flex-col gap-1 justify-center m-5 py-5'>
         <span
           className='cursor-pointer font-bold text-[20px] mb-3 truncate'
@@ -38,8 +38,14 @@ const ListBox = (props: props) => {
         </div>
       </div>
       <div className='flex absolute right-5 bottom-5 gap-2 items-center'>
-        <IoCartOutline className='text-[28px] cursor-pointer' />
-        <IoBookmarksOutline className='text-[24px] cursor-pointer' />
+        <IoCartOutline
+          className='text-[28px] cursor-pointer'
+          onClick={() => addCartList(props.snq)}
+        />
+        <IoBookmarksOutline
+          className='text-[24px] cursor-pointer'
+          onClick={() => addFavor(props.snq)}
+        />
         <button
           className='mwBtn !w-[80px] !h-[40px]'
           onClick={() => navigate(`/product/${props.snq}`)}

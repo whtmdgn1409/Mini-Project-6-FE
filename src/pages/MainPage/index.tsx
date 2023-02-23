@@ -6,7 +6,7 @@ type Props = {};
 
 const MainPage = (props: Props) => {
   return (
-    <div>
+    <div className='mx-[30px]'>
       <RecommendList />
       <GoodsList />
     </div>

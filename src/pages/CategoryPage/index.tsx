@@ -3,9 +3,7 @@ import ListBox from '../../components/MainPage/ListBox';
 import { CategoryData, getCategoryList } from '../../api/axios';
 import { useLocation } from 'react-router-dom';
 
-type Props = {};
-
-const CategoryPage = (props: Props) => {
+const CategoryPage = () => {
   const [categoryItem, setCategoryItem] = useState<Array<CategoryData>>([]);
   const [page, setPage] = useState<number>(1);
   const [totalPage, setTotalPage] = useState<number>(1);

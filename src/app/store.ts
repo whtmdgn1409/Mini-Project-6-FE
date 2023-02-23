@@ -1,5 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import authReducer from '../features/authSlice';
+import cart from '../features/cartSlice';
+
 import {
   persistStore,
   persistReducer,
@@ -15,11 +17,12 @@ import storage from 'redux-persist/lib/storage';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth'],
+  whitelist: ['auth', 'cart'],
 };
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  cart: cart.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -40,3 +43,5 @@ export const persistor = persistStore(store);
 export type RootState = ReturnType<typeof store.getState>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;
+
+export type ReducerType = ReturnType<typeof rootReducer>;

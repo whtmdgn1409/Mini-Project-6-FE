@@ -60,7 +60,7 @@ export interface getProductType {
   loanDescription: string;
   loanTarget: string;
   baseRate: string;
-  ratePercent: string;
+  rate: string;
 }
 export interface ProductList {
   content: getProductType[];
@@ -340,6 +340,7 @@ export const deleteFavor = async (snq: string | number) => {
     favorData: res.data,
   };
 };
+
 // 장바구니 추가
 export const addCartList = async (snq: string | number) => {
   try {
@@ -362,6 +363,7 @@ export const addCartList = async (snq: string | number) => {
     };
   }
 };
+
 // 장바구니 조회
 export const getCartList = async () => {
   const res = await request('/mypage/cart', {
@@ -383,10 +385,9 @@ export const deleteCart = async (snq: number) => {
   });
   return {
     ok: true,
-    cartData: res.data,
+    data: res.data,
   };
 };
-
 // 상세 정보
 export const getProductDetail = async (snq: number | string) => {
   try {
@@ -470,7 +471,7 @@ export const nomemberRecommend = async (): Promise<any> => {
 export const getCategoryList = async (
   category: string,
   keyword: string,
-  page: number = 1,
+  page = 1,
 ) => {
   try {
     const res = await request(
@@ -494,7 +495,7 @@ export const getCategoryList = async (
 };
 
 // 키워드 검색
-export const getKeywordSearch = async (keyword: string, page: number = 1) => {
+export const getKeywordSearch = async (keyword: string, page = 1) => {
   try {
     const res = await request(
       `finance/itemlist/keyword?keyword=${keyword}&pageno=${page}`,
