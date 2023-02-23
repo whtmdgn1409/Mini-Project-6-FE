@@ -492,3 +492,23 @@ export const getCategoryList = async (
     };
   }
 };
+
+// 대출 전체 상품 리스트
+export const getAllList = async (page: number = 1) => {
+  try {
+    const res = await request(`finance/itemlist?pageno=${page}`, {
+      method: 'GET',
+    });
+    return {
+      ok: true,
+      allData: res.data,
+    };
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    }
+    return {
+      ok: false,
+    };
+  }
+};
