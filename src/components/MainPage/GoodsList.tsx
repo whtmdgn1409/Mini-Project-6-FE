@@ -19,8 +19,6 @@ const GoodsList = (props: props) => {
     }
     fetchData();
   }, []);
-  console.log(lists?.productData);
-
   return (
     <div className='relative'>
       <div className='box-border mt-20 ml-3 font-semibold text-xl p-10'>

@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import ListBox from '../../components/MainPage/ListBox';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { getProduct, getProductType } from '../../api/axios';
+import { getProduct, ProductList } from '../../api/axios';
 
 type props = {};
 const allProduct = (props: props) => {
-  const [lists, setlists] = useState<Array<getProductType>>([]);
+  const [lists, setlists] = useState<ProductList>();
 
   const navigate = useNavigate();
 
@@ -19,7 +19,7 @@ const allProduct = (props: props) => {
   }, []);
   return (
     <div>
-      {lists.map((item, i) => (
+      {lists?.productData.map((item, i) => (
         <ListBox
           key={i}
           snq={item.snq}

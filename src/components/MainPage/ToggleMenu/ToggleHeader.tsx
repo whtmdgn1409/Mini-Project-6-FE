@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { BsSearch } from 'react-icons/bs';
 import { MdKeyboardArrowRight } from 'react-icons/md';
+import { BiLogOut } from 'react-icons/bi';
 import { token } from '../../../api/core/api';
-
+import { deleteCookie } from '../../../utils/cookieFn';
 import ToggleBody from './ToggleBody';
 
 interface props {
@@ -13,7 +14,13 @@ const ToggleHeader = (props: props) => {
   return token ? (
     <div className='relative w-full h-full z-[1000] bg-mw'>
       <div className='w-full h-[240px] m-auto'>
-        {' '}
+        <div>
+          <BiLogOut
+            size='32'
+            color='#fff'
+            onClick={() => deleteCookie('accessToken')}
+          />
+        </div>{' '}
         <div className='float-right mt-[35px] mr-[10px] cursor-pointer'>
           {' '}
           <AiOutlineClose

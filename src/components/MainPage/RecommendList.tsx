@@ -32,7 +32,7 @@ const RecommendList = (props: props) => {
       {/* 추천 상품 리스트 보여주기 */}
       <div className='SlickContainer w-80 h-36 mx-auto m-auto box-border'>
         <Slick>
-          {memberlists?.recommend?.content.map((item) => (
+          {memberlists?.recommendData?.content.map((item) => (
             <div
               key={item.snq}
               className='flex flex-col items-center justify-center mt-[40px] ml-[20px]'
