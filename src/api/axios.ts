@@ -384,7 +384,8 @@ export const deleteCart = async (snq: number) => {
     },
   });
   return {
-    ok: res.data,
+    ok: true,
+    data: res.data,
   };
 };
 // 상세 정보
