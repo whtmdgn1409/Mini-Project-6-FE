@@ -42,12 +42,12 @@ const RecommendList = (props: props) => {
   }, [isLogin]);
   //로그인이 되어 있을 때
   return isLogin ? (
-    <div className='relative top-8 max-w-ms z-0'>
-      <p className='font-semibold text-xl p-10 ml-3 box-border'>
+    <div>
+      <span className='font-semibold text-2xl'>
         <span className='text-mw'>{user?.name}</span> 님을 위한 추천상품이에요.
-      </p>
+      </span>
       {/* 추천 상품 리스트 보여주기 */}
-      <div className='SlickContainer w-80 h-36 mx-auto m-auto box-border'>
+      <div className='SlickContainer'>
         <Slick>
           {memberlists?.recommendData?.content.map((item) => (
             <div
@@ -67,12 +67,10 @@ const RecommendList = (props: props) => {
     </div>
   ) : (
     //로그인이 안 되어 있을 때
-    <div className='relative top-8 max-w-ms z-0'>
-      <p className='font-semibold text-2xl p-10 ml-3 box-border'>
-        추천상품이 있어요
-      </p>
+    <div>
+      <span className='font-semibold text-2xl'>추천상품이 있어요</span>
       {/* 추천 상품 리스트 보여주기 */}
-      <div className='SlickContainer w-80 h-36 mx-auto box-border'>
+      <div className='SlickContainer'>
         <Slick>
           {nomemberlists?.recommend?.content.map((item) => (
             <div

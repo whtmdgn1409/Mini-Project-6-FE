@@ -1,7 +1,8 @@
-import { current } from '@reduxjs/toolkit';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect } from 'react';
+import { IoBookmarksOutline, IoCartOutline } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
-import { addCartList } from '../../api/axios';
+import { addCartList, addFavor } from '../../api/axios';
 type props = {
   snq: string | number;
   title: string;
@@ -14,28 +15,44 @@ const ListBox = (props: props) => {
   let replaceDesc = description.replace('<br/>/g', '');
   const navigate = useNavigate();
   return (
-    <div className='boxContainer bg-mw-lGray relative w-[350px] h-52 mx-auto my-3 shadow-default rounded-default text-left'>
-      <p
-        className='loanTitle text-lg absolute top-7 left-8 cursor-pointer'
-        onClick={() => navigate(`/product/${props.snq}`)}
-      >
-        {props.title}
-      </p>
-      <p className='loanDesc text-xs absolute top-20 left-8 w-72'>
-        {replaceDesc.slice(0, 80)}...
-      </p>
-      <p className='loanTarget text-xs absolute top-32 left-8'>
-        {props.target}
-      </p>
-      <p className='loanBaseRate text-xs absolute top-40 left-8'>
-        {props.baseRate}
-      </p>
-      <button
-        className='absolute right-12 bottom-8 rounded-default bg-mw w-16 h-8'
-        onClick={() => addCartList(props.snq)}
-      >
-        추가
-      </button>
+    <div className='bg-mw-lGray relative w-full h-52 my-3 shadow-default rounded-default'>
+      <div className='flex flex-col gap-1 justify-center m-5 py-5'>
+        <span
+          className='cursor-pointer font-bold text-[20px] mb-3 truncate'
+          onClick={() => navigate(`/product/${props.snq}`)}
+        >
+          {props.title}
+        </span>
+        <span className='text-xs'>{replaceDesc.slice(0, 80)}...</span>
+        <div className='flex gap-2 truncate'>
+          <span className='truncate'>
+            대상:{' '}
+            {props.target.length > 1
+              ? `${props.target[0]}, ${props.target[1]}...`
+              : props.target[0]}
+          </span>
+          {' | '}
+          <span className=''>
+            금리: {props.baseRate !== 'null' ? props.baseRate : '은행별 상이'}
+          </span>
+        </div>
+      </div>
+      <div className='flex absolute right-5 bottom-5 gap-2 items-center'>
+        <IoCartOutline
+          className='text-[28px] cursor-pointer'
+          onClick={() => addCartList(props.snq)}
+        />
+        <IoBookmarksOutline
+          className='text-[24px] cursor-pointer'
+          onClick={() => addFavor(props.snq)}
+        />
+        <button
+          className='mwBtn !w-[80px] !h-[40px]'
+          onClick={() => navigate(`/product/${props.snq}`)}
+        >
+          상세 보기
+        </button>
+      </div>
     </div>
   );
 };
