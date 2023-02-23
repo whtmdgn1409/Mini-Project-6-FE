@@ -6,6 +6,9 @@ export interface InitialState {
   token: string;
   isAuthenticated: boolean;
 }
+export interface autoCheck {
+  auth: InitialState;
+}
 
 const initialState: InitialState = {
   email: '',

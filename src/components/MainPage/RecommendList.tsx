@@ -5,26 +5,29 @@ import {
   nomemberRecommend,
   ProductData,
 } from '../../api/axios';
-import { InitialState } from '../../features/authSlice';
+import { autoCheck } from '../../features/authSlice';
 import { token } from '../../api/core/api';
 import { useSelector } from 'react-redux';
 type props = {};
 
 const RecommendList = (props: props) => {
-  const isLogin = useSelector((state: InitialState) => state.isAuthenticated);
+  const isLogin = useSelector((state: autoCheck) => state.auth.isAuthenticated);
   const [memberlists, setmemberlists] = useState<ProductData>();
   const [nomemberlists, setnomemberlists] = useState<ProductData>();
   useEffect(() => {
-    async function fetchMemberData() {
-      const memberrecommendList = await memberRecommend();
-      setmemberlists(memberrecommendList);
+    if (isLogin) {
+      async function fetchMemberData() {
+        const memberrecommendList = await memberRecommend();
+        setmemberlists(memberrecommendList);
+      }
+      fetchMemberData();
+    } else {
+      async function fetchNoMemberData() {
+        const nomemberrecommendList = await nomemberRecommend();
+        setnomemberlists(nomemberrecommendList);
+      }
+      fetchNoMemberData();
     }
-    async function fetchNoMemberData() {
-      const nomemberrecommendList = await nomemberRecommend();
-      setnomemberlists(nomemberrecommendList);
-    }
-    fetchMemberData();
-    fetchNoMemberData();
   }, []);
   //로그인이 되어 있을 때
   return isLogin ? (
