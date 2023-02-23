@@ -23,6 +23,8 @@ const PasswordCheck = React.lazy(
 );
 const AllProduct = React.lazy(() => import('./pages/allProduct'));
 const CategoryPage = React.lazy(() => import('./pages/CategoryPage'));
+const SearchPage = React.lazy(() => import('./pages/SearchPage'));
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -75,6 +77,10 @@ const router = createBrowserRouter([
       {
         path: '/category/:select',
         element: <CategoryPage />,
+      },
+      {
+        path: '/search/:keyword',
+        element: <SearchPage />,
       },
     ],
   },

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { MdKeyboardArrowRight } from 'react-icons/md';
@@ -16,31 +15,29 @@ const GoodsList = (props: props) => {
     async function fetchData() {
       const productList = await getProduct();
       setlists(productList);
+      console.log(lists);
     }
     fetchData();
   }, []);
   return (
-    <div className='relative'>
-      <div className='box-border mt-20 ml-3 font-semibold text-xl p-10'>
-        <button>
-          <Link to='/allproduct' className='flex text-center align-middle'>
-            <span>전체 상품</span>
-            <MdKeyboardArrowRight size='28' />
-          </Link>
-        </button>
-      </div>
-      <div className='flex flex-col'>
-        {lists?.productData.map((item, index) => (
-          <ListBox
-            key={index}
-            snq={item.snq}
-            title={item.loanName}
-            desc={item.loanDescription}
-            target={item.loanTarget}
-            baseRate={item.ratePercent}
-          />
-        ))}
-      </div>
+    <div className='w-full mt-5'>
+      <button
+        onClick={() => navigate('/allproduct')}
+        className='flex cursor-pointer'
+      >
+        <span className='text-[20px] font-semibold'>전체 상품</span>
+        <MdKeyboardArrowRight size='28' />
+      </button>
+      {lists?.productData.map((item, index) => (
+        <ListBox
+          key={index}
+          snq={item.snq}
+          title={item.loanName}
+          desc={item.loanDescription}
+          target={item.loanTarget}
+          baseRate={item.rate}
+        />
+      ))}
     </div>
   );
 };
