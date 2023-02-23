@@ -1,5 +1,4 @@
 import { EtcTypes } from '../../pages/ProductDetail/interface';
-
 const Etc = (props: { etc: EtcTypes }) => {
   return (
     <ul className='px-[20px]'>
