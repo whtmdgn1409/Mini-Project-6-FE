@@ -130,17 +130,21 @@ const ToggleHeader = (props: props) => {
           </Link>
 
           <div className='mt-[22px] flex items-center'>
-            <label className='relative block'>
-              <span className='absolute inset-y-0 left-0 flex items-center pl-5'>
-                {' '}
-                <BsSearch size='28' />{' '}
-              </span>
-              <input
-                type='text'
-                className='mwInput pl-14 m-auto'
-                placeholder='검색어를 입력해주세요'
-              />
-            </label>
+            <form onSubmit={() => submitHandler(value)}>
+              <label className='relative block'>
+                <span className='absolute inset-y-0 left-0 flex items-center pl-5'>
+                  {' '}
+                  <BsSearch size='28' />{' '}
+                </span>
+                <input
+                  type='text'
+                  className='mwInput pl-14 m-auto'
+                  placeholder='검색어를 입력해주세요'
+                  value={value}
+                  onChange={(event) => setValue(event?.target.value)}
+                />
+              </label>
+            </form>
           </div>
         </div>
       </div>

@@ -6,11 +6,15 @@ import 'react-toastify/dist/ReactToastify.css';
 
 type Props = {
   item: FavorType;
+  handler: () => void;
 };
 
-const LikeBox = ({ item }: Props) => {
+const LikeBox = ({ item, handler }: Props) => {
   const navigate = useNavigate();
-  const notify = () => toast.success('관심 상품이 삭제되었습니다.');
+  const deleteBtnHandler = () => {
+    deleteFavor(item.snq);
+    handler();
+  };
 
   return (
     <div className='m-auto w-[180px] h-[250px] bg-mw rounded-default shadow-default text-white p-5'>
@@ -19,30 +23,30 @@ const LikeBox = ({ item }: Props) => {
           {item.loanName}
         </span>
         <span className='font-bold text-center text-[14px]'>
-          {item.loanLimit}
+          {item.loanLimit.split('원')[0]} 원
         </span>
         <div>
           <div className='flex items-center gap-2'>
             <span className='text-[14px] font-bold whitespace-nowrap'>
               금리
             </span>
-            <span className='text-[12px]'>{item.rate}</span>
+            <span className='text-[12px]'>{item.rate.slice(0, 9)}...</span>
           </div>
           <div className='flex items-center gap-2'>
             <span className='text-[14px] font-bold whitespace-nowrap'>
               대상
             </span>
             <span className='text-[12px]'>
-              {item.loanTarget.length > 1
-                ? `${item.loanTarget[0]}...`
-                : item.loanTarget}
+              {item.loanTarget[0].slice(0, 6)}...
             </span>
           </div>
           <div className='flex items-center gap-2'>
             <span className='text-[14px] font-bold whitespace-nowrap'>
               취급 기관
             </span>
-            <span className='text-[12px] truncate'>{item.provider}</span>
+            <span className='text-[12px] truncate'>
+              {item.provider.slice(0, 6)}
+            </span>
           </div>
         </div>
       </div>
@@ -55,27 +59,11 @@ const LikeBox = ({ item }: Props) => {
         </button>
         <button
           className='mwBtn-white !w-[100px] !h-[30px] !text-[12px]'
-          onClick={() => {
-            deleteFavor(item.snq);
-            notify();
-            setTimeout(() => location.reload, 2000);
-          }}
+          onClick={deleteBtnHandler}
         >
           삭제하기
         </button>
       </div>
-      <ToastContainer
-        position='top-center'
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme='light'
-      />
     </div>
   );
 };

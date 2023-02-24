@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { IoBookmarksOutline, IoCartOutline } from 'react-icons/io5';
+import { BsCartCheck } from 'react-icons/bs';
 import { getProductDetail, addFavor, addCartList } from '../../api/axios';
 import Etc from '../../components/ProductDetail/Etc';
 import Loan from '../../components/ProductDetail/Loan';
@@ -27,35 +28,37 @@ const ProductDetail = () => {
     <section className='w-[375px]'>
       <div className='bg-mw w-[375px] h-[230px] top-40 absolute'></div>
       <div className=' relative shadow-default p-2 w-[335px] h-52 mx-auto my-3 rounded-default border text-left flex bg-mw-lGray'>
-        <div className='mx-4 mt-12'>
-          <p className='font-bold text-xl'>
-            <span className='text-mw'>MW</span>
+        <div className='mx-auto my-auto'>
+          <p className='font-bold text-xl mb-2 mx-auto flex justify-center'>
+            <span className='text-mw'>MW&nbsp;</span>
             {detail?.loan?.loanName}
           </p>
-          <p className='text-sm '></p>
-          <div className='gap-4 justify-center h-[70px] items-center'>
-            <div className='font-semibold text-lg border-2 h-[30px] mt-2 text-center border-mw rounded-default'>
-              금리 {detail?.loan?.rate}
+          <div className='flex justify-center gap-2'>
+            <div className='font-semibold text-sm text-center border-2 rounded-default px-2 border-mw'>
+              금리&nbsp;
+              {detail?.loan?.overdueRate}
             </div>
-            <div className='font-semibold text-lg border-2 h-[30px] mt-2 text-center border-mw rounded-default'>
-              최대한도 {detail?.loan?.loanLimit}
+            <div className='font-semibold text-sm text-center border-2 rounded-default px-2 border-mw'>
+              최대한도&nbsp;
+              {detail?.loan?.loanLimit}
             </div>
           </div>
         </div>
 
-        <button
-          className='absolute bottom-40 right-14'
-          onClick={() => addCartList(snq)}
-        >
-          <IoCartOutline className='text-4xl' />
-        </button>
-
-        <button
-          className='absolute bottom-40 right-5'
-          onClick={() => addFavor(snq)}
-        >
-          <IoBookmarksOutline className='text-3xl' />
-        </button>
+        <div className='align-center'>
+          <button
+            className='absolute bottom-40 right-14'
+            onClick={() => addCartList(snq)}
+          >
+            <BsCartCheck className='text-[30px]' />
+          </button>
+          <button
+            className='absolute bottom-40 right-5'
+            onClick={() => addFavor(snq)}
+          >
+            <IoBookmarksOutline className='text-[27px]' />
+          </button>
+        </div>
       </div>
       <ul className='z-20 mt-24 flex justify-center gap-8'>
         {lists.map((list, i) => {

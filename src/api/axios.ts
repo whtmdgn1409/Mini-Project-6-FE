@@ -73,6 +73,7 @@ export interface ProductData {
 }
 
 export interface CategoryData {
+  page: number;
   baseRate: string;
   loanDescription: string;
   loanName: string;
@@ -104,7 +105,10 @@ export const signUp = async (
     };
   } catch (error) {
     if (error instanceof AxiosError) {
-      console.log(error.message);
+      return {
+        ok: false,
+        signData: error?.response?.data,
+      };
     }
     return {
       ok: false,
@@ -166,8 +170,8 @@ export const changeUserDetailInfo = async (
   income: string,
 ) => {
   try {
-    const res = await request('/signup/detail', {
-      method: 'POST',
+    const res = await request('/mypage/member/detail', {
+      method: 'PUT',
       data: {
         age,
         address,
@@ -279,20 +283,6 @@ export const changeUserInfo = async (phone: string, password: string) => {
 };
 
 // 관심 상품 조회
-// export const getFavor = async () => {
-//   try {
-//     const res = await request('/mypage/favor', {
-//       method: 'GET',
-//     });
-//     return res.data;
-//   } catch (error) {
-//     if (error instanceof AxiosError) {
-//       console.log(error.message);
-//     }
-//     return false;
-//   }
-// };
-
 export const getFavor = async () => {
   const res = await request('/mypage/favor', {
     method: 'GET',
@@ -312,7 +302,6 @@ export const addFavor = async (snq: string | number) => {
         snq,
       },
     });
-    console.log(res);
     return {
       ok: true,
       favorData: res.data,
@@ -471,7 +460,7 @@ export const nomemberRecommend = async (): Promise<any> => {
 export const getCategoryList = async (
   category: string,
   keyword: string,
-  page = 1,
+  page: number,
 ) => {
   try {
     const res = await request(
@@ -490,6 +479,7 @@ export const getCategoryList = async (
     }
     return {
       ok: false,
+      categoryData: null,
     };
   }
 };
