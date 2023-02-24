@@ -280,20 +280,6 @@ export const changeUserInfo = async (phone: string, password: string) => {
 };
 
 // 관심 상품 조회
-// export const getFavor = async () => {
-//   try {
-//     const res = await request('/mypage/favor', {
-//       method: 'GET',
-//     });
-//     return res.data;
-//   } catch (error) {
-//     if (error instanceof AxiosError) {
-//       console.log(error.message);
-//     }
-//     return false;
-//   }
-// };
-
 export const getFavor = async () => {
   const res = await request('/mypage/favor', {
     method: 'GET',
@@ -313,7 +299,6 @@ export const addFavor = async (snq: string | number) => {
         snq,
       },
     });
-    console.log(res);
     return {
       ok: true,
       favorData: res.data,

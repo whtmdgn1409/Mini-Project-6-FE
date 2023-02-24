@@ -18,24 +18,12 @@ const LikeBox = ({ item, handler }: Props) => {
 
   return (
     <div className='m-auto w-[180px] h-[250px] bg-mw rounded-default shadow-default text-white p-5'>
-      {/* <ToastContainer
-        position='top-center'
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme='light'
-      /> */}
       <div className='flex flex-col items-center justify-center gap-2'>
         <span className='font-bold text-center truncate w-full text-[18px]'>
           {item.loanName}
         </span>
         <span className='font-bold text-center text-[14px]'>
-          {item.loanLimit}
+          {item.loanLimit.split('원')[0]} 원
         </span>
         <div>
           <div className='flex items-center gap-2'>
@@ -49,16 +37,16 @@ const LikeBox = ({ item, handler }: Props) => {
               대상
             </span>
             <span className='text-[12px]'>
-              {item.loanTarget.length > 1
-                ? `${item.loanTarget[0]}...`
-                : item.loanTarget}
+              {item.loanTarget[0].slice(0, 6)}...
             </span>
           </div>
           <div className='flex items-center gap-2'>
             <span className='text-[14px] font-bold whitespace-nowrap'>
               취급 기관
             </span>
-            <span className='text-[12px] truncate'>{item.provider}</span>
+            <span className='text-[12px] truncate'>
+              {item.provider.slice(0, 6)}
+            </span>
           </div>
         </div>
       </div>
