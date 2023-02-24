@@ -4,6 +4,9 @@ import { CategoryData, getCategoryList } from '../../api/axios';
 import { useLocation } from 'react-router-dom';
 import Pagination from 'react-js-pagination';
 import '../../assets/paging.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { notify } from '../../utils/toasstify';
 
 const CategoryPage = () => {
   const [categoryItem, setCategoryItem] = useState<Array<CategoryData>>([]);
@@ -29,6 +32,18 @@ const CategoryPage = () => {
 
   return (
     <div>
+      <ToastContainer
+        position='top-center'
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='light'
+      />
       <h1 className='text-center font-bold text-[24px]'>{keyword}</h1>
       {categoryItem?.map((item) => {
         return (
@@ -39,6 +54,7 @@ const CategoryPage = () => {
             desc={item.loanDescription}
             target={item.loanTarget}
             baseRate={item.rate}
+            notify={notify}
           />
         );
       })}
