@@ -8,6 +8,7 @@ import Target from '../../components/ProductDetail/Target';
 import { IProductDetail } from './interface';
 import { defaultProductData } from './const';
 import { useLocation } from 'react-router-dom';
+import useAddCart from '../../hooks/useAddCart';
 
 const lists = ['상품요건', '지원 대상 요건', '기타 상품 정보'];
 
@@ -23,6 +24,8 @@ const ProductDetail = () => {
     };
     getDetail();
   }, []);
+
+  const addCart = useAddCart();
 
   return (
     <section className='w-[375px]'>
@@ -48,7 +51,7 @@ const ProductDetail = () => {
         <div className='align-center'>
           <button
             className='absolute bottom-40 right-14'
-            onClick={() => addCartList(snq)}
+            onClick={() => addCart(snq)}
           >
             <BsCartCheck className='text-[30px]' />
           </button>
