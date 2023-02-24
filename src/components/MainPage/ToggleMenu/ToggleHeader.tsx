@@ -14,6 +14,8 @@ interface props {
 }
 const ToggleHeader = (props: props) => {
   const [user, setUser] = useState<UserInfoType | null>(null);
+  const isLogin = useSelector((state: autoCheck) => state.auth.isAuthenticated);
+
   const date = new Date().toLocaleString('ko-KR');
   useEffect(() => {
     async function fetchData() {
@@ -24,7 +26,6 @@ const ToggleHeader = (props: props) => {
     }
     fetchData();
   }, []);
-  const isLogin = useSelector((state: autoCheck) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
   const [value, setValue] = useState('');
 
@@ -40,11 +41,14 @@ const ToggleHeader = (props: props) => {
     navigate(`/search/${keyword}`);
   };
 
+  const onClickDiv = () => {
+    navigate('/mypage');
+  };
   return isLogin ? (
     <div className='relative w-full h-full z-[1000] bg-mw'>
       <div className='w-full h-[240px] m-auto'>
         <div className='absolute flex justify-end top-[30px] right-0 items-end gap-3'>
-          <div>
+          <div className='cursor-pointer'>
             <BiLogOut
               size='32'
               color='#fff'
@@ -64,7 +68,12 @@ const ToggleHeader = (props: props) => {
         </div>
 
         <div className='absolute top-[70px] left-[41px] w-[270px] h-[148px] mx-auto '>
-          <div className='flex gap-5'>
+          <div
+            className='flex gap-5 cursor-pointer'
+            onClick={() => {
+              props.toggleMenu(), onClickDiv();
+            }}
+          >
             <div className='w-[70px] h-[70px] rounded-full'>
               <img src='/images/Users.svg' alt='사용자' />
             </div>
