@@ -5,6 +5,8 @@ import ListBox from '../../components/MainPage/ListBox';
 import { CategoryData } from '../../api/axios';
 import Pagination from 'react-js-pagination';
 import '../../assets/paging.css';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SearchPage = () => {
   const [searchResult, setSearchResult] = useState<Array<CategoryData>>([]);
@@ -18,8 +20,6 @@ const SearchPage = () => {
   const pathname = location.pathname.slice(8);
   const keyword = decodeURIComponent(pathname);
 
-  const target = useRef(null);
-
   useEffect(() => {
     const fetchData = async () => {
       const { ok, searchData } = await getKeywordSearch(keyword, 1);
@@ -29,8 +29,24 @@ const SearchPage = () => {
     fetchData();
   }, [page]);
 
+  const notify = (state: string) => {
+    toast.success(`${state}에 추가되었습니다.`);
+  };
+
   return (
     <div>
+      <ToastContainer
+        position='top-center'
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='light'
+      />
       <h1 className='text-center font-bold text-[24px]'>
         검색 결과: {keyword}
       </h1>
@@ -45,6 +61,7 @@ const SearchPage = () => {
                 desc={item.loanDescription}
                 target={item.loanTarget}
                 baseRate={item.rate}
+                notify={notify}
               />
             );
           })}

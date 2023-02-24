@@ -4,9 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import ListBox from './ListBox';
 import { getProduct, ProductList } from '../../api/axios';
-type props = {};
+type props = {
+  notify: (state: string) => void;
+};
 
-const GoodsList = (props: props) => {
+const GoodsList = ({ notify }: props) => {
   const [lists, setlists] = useState<ProductList>();
 
   const navigate = useNavigate();
@@ -36,6 +38,7 @@ const GoodsList = (props: props) => {
           desc={item.loanDescription}
           target={item.loanTarget}
           baseRate={item.rate}
+          notify={notify}
         />
       ))}
     </div>

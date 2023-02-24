@@ -9,6 +9,7 @@ type props = {
   desc: string;
   target: string | string[];
   baseRate: string;
+  notify: (state: string) => void;
 };
 const ListBox = (props: props) => {
   let description = props.desc;
@@ -40,11 +41,17 @@ const ListBox = (props: props) => {
       <div className='flex absolute right-5 bottom-5 gap-2 items-center'>
         <IoCartOutline
           className='text-[28px] cursor-pointer'
-          onClick={() => addCartList(props.snq)}
+          onClick={() => {
+            addCartList(props.snq);
+            props.notify('장바구니');
+          }}
         />
         <IoBookmarksOutline
           className='text-[24px] cursor-pointer'
-          onClick={() => addFavor(props.snq)}
+          onClick={() => {
+            addFavor(props.snq);
+            props.notify('관심 상품');
+          }}
         />
         <button
           className='mwBtn !w-[80px] !h-[40px]'
