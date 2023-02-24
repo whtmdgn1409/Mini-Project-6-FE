@@ -10,6 +10,8 @@ import {
 import { autoCheck } from '../../features/authSlice';
 import { token } from '../../api/core/api';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 type props = {};
 
 const RecommendList = (props: props) => {
@@ -17,6 +19,7 @@ const RecommendList = (props: props) => {
   const [memberlists, setmemberlists] = useState<ProductData>();
   const [nomemberlists, setnomemberlists] = useState<ProductData>();
   const [user, setUser] = useState<UserInfoType | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isLogin) {
@@ -40,6 +43,8 @@ const RecommendList = (props: props) => {
       fetchNoMemberData();
     }
   }, [isLogin]);
+  // console.log(memberlists);
+
   //로그인이 되어 있을 때
   return isLogin ? (
     <div>
@@ -49,10 +54,14 @@ const RecommendList = (props: props) => {
       {/* 추천 상품 리스트 보여주기 */}
       <div className='SlickContainer'>
         <Slick>
-          {memberlists?.recommendData?.content.map((item) => (
+          {memberlists?.recommendData?.content.map((item, i) => (
             <div
-              key={item.snq}
+              key={i}
               className='flex flex-col items-center justify-center mt-[40px] ml-[20px]'
+              onClick={() => {
+                // navigate(`/product/${item.snq}`),
+                console.log(item.snq);
+              }}
             >
               <div className='w-[260px] h-[50px] align-middle text-[15px]'>
                 <p>{item.loanName}</p>
