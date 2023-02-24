@@ -36,13 +36,11 @@ const ProductDetail = () => {
           <div className='flex justify-center gap-2'>
             <div className='font-semibold text-sm text-center border-2 rounded-default px-2 border-mw'>
               금리&nbsp;
-              {detail?.loan?.rate === 'null' ? '확인 중' : detail?.loan?.rate}
+              {detail?.loan?.overdueRate}
             </div>
             <div className='font-semibold text-sm text-center border-2 rounded-default px-2 border-mw'>
               최대한도&nbsp;
-              {detail?.loan?.loanLimit === 'null'
-                ? '확인 중'
-                : detail?.loan?.loanLimit}
+              {detail?.loan?.loanLimit}
             </div>
           </div>
         </div>
