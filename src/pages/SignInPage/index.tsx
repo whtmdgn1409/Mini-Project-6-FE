@@ -58,6 +58,7 @@ const SignInPage = (props: Props) => {
     if (ok) {
       setCookie('accessToken', signData?.token!, 1);
       dispatch(setUser(signData));
+      location.reload();
       navigate('/');
     }
   };
