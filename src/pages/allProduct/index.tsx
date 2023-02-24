@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { CategoryData, getAllList } from '../../api/axios';
 import Pagination from 'react-js-pagination';
 import '../../assets/paging.css';
+import { notify } from '../../utils/toasstify';
+import { ToastContainer } from 'react-toastify';
+
 type props = {};
 const allProduct = (props: props) => {
   const [lists, setlists] = useState<Array<CategoryData>>([]);
@@ -21,6 +24,18 @@ const allProduct = (props: props) => {
   }, [page]);
   return (
     <div>
+      <ToastContainer
+        position='top-center'
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='light'
+      />
       <div>
         {lists.map((item, i) => (
           <ListBox
@@ -30,6 +45,7 @@ const allProduct = (props: props) => {
             desc={item.loanDescription}
             target={item.loanTarget}
             baseRate={item.baseRate}
+            notify={notify}
           />
         ))}
       </div>
