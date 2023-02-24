@@ -14,6 +14,8 @@ interface props {
 }
 const ToggleHeader = (props: props) => {
   const [user, setUser] = useState<UserInfoType | null>(null);
+  const isLogin = useSelector((state: autoCheck) => state.auth.isAuthenticated);
+
   const date = new Date().toLocaleString('ko-KR');
   useEffect(() => {
     async function fetchData() {
@@ -24,7 +26,6 @@ const ToggleHeader = (props: props) => {
     }
     fetchData();
   }, []);
-  const isLogin = useSelector((state: autoCheck) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
   const [value, setValue] = useState('');
 
