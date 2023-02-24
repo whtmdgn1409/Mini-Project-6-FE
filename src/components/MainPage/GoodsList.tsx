@@ -15,7 +15,6 @@ const GoodsList = (props: props) => {
     async function fetchData() {
       const productList = await getProduct();
       setlists(productList);
-      console.log(lists);
     }
     fetchData();
   }, []);
@@ -28,7 +27,7 @@ const GoodsList = (props: props) => {
         <span className='text-[20px] font-semibold'>전체 상품</span>
         <MdKeyboardArrowRight size='28' />
       </button>
-      {lists?.productData.map((item, index) => (
+      {lists?.productData?.map((item, index) => (
         <ListBox
           key={index}
           snq={item.snq}
