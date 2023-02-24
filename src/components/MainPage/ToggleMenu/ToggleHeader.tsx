@@ -47,7 +47,7 @@ const ToggleHeader = (props: props) => {
     <div className='relative w-full h-full z-[1000] bg-mw'>
       <div className='w-full h-[240px] m-auto'>
         <div className='absolute flex justify-end top-[30px] right-0 items-end gap-3'>
-          <div>
+          <div className='cursor-pointer'>
             <BiLogOut
               size='32'
               color='#fff'
