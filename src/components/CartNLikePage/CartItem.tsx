@@ -7,8 +7,6 @@ type CartItemProps = {
 };
 
 export default function CartItem({ onClick, info }: CartItemProps) {
-  console.log(info);
-  //  TODO: 로그인 기능되면 데이터 보고 props로 데이터 그리게 하기
   return (
     <div className='relative w-full h-[200px] flex justify-between items-center px-[32px]'>
       <button
@@ -24,16 +22,19 @@ export default function CartItem({ onClick, info }: CartItemProps) {
         <div className='text-[20px] font-medium text--black-90'>
           {info.loanName}
         </div>
-        <div className="flex justify-start items-center">
-        {info.loanTarget.map(target => {
-          return(
-            <div className='text-[#828F9C] text-[13px]'>#{target}</div>)})
-            }
+        <div className='flex justify-start items-center'>
+          {info.loanTarget.map((target) => {
+            return <div className='text-[#828F9C] text-[13px]'>#{target}</div>;
+          })}
         </div>
       </div>
       <div className='flex flex-col justify-center items-end'>
-        <div className='-text--black-50  text-[13px]'>{info.baseRate === "-" ? "변동금리" : info.baseRate}</div>
-        <div className=' text-mw  text-[20px] font-semibold'>{info.rate === "-" ? "5%" :info.rate}</div>
+        <div className='-text--black-50  text-[13px]'>
+          {info.baseRate === '-' ? '변동금리' : info.baseRate}
+        </div>
+        <div className=' text-mw  text-[20px] font-semibold'>
+          {info.rate === '-' ? '5%' : info.rate}
+        </div>
       </div>
     </div>
   );
