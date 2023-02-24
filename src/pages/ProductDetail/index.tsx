@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { IoBookmarksOutline, IoCartOutline } from 'react-icons/io5';
+import { BsCartCheck } from 'react-icons/bs';
 import { getProductDetail, addFavor, addCartList } from '../../api/axios';
 import Etc from '../../components/ProductDetail/Etc';
 import Loan from '../../components/ProductDetail/Loan';
@@ -34,27 +35,32 @@ const ProductDetail = () => {
           </p>
           <div className='flex justify-center gap-2'>
             <div className='font-semibold text-sm text-center border-2 rounded-default px-2 border-mw'>
-              금리 {detail?.loan?.rate}
+              금리&nbsp;
+              {detail?.loan?.rate === 'null' ? '확인 중' : detail?.loan?.rate}
             </div>
             <div className='font-semibold text-sm text-center border-2 rounded-default px-2 border-mw'>
-              최대한도 {detail?.loan?.loanLimit}
+              최대한도&nbsp;
+              {detail?.loan?.loanLimit === 'null'
+                ? '확인 중'
+                : detail?.loan?.loanLimit}
             </div>
           </div>
         </div>
 
-        <button
-          className='absolute bottom-40 right-14'
-          onClick={() => addCartList(snq)}
-        >
-          <IoCartOutline className='text-4xl' />
-        </button>
-
-        <button
-          className='absolute bottom-40 right-5'
-          onClick={() => addFavor(snq)}
-        >
-          <IoBookmarksOutline className='text-3xl' />
-        </button>
+        <div className='align-center'>
+          <button
+            className='absolute bottom-40 right-14'
+            onClick={() => addCartList(snq)}
+          >
+            <BsCartCheck className='text-[30px]' />
+          </button>
+          <button
+            className='absolute bottom-40 right-5'
+            onClick={() => addFavor(snq)}
+          >
+            <IoBookmarksOutline className='text-[27px]' />
+          </button>
+        </div>
       </div>
       <ul className='z-20 mt-24 flex justify-center gap-8'>
         {lists.map((list, i) => {
