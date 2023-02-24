@@ -5,9 +5,11 @@ import * as yup from 'yup';
 import { signUp } from '../../api/axios';
 import { useAppDispatch } from '../../app/hooks';
 import { setUser } from '../../features/authSlice';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type Props = {};
-
+const notify = () => toast('Toastify Alert!');
 type IvalidationForm = {
   name: string;
   password: string;
@@ -55,11 +57,28 @@ const SignUpPage = (props: Props) => {
     const { ok, signData } = await signUp(name, password, email, phone);
     if (ok) {
       dispatch(setUser(signData));
+      const notify = () => toast.success(signData);
+      notify();
       navigate('/signin');
+    } else {
+      const notify = () => toast.warn(signData);
+      notify();
     }
   };
   return (
     <section className='w-[300px] m-auto'>
+      <ToastContainer
+        position='top-center'
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='light'
+      />
       <h1 className='text-4xl font-bold text-center'>반가워요</h1>
       <p className='text-center mt-4 mw-lGray'>
         가입에 꼭 필요한 정보를 알려주세요
