@@ -11,6 +11,8 @@ import { FavorType } from '../../api/axios';
 import { IoBookmarksOutline } from 'react-icons/io5';
 import { useSelector } from 'react-redux';
 import { autoCheck } from '../../features/authSlice';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type Props = {};
 
@@ -39,8 +41,26 @@ const Mypage = (props: Props) => {
     arrows: false,
   };
 
+  const notify = () => toast.success('관심 상품이 삭제되었습니다.');
+  const deleteBtnHandler = () => {
+    notify();
+    setTimeout(() => location.reload(), 1000);
+  };
+
   return isLogin ? (
     <div className='mx-[30px]'>
+      <ToastContainer
+        position='top-center'
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='light'
+      />
       <h1 className='text-[20px]'>
         <span className='text-mw font-bold'>{user?.name}</span> 님 안녕하세요!
       </h1>
@@ -59,7 +79,7 @@ const Mypage = (props: Props) => {
         {favor.length ? (
           <Slider {...settings} dotsClass='mypage-dots' className='likeItem'>
             {favor.map((item) => (
-              <LikeBox item={item} key={item.snq} />
+              <LikeBox item={item} key={item.snq} handler={deleteBtnHandler} />
             ))}
           </Slider>
         ) : (
@@ -67,7 +87,7 @@ const Mypage = (props: Props) => {
         )}
       </div>
       <div>
-        <h2 className='text-[20px] font-bold mt-[20px] mb-[10px]'>
+        <h2 className='text-[20px] font-bold mt-[40px] mb-[10px]'>
           회원 정보 수정
         </h2>
         <span

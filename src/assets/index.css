@@ -67,8 +67,10 @@
 }
 
 .mypage-dots {
-  position: relative;
-  right: -25%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
 }
 
 .mypage-dots li {
@@ -82,8 +84,8 @@
 .mypage-dots li button {
   background-color: #c8c7cc;
   color: transparent;
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
 }
 
