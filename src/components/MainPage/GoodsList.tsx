@@ -5,7 +5,7 @@ import { MdKeyboardArrowRight } from 'react-icons/md';
 import ListBox from './ListBox';
 import { getProduct, ProductList } from '../../api/axios';
 type props = {
-  notify: (state: string) => void;
+  notify: (page: string, state: boolean) => void;
 };
 
 const GoodsList = ({ notify }: props) => {

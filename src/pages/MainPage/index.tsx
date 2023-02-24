@@ -1,13 +1,13 @@
 import React from 'react';
 import GoodsList from '../../components/MainPage/GoodsList';
 import RecommendList from '../../components/MainPage/RecommendList';
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { notify } from '../../utils/toasstify';
 
 type Props = {};
 
 const MainPage = (props: Props) => {
-  const notify = (state: string) => toast.success(`${state}에 추가되었습니다.`);
   return (
     <div className='mx-[30px]'>
       <ToastContainer

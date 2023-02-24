@@ -9,12 +9,30 @@ type props = {
   desc: string;
   target: string | string[];
   baseRate: string;
-  notify: (state: string) => void;
+  notify: (page: string, state: boolean) => void;
 };
 const ListBox = (props: props) => {
   let description = props.desc;
   let replaceDesc = description.replace('<br/>/g', '');
   const navigate = useNavigate();
+
+  const favorHandler = async () => {
+    const { ok } = await addFavor(props.snq);
+    if (ok) {
+      props.notify('관심 상품', ok);
+    } else {
+      props.notify('관심 상품', ok);
+    }
+  };
+
+  const cartHandler = async () => {
+    const { ok } = await addCartList(props.snq);
+    if (ok) {
+      props.notify('장바구니', ok);
+    } else {
+      props.notify('장바구니', ok);
+    }
+  };
   return (
     <div className='bg-mw-lGray relative w-full h-52 my-3 shadow-default rounded-default'>
       <div className='flex flex-col gap-1 justify-center m-5 py-5'>
@@ -41,17 +59,11 @@ const ListBox = (props: props) => {
       <div className='flex absolute right-5 bottom-5 gap-2 items-center'>
         <IoCartOutline
           className='text-[28px] cursor-pointer'
-          onClick={() => {
-            addCartList(props.snq);
-            props.notify('장바구니');
-          }}
+          onClick={cartHandler}
         />
         <IoBookmarksOutline
           className='text-[24px] cursor-pointer'
-          onClick={() => {
-            addFavor(props.snq);
-            props.notify('관심 상품');
-          }}
+          onClick={favorHandler}
         />
         <button
           className='mwBtn !w-[80px] !h-[40px]'

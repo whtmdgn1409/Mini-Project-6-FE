@@ -4,8 +4,9 @@ import { CategoryData, getCategoryList } from '../../api/axios';
 import { useLocation } from 'react-router-dom';
 import Pagination from 'react-js-pagination';
 import '../../assets/paging.css';
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { notify } from '../../utils/toasstify';
 
 const CategoryPage = () => {
   const [categoryItem, setCategoryItem] = useState<Array<CategoryData>>([]);
@@ -28,8 +29,6 @@ const CategoryPage = () => {
     };
     fetchData();
   }, [keyword, page]);
-
-  const notify = (state: string) => toast.success(`${state}에 추가되었습니다.`);
 
   return (
     <div>

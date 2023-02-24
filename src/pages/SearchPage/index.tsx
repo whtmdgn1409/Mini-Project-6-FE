@@ -5,8 +5,9 @@ import ListBox from '../../components/MainPage/ListBox';
 import { CategoryData } from '../../api/axios';
 import Pagination from 'react-js-pagination';
 import '../../assets/paging.css';
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { notify } from '../../utils/toasstify';
 
 const SearchPage = () => {
   const [searchResult, setSearchResult] = useState<Array<CategoryData>>([]);
@@ -28,10 +29,6 @@ const SearchPage = () => {
     };
     fetchData();
   }, [page]);
-
-  const notify = (state: string) => {
-    toast.success(`${state}에 추가되었습니다.`);
-  };
 
   return (
     <div>
