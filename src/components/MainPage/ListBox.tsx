@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { IoBookmarksOutline, IoCartOutline } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 import { addCartList, addFavor } from '../../api/axios';
+import useAddCart from '../../hooks/useAddCart';
 type props = {
   snq: string | number;
   title: string;
@@ -16,6 +17,8 @@ const ListBox = (props: props) => {
   let replaceDesc = description.replace('<br/>/g', '');
   const navigate = useNavigate();
 
+  const addCart = useAddCart();
+
   const favorHandler = async () => {
     const { ok } = await addFavor(props.snq);
     if (ok) {
@@ -26,13 +29,14 @@ const ListBox = (props: props) => {
   };
 
   const cartHandler = async () => {
-    const { ok } = await addCartList(props.snq);
-    if (ok) {
-      props.notify('장바구니', ok);
-    } else {
-      props.notify('장바구니', ok);
+    try {
+      await addCart(String(props.snq));
+      props.notify('장바구니', true);
+    } catch {
+      props.notify('장바구니', false);
     }
   };
+
   return (
     <div className='bg-mw-lGray relative w-full h-52 my-3 shadow-default rounded-default'>
       <div className='flex flex-col gap-1 justify-center m-5 py-5'>

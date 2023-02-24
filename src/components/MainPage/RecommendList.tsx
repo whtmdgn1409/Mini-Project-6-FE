@@ -4,14 +4,12 @@ import {
   memberRecommend,
   nomemberRecommend,
   ProductData,
-  getUserInfo,
-  UserInfoType,
 } from '../../api/axios';
 import { autoCheck } from '../../features/authSlice';
-import { token } from '../../api/core/api';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SlickItem from '../../slider/SlickItem';
+import useUserInfo from '../../hooks/useUserInfo';
 
 type props = {};
 
@@ -19,7 +17,7 @@ const RecommendList = (props: props) => {
   const isLogin = useSelector((state: autoCheck) => state.auth.isAuthenticated);
   const [memberlists, setmemberlists] = useState<ProductData>();
   const [nomemberlists, setnomemberlists] = useState<ProductData>();
-  const [user, setUser] = useState<UserInfoType | null>(null);
+  const user = useUserInfo();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,14 +26,7 @@ const RecommendList = (props: props) => {
         const memberrecommendList = await memberRecommend();
         setmemberlists(memberrecommendList);
       }
-      async function fetchData() {
-        const { ok, userInfoData } = await getUserInfo();
-        if (ok) {
-          setUser(userInfoData);
-        }
-      }
       fetchMemberData();
-      fetchData();
     } else {
       async function fetchNoMemberData() {
         const nomemberrecommendList = await nomemberRecommend();
