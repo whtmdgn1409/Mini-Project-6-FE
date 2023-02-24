@@ -104,7 +104,7 @@ const SignInPage = (props: Props) => {
         회원이 아니세요?&nbsp;
         <button
           onClick={() => {
-            navigate('/signin');
+            navigate('/signup');
           }}
           className='font-bold text-mw'
         >
