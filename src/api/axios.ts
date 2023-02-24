@@ -105,7 +105,10 @@ export const signUp = async (
     };
   } catch (error) {
     if (error instanceof AxiosError) {
-      console.log(error.message);
+      return {
+        ok: false,
+        signData: error?.response?.data,
+      };
     }
     return {
       ok: false,

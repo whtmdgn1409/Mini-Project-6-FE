@@ -29,7 +29,7 @@ request.interceptors.response.use(
     return response;
   },
   function (error) {
-    console.log(error.message);
+    console.log(error);
     return Promise.reject(error);
   },
 );

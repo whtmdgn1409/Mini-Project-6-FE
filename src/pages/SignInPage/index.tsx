@@ -6,6 +6,8 @@ import { signIn, ResponseValue } from '../../api/axios';
 import { useAppDispatch } from '../../app/hooks';
 import { setUser } from '../../features/authSlice';
 import { setCookie } from '../../utils/cookieFn';
+import { token } from '../../api/core/api';
+import { useEffect } from 'react';
 
 type Props = {};
 
@@ -15,7 +17,14 @@ interface IvalidationForm {
 }
 
 const SignInPage = (props: Props) => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (token) {
+      navigate('/');
+    }
+  }, [token]);
 
   const schema = yup.object().shape({
     email: yup
@@ -52,7 +61,6 @@ const SignInPage = (props: Props) => {
     }
   };
 
-  const navigate = useNavigate();
   return (
     <section className='w-[300px] m-auto'>
       <h1 className='text-6xl font-bold text-center'>안녕하세요</h1>
