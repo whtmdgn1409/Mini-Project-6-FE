@@ -15,15 +15,15 @@ const ToggleBody = ({ toggleMenu }: props) => {
   return (
     <div className='absolute top-[240px] w-full bg-white text-black'>
       <div className='flex'>
-        <ul className='my-2 w-[100px] h-[200px] flex flex-col justify-center items-center text-center gap-2'>
+        <ul className='my-2 w-[100px] h-[200px] flex flex-col justify-center items-center text-center gap-3 px-2'>
           {lists.map((list, i) => {
             return (
               <li
                 key={i}
                 className={
                   i === activeMenu
-                    ? 'w-[90px] h-[63px] ml-2 text-white bg-mw rounded-[15px] flex justify-center items-center cursor-pointer'
-                    : 'w-[90px] h-[63px] ml-2 text-black flex justify-center items-center cursor-pointer'
+                    ? 'transition ease-in-out delay-50 w-[90px] h-[63px] ml-2 font-bold text-lg text-mw-lGray bg-mw rounded-[15px] flex justify-center items-center cursor-pointer'
+                    : 'w-[90px] h-[63px] ml-2 font-bold text-lg text-mw flex justify-center items-center cursor-pointer'
                 }
                 onClick={() => setactiveMenu(i)}
               >
@@ -32,7 +32,7 @@ const ToggleBody = ({ toggleMenu }: props) => {
             );
           })}
         </ul>
-        <div className='ml-3 mt-3 flex flex-col'>
+        <div className='ml-7 mt-4 flex flex-col'>
           {
             [
               <Agency toggleMenu={toggleMenu} />,

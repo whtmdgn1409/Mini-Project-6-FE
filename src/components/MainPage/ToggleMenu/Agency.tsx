@@ -8,12 +8,12 @@ type props = {
 const Agency = ({ toggleMenu }: props) => {
   const navigate = useNavigate();
   return (
-    <div className='flex flex-col w-[230px] gap-3'>
+    <div className='grid grid-cols-2 gap-2 w-[230px] gap-3'>
       {agencyList.map((list) => {
         return (
           <div
             key={list}
-            className='cursor-pointer'
+            className='cursor-pointer hover:text-mw hover:font-bold'
             onClick={() => {
               toggleMenu();
               navigate(`/category/office&${list}`);
