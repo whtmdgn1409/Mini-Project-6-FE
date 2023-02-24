@@ -167,8 +167,8 @@ export const changeUserDetailInfo = async (
   income: string,
 ) => {
   try {
-    const res = await request('/signup/detail', {
-      method: 'POST',
+    const res = await request('/mypage/member/detail', {
+      method: 'PUT',
       data: {
         age,
         address,
