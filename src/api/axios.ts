@@ -132,7 +132,10 @@ export const signIn = async (email: string, password: string) => {
     };
   } catch (error) {
     if (error instanceof AxiosError) {
-      console.log(error.message);
+      return {
+        ok: false,
+        signData: error?.response?.data,
+      };
     }
     return {
       ok: false,
