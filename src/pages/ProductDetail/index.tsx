@@ -8,6 +8,10 @@ import Target from '../../components/ProductDetail/Target';
 import { IProductDetail } from './interface';
 import { defaultProductData } from './const';
 import { useLocation } from 'react-router-dom';
+import useAddCart from '../../hooks/useAddCart';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { notify } from '../../utils/toasstify';
 
 const lists = ['상품요건', '지원 대상 요건', '기타 상품 정보'];
 
@@ -24,8 +28,40 @@ const ProductDetail = () => {
     getDetail();
   }, []);
 
+  const addCart = useAddCart();
+
+  const addCartHandler = async () => {
+    const { ok } = await addCartList(snq);
+    if (ok) {
+      notify('장바구니', ok);
+    } else {
+      notify('장바구니', ok);
+    }
+  };
+
+  const addFavorHandler = async () => {
+    const { ok } = await addFavor(snq);
+    if (ok) {
+      notify('관심 상품', ok);
+    } else {
+      notify('관심 상품', ok);
+    }
+  };
+
   return (
     <section className='w-[375px]'>
+      <ToastContainer
+        position='top-center'
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='light'
+      />
       <div className='bg-mw w-[375px] h-[230px] top-40 absolute'></div>
       <div className=' relative shadow-default p-2 w-[335px] h-52 mx-auto my-3 rounded-default border text-left flex bg-mw-lGray'>
         <div className='mx-auto my-auto'>
@@ -48,13 +84,16 @@ const ProductDetail = () => {
         <div className='align-center'>
           <button
             className='absolute bottom-40 right-14'
-            onClick={() => addCartList(snq)}
+            onClick={() => {
+              addCart(snq);
+              addCartHandler();
+            }}
           >
             <BsCartCheck className='text-[30px]' />
           </button>
           <button
             className='absolute bottom-40 right-5'
-            onClick={() => addFavor(snq)}
+            onClick={addFavorHandler}
           >
             <IoBookmarksOutline className='text-[27px]' />
           </button>

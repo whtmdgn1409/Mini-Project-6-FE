@@ -4,13 +4,12 @@ import {
   memberRecommend,
   nomemberRecommend,
   ProductData,
-  getUserInfo,
-  UserInfoType,
 } from '../../api/axios';
 import { autoCheck } from '../../features/authSlice';
-import { token } from '../../api/core/api';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import SlickItem from '../../slider/SlickItem';
+import useUserInfo from '../../hooks/useUserInfo';
 
 type props = {};
 
@@ -18,7 +17,7 @@ const RecommendList = (props: props) => {
   const isLogin = useSelector((state: autoCheck) => state.auth.isAuthenticated);
   const [memberlists, setmemberlists] = useState<ProductData>();
   const [nomemberlists, setnomemberlists] = useState<ProductData>();
-  const [user, setUser] = useState<UserInfoType | null>(null);
+  const user = useUserInfo();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,14 +26,7 @@ const RecommendList = (props: props) => {
         const memberrecommendList = await memberRecommend();
         setmemberlists(memberrecommendList);
       }
-      async function fetchData() {
-        const { ok, userInfoData } = await getUserInfo();
-        if (ok) {
-          setUser(userInfoData);
-        }
-      }
       fetchMemberData();
-      fetchData();
     } else {
       async function fetchNoMemberData() {
         const nomemberrecommendList = await nomemberRecommend();
@@ -43,7 +35,6 @@ const RecommendList = (props: props) => {
       fetchNoMemberData();
     }
   }, [isLogin]);
-  // console.log(memberlists);
 
   //로그인이 되어 있을 때
   return isLogin ? (
@@ -55,21 +46,7 @@ const RecommendList = (props: props) => {
       <div className='SlickContainer'>
         <Slick>
           {memberlists?.recommendData?.content.map((item, i) => (
-            <div
-              key={i}
-              className='flex flex-col items-center justify-center mt-[40px] ml-[20px]'
-              onClick={() => {
-                // navigate(`/product/${item.snq}`),
-                console.log(item.snq);
-              }}
-            >
-              <div className='w-[260px] h-[50px] align-middle text-[15px]'>
-                <p>{item.loanName}</p>
-              </div>
-              <div className='w-[280px] h-[100px] text-[14px] whitespace-normal overflow-hidden'>
-                <p>{item.loanDescription.slice(0, 80)}</p>
-              </div>
-            </div>
+            <SlickItem key={i} item={item} />
           ))}
         </Slick>
       </div>

@@ -4,11 +4,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { signIn, ResponseValue } from '../../api/axios';
 import { useAppDispatch } from '../../app/hooks';
-import { setUser } from '../../features/authSlice';
+import { setUser, autoCheck } from '../../features/authSlice';
 import { setCookie } from '../../utils/cookieFn';
 import { token } from '../../api/core/api';
 import { useEffect } from 'react';
-
+import { useSelector } from 'react-redux';
 type Props = {};
 
 interface IvalidationForm {
@@ -19,12 +19,13 @@ interface IvalidationForm {
 const SignInPage = (props: Props) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const isLogin = useSelector((state: autoCheck) => state.auth.isAuthenticated);
 
   useEffect(() => {
-    if (token) {
+    if (isLogin) {
       navigate('/');
     }
-  }, [token]);
+  }, [isLogin]);
 
   const schema = yup.object().shape({
     email: yup
@@ -57,6 +58,7 @@ const SignInPage = (props: Props) => {
     if (ok) {
       setCookie('accessToken', signData?.token!, 1);
       dispatch(setUser(signData));
+      location.reload();
       navigate('/');
     }
   };
@@ -102,7 +104,7 @@ const SignInPage = (props: Props) => {
         회원이 아니세요?&nbsp;
         <button
           onClick={() => {
-            navigate('/signin');
+            navigate('/signup');
           }}
           className='font-bold text-mw'
         >
