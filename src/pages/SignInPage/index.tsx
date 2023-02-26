@@ -6,19 +6,17 @@ import { signIn, ResponseValue } from '../../api/axios';
 import { useAppDispatch } from '../../app/hooks';
 import { setUser, autoCheck } from '../../features/authSlice';
 import { setCookie } from '../../utils/cookieFn';
-import { token } from '../../api/core/api';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-type Props = {};
-const notify = () => toast('Toastify Alert!');
+
 interface IvalidationForm {
   email: string;
   password: string;
 }
 
-const SignInPage = (props: Props) => {
+const SignInPage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const isLogin = useSelector((state: autoCheck) => state.auth.isAuthenticated);
@@ -56,7 +54,7 @@ const SignInPage = (props: Props) => {
   const onSubmit = async (data: FieldValues) => {
     const { email, password } = data;
     const { ok, signData }: ResponseValue = await signIn(email, password);
-    console.log(ok, signData);
+
     if (ok) {
       setCookie('accessToken', signData?.token!, 1);
       dispatch(setUser(signData));
