@@ -23,7 +23,7 @@ const SearchPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { ok, searchData } = await getKeywordSearch(keyword, 1);
+      const { ok, searchData } = await getKeywordSearch(keyword, page);
       setSearchResult(searchData.content);
       setTotalItem(searchData.totalElements);
     };

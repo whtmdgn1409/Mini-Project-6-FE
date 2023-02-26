@@ -9,8 +9,10 @@ import { setCookie } from '../../utils/cookieFn';
 import { token } from '../../api/core/api';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 type Props = {};
-
+const notify = () => toast('Toastify Alert!');
 interface IvalidationForm {
   email: string;
   password: string;
@@ -60,11 +62,26 @@ const SignInPage = (props: Props) => {
       dispatch(setUser(signData));
       location.reload();
       navigate('/');
+    } else {
+      const notify = () => toast.warn('아이디와 비밀번호를 다시 확인해주세요');
+      notify();
     }
   };
 
   return (
     <section className='w-[300px] m-auto'>
+      <ToastContainer
+        position='top-center'
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='light'
+      />
       <h1 className='text-6xl font-bold text-center'>안녕하세요</h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
